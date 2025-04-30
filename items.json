@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Lampe en bronze antique",
+        "description": "Lampe d'époque romaine en bronze patiné. Pièce rare et authentique.",
+        "image": "images/lamp_bronze.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Vase grec à figures rouges",
+        "description": "Vase en terre cuite orné de scènes mythologiques, Ve siècle av. J.-C.",
+        "image": "greek_vase.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Casque corinthien",
+        "description": "Casque de guerrier grec en bronze, très bien conservé.",
+        "image": "corinthian_helmet.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Statue égyptienne",
+        "description": "Petite statue en pierre représentant un dieu égyptien, datée du Nouvel Empire.",
+        "image": "egypt_statue.jpg"
+    }
+]
