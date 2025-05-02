@@ -1,0 +1,318 @@
+:root {
+  --main-bg-color: #FFF;
+  --accent-color: #000;
+  --accent-color-secondary: #948979;
+  --main-text-color: #525252;
+  --accent-text-color: #c9b8b1;
+}
+
+html {
+    background-color: var(--main-bg-color);
+}
+
+body {
+    margin: 0 0 0 0;
+    font-family: 'Georgia', CenturyGothic, AppleGothic, sans-serif;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+header {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 100vw;
+    background-color: #dcdcdc;
+}
+
+
+.top-band {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0;
+
+}
+
+.logo button {
+    font-weight: bolder;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    padding-left: 1rem;
+    cursor: pointer;
+    color: var(--main-text-color);
+    font-family: 'Mistral', CenturyGothic, AppleGothic, sans-serif;
+    font-size: 55px;
+
+}
+
+.navigation button {
+    padding-left: 10px;
+    padding-right: 15px;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--main-text-color);
+    font-weight: bolder;
+
+}
+/* ------------------------------------------- */
+
+.hero {
+  position: relative;
+  background-image: url('../images/Vintage-shop.png');
+  background-size: cover;
+  background-position: center;
+  height: 850px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--accent-text-color);
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  border: none
+}
+
+.hero-text {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.hero-text h1 {
+    font-family: 'Mistral', CenturyGothic, AppleGothic, sans-serif;
+    font-size: 150px !important;
+}
+
+.subtitle {
+    margin-top: 3rem;
+}
+
+.subtitle h1 {
+    text-align: center;
+    color: var(--main-text-color);
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: var(--accent-color-secondary);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  height: 600px; /* Fixed height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card img {
+  width: 100%;
+  height: 400px; /* Fixed image height */
+  object-fit: cover;
+  background-color: #eee; /* Fallback in case image is missing */
+}
+
+.card p {
+  height: 100px; /* Fixed space for text */
+  padding: 10px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card button {
+    align-content: center;
+    border: none;
+    background: #5e584e;
+    margin-bottom: 20px;
+    width: 80px;
+    border-radius: 5px;
+}
+
+.card button:hover {
+  transform: scale(1.25);
+  transition: transform 1s ease;
+}
+
+
+/* ------------------------------------------- */
+
+.service-title h1{
+    font-size: 10vh;
+    margin-top: 8vh;
+    justify-self: center;
+    text-align: center;
+    font-weight: bolder;
+    color: var(--main-text-color);
+}
+
+.service-container {
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+    margin: 8vh;
+    padding: 8vh;
+    background-color: #f9f9f9;
+    border-radius: 2vh;
+}
+
+.service-item {
+    display: flex;
+    justify-content: flex-start; /* Aligns items to the left */
+    align-items: center; /* Vertically centers the content */
+    gap: 2vw; /* Adds space between text and image */
+    margin-bottom: 2vh; /* Space between service items */
+}
+
+.service-item h2 {
+    font-size: 2.8vh;
+    color: var(--main-text-color);
+    margin-bottom: 1vh;
+}
+
+.service-item p {
+    font-size: 2vh;
+    color: var(--main-text-color);
+    max-width: 600px; /* Ensures the paragraph width is controlled */
+}
+
+.service-item img {
+    width: 30vw;  /* Image size */
+    height: 30vw; /* Fixed image height */
+    object-fit: cover; /* Ensures the image fits properly */
+    border-radius: 1vh; /* Optional, adds rounded corners to the image */
+}
+
+/* ------------------------------------------- */
+
+.media-app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 20vh;
+}
+
+.media-app a {
+    display: flex;
+    flex-direction: column;  /* Stack the image and button vertically within each link */
+    justify-content: center; /* Center the content vertically */
+    align-items: center;     /* Center the content horizontally */
+    text-align: center;      /* Ensure the button and image are centered */
+    margin: 20px;
+}
+
+.media-app img {
+    width: 50px;  /* Adjust the icon size as needed */
+    height: 50px; /* Adjust the icon size as needed */
+    margin-bottom: 10px; /* Adds space between the image and the button */
+}
+
+.media-app button {
+    padding: 10px 20px;
+    font-size: 32px;
+    font-weight: bolder;
+    color: var(--main-text-color);
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--accent-text-color);
+}
+
+.media-app button:hover {
+    transform: scale(1.20);
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+form label {
+    display: block;
+    font-size: 16px;
+    margin: 10px 0 5px;
+    color: #333;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #666;
+    box-sizing: border-box; /* Ensures padding is part of width calculation */
+}
+
+form input::placeholder,
+form textarea::placeholder {
+    color: #aaa;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 auto; /* Centers the button */
+    display: block; /* Makes the button a block element for centering */
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+
+/* ------------------------------------------- */
+
+footer {
+  display: flex;
+    background-color: var(--accent-text-color);
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 20px;
+    padding-bottom: 20px;
+  padding-right: 0;
+  gap: 10px; /* Space between divs */
+    color: var(--main-text-color);
+    width: 100vw;
+}
+
+footer div a {
+  text-decoration: none;
+  cursor: pointer;
+}

@@ -1,34 +1,54 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vintage Shop</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="index.js"></script>
+    <link rel="icon" href="images/VS_logo.png" type="image/png">
+    <title>Vintage Shop</title>
 </head>
 <body>
-
   <header>
-    <div class="logo">Vintage Shop</div>
-    <nav>
-      <a href="index.html"><button>Home</button></a>
-      <a href="catalog.html"><button>Catalog</button></a>
-      <button>Cart</button>
-    </nav>
+    <div class="top-band">
+      <div class="logo">
+        <a href="index.html"><button>Vintage Shop</button></a>
+      </div>
+      <div class="navigation">
+        <a><button>Boutique</button></a>
+        <a href="service.html"><button>Service</button></a>
+        <a href="contact.html"><button>Contact</button></a>
+      </div>
+    </div>
   </header>
+  <div class="hero">
+    <div class="hero-text">
+      <h1>Vintage Shop</h1>
+      <h3>
+          A vos coté depuis plus de 10ans<br>
+          pour toutes vos affaires vintage.<br>
 
-  <div class="promo-bar">
-    <div class="promo-text-wrapper">
-      <div class="promo-text">-5% sur les lampes – Profitez-en maintenant !</div>
+      </h3>
     </div>
   </div>
+  <div class="subtitle">
+    <h1>Produit les plus regardés</h1>
+  </div>
 
-  <section class="hero">
-    <h1>Vintage Shop</h1>
-  </section>
+  <div class="card-container" id="card-container">
+  </div>
 
   <footer>
-    Développé par AZ développement pour AZ websites
+      <div>
+        <p><code>Développé par Az Development pour Az Websites</code></p>
+      </div>
+      <div>
+        <a><code>mentions légal</code></a>
+        <a><code>cookies</code></a>
+      </div>
+      <div>
+        <a><code>plan du site</code></a>
+      </div>
   </footer>
 
 </body>

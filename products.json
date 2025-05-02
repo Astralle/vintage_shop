@@ -1,0 +1,32 @@
+[
+  {
+    "image": "images/lamp.png",
+    "alt": "Produit 1",
+    "description": "Apportez une touche rétro et sophistiquée à votre espace avec cette lampe de bureau au design vintage des années 60-70. Montée sur un pied en bois verni et acier chromé, sa tête sphérique orientable en métal reflète la lumière avec éclat, créant une ambiance chaleureuse et élégante."
+  },
+  {
+    "image": "images/boussole.png",
+    "alt": "Produit 2",
+    "description": "Boussole du XIXe siècle<br>Laiton et verre d'origine<br>Fonctionnelle et décorative"
+  },
+  {
+    "image": "images/typewritter.png",
+    "alt": "Produit 3",
+    "description": "Machine à écrire Remington<br>Années 1920<br>Idéale pour collectionneur"
+  },
+  {
+    "image": "images/tel.png",
+    "alt": "Produit 4",
+    "description": "Téléphone rotatif noir<br>Design rétro authentique<br>Fonctionne encore"
+  },
+  {
+    "image": "images/montre_.png",
+    "alt": "Produit 5",
+    "description": "Montre à gousset argentée<br>Gravures florales fines<br>Mouvement mécanique visible"
+  },
+  {
+    "image": "images/globe.png",
+    "alt": "Produit 6",
+    "description": "Globe terrestre en bois<br>Style colonial ancien<br>Bel objet de décoration"
+  }
+]
