@@ -1,26 +1,33 @@
 [
   {
     "id": 1,
-    "image": "images/globe.png",
-    "label": "Vintage",
+    "image": "images/boutique/img1.png",
+    "label": "Bateau 1942",
     "link": "#"
   },
   {
     "id": 2,
-    "image": "images/globe.png",
-    "label": "Vintage",
+    "image": "images/boutique/img2.png",
+    "label": "Chaise 1960",
     "link": "#"
   },
   {
     "id": 3,
-    "image": "images/globe.png",
-    "label": "Vintage",
+    "image": "images/boutique/img3.png",
+    "label": "Canapé sale",
     "link": "#"
   },
   {
     "id": 4,
-    "image": "images/globe.png",
-    "label": "Vintage",
+    "image": "images/boutique/img4.png",
+    "label": "Crane mort",
+    "link": "#"
+  },
+  {
+    "id": 5,
+    "image": "images/boutique/img5.png",
+    "label": "Table 1970",
     "link": "#"
   }
 ]
+
