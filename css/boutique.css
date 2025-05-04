@@ -106,7 +106,7 @@
 
 .product_grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 4 per row */
+  grid-template-columns: repeat(3, 1fr); /* 3 per row */
   gap: 30px;
   padding: 40px 20px;
   max-width: 1400px;
@@ -144,7 +144,6 @@
   border: 2px solid #2e2e2e;
   font-size: 1.2rem;
   font-family: 'Georgia', serif;
-  transform: skewX(-10deg);
   background-color: #f4f1ec;
 }
 

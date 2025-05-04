@@ -12,12 +12,68 @@
   document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.nav_items button');
 
+    // Set the "Tout" button as active by default
+    const toutButton = buttons[0]; // Assuming the "Tout" button is the first button
+    toutButton.classList.add('active'); // Add active class to the "Tout" button
+
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
         buttons.forEach(b => b.classList.remove('active')); // Remove active from all
         btn.classList.add('active'); // Set active on clicked button
       });
     });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Fetch the JSON file containing the products
+    fetch('data.json')
+      .then(response => response.json())
+      .then(products => {
+        // Get the product grid container
+        const productGrid = document.querySelector('.product_grid');
+
+        // Loop through the products and create a card for each
+        products.forEach(product => {
+          // Create a new product card div
+          const productCard = document.createElement('div');
+          productCard.classList.add('product_card');
+
+          // Add product image
+          const productImage = document.createElement('div');
+          productImage.classList.add('product_image');
+          const img = document.createElement('img');
+          img.src = product.image;
+          img.alt = 'product';
+          productImage.appendChild(img);
+
+          // Add product info
+          const productInfo = document.createElement('div');
+          productInfo.classList.add('product_info');
+          const productLabel = document.createElement('div');
+          productLabel.classList.add('product_label');
+          productLabel.textContent = product.label;
+          const productButton = document.createElement('a');
+          productButton.href = product.link;
+          productButton.classList.add('product_button');
+          productButton.textContent = 'See product';
+
+          // Append the label and button to the product info div
+          productInfo.appendChild(productLabel);
+          productInfo.appendChild(productButton);
+
+          // Append the image and info to the product card
+          productCard.appendChild(productImage);
+          productCard.appendChild(productInfo);
+
+          // Append the new product card to the product grid
+          productGrid.appendChild(productCard);
+        });
+      })
+      .catch(error => {
+        console.error('Error loading products:', error);
+      });
   });
 </script>
 
@@ -57,141 +113,7 @@
           </div>
       </div>
       <div class="product_grid">
-        <div class="product_card">
-          <div class="product_image">
-            <img src="images/globe.png" alt="product">
-          </div>
-          <div class="product_info">
-            <div class="product_label">Vintage</div>
-            <a href="#" class="product_button">See product</a>
-          </div>
-        </div>
-        <div class="product_card">
-          <div class="product_image">
-            <img src="images/globe.png" alt="product">
-          </div>
-          <div class="product_info">
-            <div class="product_label">Vintage</div>
-            <a href="#" class="product_button">See product</a>
-          </div>
-        </div>
-          <div class="product_card">
-          <div class="product_image">
-            <img src="images/globe.png" alt="product">
-          </div>
-          <div class="product_info">
-            <div class="product_label">Vintage</div>
-            <a href="#" class="product_button">See product</a>
-          </div>
-        </div>
-          <div class="product_card">
-          <div class="product_image">
-            <img src="images/globe.png" alt="product">
-          </div>
-          <div class="product_info">
-            <div class="product_label">Vintage</div>
-            <a href="#" class="product_button">See product</a>
-          </div>
-        </div>
-          <div class="product_card">
-          <div class="product_image">
-            <img src="images/globe.png" alt="product">
-          </div>
-          <div class="product_info">
-            <div class="product_label">Vintage</div>
-            <a href="#" class="product_button">See product</a>
-          </div>
-        </div>
-          <div class="product_card">
-          <div class="product_image">
-            <img src="images/globe.png" alt="product">
-          </div>
-          <div class="product_info">
-            <div class="product_label">Vintage</div>
-            <a href="#" class="product_button">See product</a>
-          </div>
-        </div>
-          <div class="product_card">
-          <div class="product_image">
-            <img src="images/globe.png" alt="product">
-          </div>
-          <div class="product_info">
-            <div class="product_label">Vintage</div>
-            <a href="#" class="product_button">See product</a>
-          </div>
-        </div>
-          <div class="product_card">
-          <div class="product_image">
-            <img src="images/globe.png" alt="product">
-          </div>
-          <div class="product_info">
-            <div class="product_label">Vintage</div>
-            <a href="#" class="product_button">See product</a>
-          </div>
-        </div>
-          <div class="product_card">
-          <div class="product_image">
-            <img src="images/globe.png" alt="product">
-          </div>
-          <div class="product_info">
-            <div class="product_label">Vintage</div>
-            <a href="#" class="product_button">See product</a>
-          </div>
-        </div>
-          <div class="product_card">
-          <div class="product_image">
-            <img src="images/globe.png" alt="product">
-          </div>
-          <div class="product_info">
-            <div class="product_label">Vintage</div>
-            <a href="#" class="product_button">See product</a>
-          </div>
-        </div>
-          <div class="product_card">
-          <div class="product_image">
-            <img src="images/globe.png" alt="product">
-          </div>
-          <div class="product_info">
-            <div class="product_label">Vintage</div>
-            <a href="#" class="product_button">See product</a>
-          </div>
-        </div>
-          <div class="product_card">
-          <div class="product_image">
-            <img src="images/globe.png" alt="product">
-          </div>
-          <div class="product_info">
-            <div class="product_label">Vintage</div>
-            <a href="#" class="product_button">See product</a>
-          </div>
-        </div>
-          <div class="product_card">
-          <div class="product_image">
-            <img src="images/globe.png" alt="product">
-          </div>
-          <div class="product_info">
-            <div class="product_label">Vintage</div>
-            <a href="#" class="product_button">See product</a>
-          </div>
-        </div>
-          <div class="product_card">
-          <div class="product_image">
-            <img src="images/globe.png" alt="product">
-          </div>
-          <div class="product_info">
-            <div class="product_label">Vintage</div>
-            <a href="#" class="product_button">See product</a>
-          </div>
-        </div>
-          <div class="product_card">
-          <div class="product_image">
-            <img src="images/globe.png" alt="product">
-          </div>
-          <div class="product_info">
-            <div class="product_label">Vintage</div>
-            <a href="#" class="product_button">See product</a>
-          </div>
-        </div>
+
       </div>
   </main>
 
