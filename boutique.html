@@ -55,7 +55,9 @@
           productLabel.classList.add('product_label');
           productLabel.textContent = product.label;
           const productButton = document.createElement('a');
-          productButton.href = product.link;
+
+          // Update the link to point to products-info.html
+          productButton.href = 'products-info.html?product_id=' + product.id; // Pass the product ID via query string
           productButton.classList.add('product_button');
           productButton.textContent = 'See product';
 
@@ -76,7 +78,6 @@
       });
   });
 </script>
-
 
 </head>
 <body>
