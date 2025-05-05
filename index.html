@@ -1,54 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="index.js"></script>
-    <link rel="icon" href="images/VS_logo.png" type="image/png">
-    <title>Vintage Shop</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Vintage Shop</title>
+  <link rel="icon" href="images/VS_logo.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Overrides pour la section « Nos coups de cœur » -->
+  <style>
+    /* Fond gris sur toute la largeur */
+    .featured-products {
+      background-color: #f9f9f9;
+      padding: 4rem 0;
+    }
+    /* On enlève tout fond blanc autour de la grille */
+    .featured-products .container {
+      background: transparent;
+      padding: 0;
+    }
+    /* Grille en 3 colonnes */
+    .featured-products .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    /* Images réduites et cadrées */
+    .featured-products .product-card img {
+      height: 250px;
+      object-fit: cover;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="top-band">
-      <div class="logo">
-        <a href="index.html"><button>Vintage Shop</button></a>
-      </div>
-      <div class="navigation">
-        <a href="boutique.html"><button>Boutique</button></a>
-        <a href="service.html"><button>Service</button></a>
-        <a href="contact.html"><button>Contact</button></a>
-      </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">Vintage Shop</a>
+      <nav class="site-nav">
+        <a href="boutique.html">Boutique</a>
+        <a href="service.html">Services</a>
+        <a href="products-info.html">Produits</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
   </header>
-  <div class="hero">
-    <div class="hero-text">
-      <h1>Vintage Shop</h1>
-      <h3>
-          A vos coté depuis plus de 10ans<br>
-          pour toutes vos affaires vintage.<br>
 
-      </h3>
+  <!-- Hero plein écran -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Redécouvrez le charme du vintage</h1>
+      <p>Objets uniques, empreints d’histoire.</p>
+      <a href="boutique.html" class="btn btn-primary">Découvrir la boutique</a>
+    </div>
+  </section>
+
+  <!-- Nos coups de cœur -->
+  <section class="featured-products">
+    <div class="container">
+      <h2>Nos coups de cœur</h2>
+      <div class="product-grid">
+        <div class="product-card">
+          <img src="images/boutique/img1.png" alt="Chaise en bois">
+          <h3>Chaise en bois</h3>
+          <p>120 €</p>
+        </div>
+        <div class="product-card">
+          <img src="images/boutique/img2.png" alt="Lampe de Bureau Vintage">
+          <h3>Lampe d’atelier</h3>
+          <p>85 €</p>
+        </div>
+        <div class="product-card">
+          <img src="images/boutique/img3.png" alt="Horloge murale vintage">
+          <h3>Horloge murale vintage</h3>
+          <p>45 €</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- À propos & Contact -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-info">
+        <h2>À propos & Contact</h2>
+        <p><strong>Adresse</strong><br>
+           23 rue Bugeaud<br>
+           69006 Lyon</p>
+        <p><strong>Horaires</strong><br>
+           Du mardi au samedi : 10h-13h & 14h-19h<br>
+           Dimanche : 14h-18h</p>
+        <p><strong>Téléphone</strong><br>
+           04 72 00 00 00</p>
+        <a href="contact.html" class="btn">Nous contacter</a>
+      </div>
+      <iframe
+        class="map-container"
+        src="https://maps.google.com/maps?q=23%20Rue%20Bugeaud%2C%2069006%20Lyon&output=embed"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Footer Top -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>Développé par Az Development pour Az Websites</p>
+      <nav class="footer-nav">
+        <a href="#">Mentions légales</a>
+        <a href="#">Cookies</a>
+        <a href="#">Plan du site</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="payment-logos">
+        <img src="images/logos/visa.svg" alt="Visa">
+        <img src="images/logos/mastercard.svg" alt="MasterCard">
+        <img src="images/logos/paypal.svg" alt="PayPal">
+        <img src="images/logos/apple-pay.svg" alt="Apple Pay">
+      </div>
+      <div class="newsletter">
+        <h2>Inscrivez-vous à notre newsletter</h2>
+        <form action="#" method="post">
+          <input type="text" name="name" placeholder="Nom" required>
+          <input type="email" name="email" placeholder="Adresse e-mail" required>
+          <label>
+            <input type="checkbox" name="privacy" required>
+            J'ai lu et j'accepte la <a href="politique.html">politique de confidentialité</a>
+          </label>
+          <button type="submit">S'abonner</button>
+        </form>
+      </div>
+      <div class="footer-accordions">
+        <details><summary>Paiements</summary><p>Visa, MasterCard, PayPal, Apple Pay</p></details>
+        <details><summary>Livraison</summary><p>Colissimo, Chronopost, Mondial Relay</p></details>
+        <details><summary>Retours et remboursements</summary><p>Retour sous 14 jours, remboursement intégral</p></details>
+        <details><summary>Assistance</summary><p>Email : support@vintage-shop.com<br>Téléphone : 04 72 00 00 00</p></details>
+        <details><summary>Informations juridiques</summary><p>Mentions légales, CGV, CGU</p></details>
+      </div>
     </div>
   </div>
-  <div class="subtitle">
-    <h1>Produit les plus regardés</h1>
-  </div>
-
-  <div class="card-container" id="card-container">
-  </div>
-
-  <footer>
-      <div>
-        <p><code>Développé par Az Development pour Az Websites</code></p>
-      </div>
-      <div>
-        <a><code>mentions légal</code></a>
-        <a><code>cookies</code></a>
-      </div>
-      <div>
-        <a><code>plan du site</code></a>
-      </div>
-  </footer>
 
 </body>
 </html>

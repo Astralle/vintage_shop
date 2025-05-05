@@ -1,135 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/boutique.css">
-    <script src="index.js"></script>
-    <link rel="icon" href="images/VS_logo.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>Vintage Shop</title>
-    <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('.nav_items button');
-
-    // Set the "Tout" button as active by default
-    const toutButton = buttons[0]; // Assuming the "Tout" button is the first button
-    toutButton.classList.add('active'); // Add active class to the "Tout" button
-
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        buttons.forEach(b => b.classList.remove('active')); // Remove active from all
-        btn.classList.add('active'); // Set active on clicked button
-      });
-    });
-  });
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Fetch the JSON file containing the products
-    fetch('data.json')
-      .then(response => response.json())
-      .then(products => {
-        // Get the product grid container
-        const productGrid = document.querySelector('.product_grid');
-
-        // Loop through the products and create a card for each
-        products.forEach(product => {
-          // Create a new product card div
-          const productCard = document.createElement('div');
-          productCard.classList.add('product_card');
-
-          // Add product image
-          const productImage = document.createElement('div');
-          productImage.classList.add('product_image');
-          const img = document.createElement('img');
-          img.src = product.image;
-          img.alt = 'product';
-          productImage.appendChild(img);
-
-          // Add product info
-          const productInfo = document.createElement('div');
-          productInfo.classList.add('product_info');
-          const productLabel = document.createElement('div');
-          productLabel.classList.add('product_label');
-          productLabel.textContent = product.label;
-          const productButton = document.createElement('a');
-
-          // Update the link to point to products-info.html
-          productButton.href = 'products-info.html?product_id=' + product.id; // Pass the product ID via query string
-          productButton.classList.add('product_button');
-          productButton.textContent = 'See product';
-
-          // Append the label and button to the product info div
-          productInfo.appendChild(productLabel);
-          productInfo.appendChild(productButton);
-
-          // Append the image and info to the product card
-          productCard.appendChild(productImage);
-          productCard.appendChild(productInfo);
-
-          // Append the new product card to the product grid
-          productGrid.appendChild(productCard);
-        });
-      })
-      .catch(error => {
-        console.error('Error loading products:', error);
-      });
-  });
-</script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vintage Shop – Boutique</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/boutique.css">
 </head>
 <body>
-  <header>
-    <div class="top-band">
-      <div class="logo">
-        <a href="index.html"><button>Vintage Shop</button></a>
-      </div>
-      <div class="navigation">
-        <a href="boutique.html"><button>Boutique</button></a>
-        <a href="service.html"><button>Service</button></a>
-        <a href="contact.html"><button>Contact</button></a>
-      </div>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">Vintage Shop</a>
+      <nav class="site-nav">
+        <a href="index.html">Accueil</a>
+        <a href="boutique.html" class="active">Boutique</a>
+        <a href="service.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
   </header>
 
-  <main>
-      <div class="navigation_boutique">
-        <h1>Boutique</h1>
-          <div class="nav_items">
-            <a><button>Tout</button></a>
-            <a><button>Meubles</button></a>
-            <a><button>Luminaires</button></a>
-            <a><button>Arts et Déco</button></a>
-            <a><button>Couverts</button></a>
-            <a>
-              <label class="search_container">
-                <input type="text" placeholder="chercher...">
-                <button type="submit" class="search_button">
-                    <i class="fas fa-search"></i>
-                </button>
-              </label>
-            </a>
-          </div>
+  <main class="container">
+    <!-- Filters & Search -->
+    <section class="shop-filters">
+      <button class="category-btn active">Tout</button>
+      <button class="category-btn">Meubles</button>
+      <button class="category-btn">Luminaires</button>
+      <button class="category-btn">Arts &amp; Déco</button>
+      <button class="category-btn">Couverts</button>
+      <div class="search-wrapper">
+        <input type="text" placeholder="Que cherchez-vous ?">
+        <button type="submit">&#128269;</button>
       </div>
-      <div class="product_grid">
+    </section>
 
+    <!-- Product Grid -->
+    <section class="shop-grid">
+      <div class="product-card">
+        <img src="images/boutique/img1.png" alt="Bateau 1942">
+        <div class="info">
+          <h3>Bateau 1942</h3>
+          <p class="price">150 €</p>
+        </div>
       </div>
+      <div class="product-card">
+        <img src="images/boutique/img2.png" alt="Chaise 1960">
+        <div class="info">
+          <h3>Chaise 1960</h3>
+          <p class="price">80 €</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/boutique/img3.png" alt="Canapé sale">
+        <div class="info">
+          <h3>Canapé sale</h3>
+          <p class="price">120 €</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/boutique/img4.png" alt="Crâne mort">
+        <div class="info">
+          <h3>Crâne mort</h3>
+          <p class="price">200 €</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/boutique/img5.png" alt="Table 1970">
+        <div class="info">
+          <h3>Table 1970</h3>
+          <p class="price">90 €</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pagination -->
+    <nav class="pagination">
+      <button type="button" class="page prev">← Précédent</button>
+      <button type="button" class="page">1</button>
+      <button type="button" class="page active">2</button>
+      <button type="button" class="page">3</button>
+      <button type="button" class="page next">Suivant →</button>
+    </nav>
   </main>
 
-  <footer>
-      <div>
-        <p><code>Développé par Az Development pour Az Websites</code></p>
-      </div>
-      <div>
-        <a><code>mentions légal</code></a>
-        <a><code>cookies</code></a>
-      </div>
-      <div>
-        <a><code>plan du site</code></a>
-      </div>
+  <!-- Footer Top -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>Développé par Az Development pour Az Websites</p>
+      <nav class="footer-nav">
+        <a href="#">Mentions légales</a>
+        <a href="#">Cookies</a>
+        <a href="#">Plan du site</a>
+      </nav>
+    </div>
   </footer>
 
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="payment-logos">
+        <img src="images/logos/visa.svg" alt="Visa">
+        <img src="images/logos/mastercard.svg" alt="MasterCard">
+        <img src="images/logos/paypal.svg" alt="PayPal">
+        <img src="images/logos/apple-pay.svg" alt="Apple Pay">
+      <//div>
+      <div class="newsletter">
+        <h2>Inscrivez-vous à notre newsletter</h2>
+        <form action="#" method="post">
+          <input type="text" name="name" placeholder="Nom" required>
+          <input type="email" name="email" placeholder="Adresse e-mail" required>
+          <label><input type="checkbox" name="privacy" required>J'ai lu et j'accepte la <a href="politique.html">politique de confidentialité</a></label>
+          <button type="submit">S'abonner</button>
+        </form>
+      <//div>
+      <div class="footer-accordions">
+        <details>
+          <summary>Paiements</summary>
+          <p>Visa, MasterCard, PayPal, Apple Pay</p>
+        </details>
+        <details>
+          <summary>Livraison</summary>
+          <p>Colissimo, Chronopost, Mondial Relay</p>
+        </details>
+        <details>
+          <summary>Retours et remboursements</summary>
+          <p>Retour sous 14 jours, remboursement intégral</p>
+        </details>
+        <details>
+          <summary>Assistance</summary>
+          <p>Email: support@vintage-shop.com<br>Téléphone: 04 72 00 00 00</p>
+        </details>
+        <details>
+          <summary>Informations juridiques</summary>
+          <p>Mentions légales, CGV, CGU</p>
+        </details>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
