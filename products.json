@@ -1,32 +1,86 @@
 [
   {
-    "image": "images/lamp.png",
-    "alt": "Produit 1",
-    "description": "Apportez une touche rétro et sophistiquée à votre espace avec cette lampe de bureau au design vintage des années 60-70. Montée sur un pied en bois verni et acier chromé, sa tête sphérique orientable en métal reflète la lumière avec éclat, créant une ambiance chaleureuse et élégante."
+    "id": 1,
+    "name": "Lampe Rétro",
+    "price": 85,
+    "shortDescription": "Lampe en métal patiné, parfaite pour une ambiance vintage.",
+    "longDescription": "Cette lampe rétro années 50, en métal patiné, diffuse une lumière douce idéale pour un coin lecture ou comme éclairage d'appoint. Abat-jour réglable, câble tressé et interrupteur sur socle.",
+    "coverImage": "images/lamp.png",
+    "detailImages": [
+      "images/lamp_detail1.png",
+      "images/lamp_detail2.png",
+      "images/lamp_detail3.png"
+    ],
+    "tags": ["luminaire", "vintage", "métal"]
   },
   {
-    "image": "images/boussole.png",
-    "alt": "Produit 2",
-    "description": "Boussole du XIXe siècle<br>Laiton et verre d'origine<br>Fonctionnelle et décorative"
+    "id": 2,
+    "name": "Boussole XIXe siècle",
+    "price": 120,
+    "shortDescription": "Boussole ancienne en laiton, collection d’époque.",
+    "longDescription": "Boussole du XIXe siècle, boîtier en laiton et verre d’origine, fonctionne parfaitement. Idéale pour collectionneur ou décor maritime.",
+    "coverImage": "images/boussole.png",
+    "detailImages": [
+      "images/boussole_detail1.png",
+      "images/boussole_detail2.png",
+      "images/boussole_detail3.png"
+    ],
+    "tags": ["nautique", "collection", "laiton"]
   },
   {
-    "image": "images/typewritter.png",
-    "alt": "Produit 3",
-    "description": "Machine à écrire Remington<br>Années 1920<br>Idéale pour collectionneur"
+    "id": 3,
+    "name": "Machine à écrire Remington",
+    "price": 230,
+    "shortDescription": "Modèle des années 20, entièrement restauré.",
+    "longDescription": "Machine à écrire Remington des années 1920, touches en celluloïd, rouleau neuf et mécanisme restauré. Fonctionnelle et esthétique pour bureau rétro ou collection.",
+    "coverImage": "images/typewritter.png",
+    "detailImages": [
+      "images/typewritter_detail1.png",
+      "images/typewritter_detail2.png",
+      "images/typewritter_detail3.png"
+    ],
+    "tags": ["bureau", "collection", "métal"]
   },
   {
-    "image": "images/tel.png",
-    "alt": "Produit 4",
-    "description": "Téléphone rotatif noir<br>Design rétro authentique<br>Fonctionne encore"
+    "id": 4,
+    "name": "Téléphone Rotatif",
+    "price": 95,
+    "shortDescription": "Téléphone à cadran original, noir brillant.",
+    "longDescription": "Téléphone rotatif noir des années 60, restauré avec prise moderne. Cadran fonctionnel, sonnerie classique, parfait pour déco vintage.",
+    "coverImage": "images/tel.png",
+    "detailImages": [
+      "images/tel_detail1.png",
+      "images/tel_detail2.png",
+      "images/tel_detail3.png"
+    ],
+    "tags": ["télécom", "années 60", "restauré"]
   },
   {
-    "image": "images/montre_.png",
-    "alt": "Produit 5",
-    "description": "Montre à gousset argentée<br>Gravures florales fines<br>Mouvement mécanique visible"
+    "id": 5,
+    "name": "Montre à gousset",
+    "price": 140,
+    "shortDescription": "Montre à gousset argentée, gravures florales.",
+    "longDescription": "Montre à gousset en argent, gravures florales fines, mouvement mécanique visible. Chaîne de 30 cm incluse.",
+    "coverImage": "images/montre_.png",
+    "detailImages": [
+      "images/montre_detail1.png",
+      "images/montre_detail2.png",
+      "images/montre_detail3.png"
+    ],
+    "tags": ["bijou", "argent", "mécanique"]
   },
   {
-    "image": "images/globe.png",
-    "alt": "Produit 6",
-    "description": "Globe terrestre en bois<br>Style colonial ancien<br>Bel objet de décoration"
+    "id": 6,
+    "name": "Globe Terrestre",
+    "price": 180,
+    "shortDescription": "Globe ancien sur pied en bois.",
+    "longDescription": "Globe terrestre ancien, socle en bois tourné, cartographie début XXe siècle. Bel objet de décoration et d’étude.",
+    "coverImage": "images/globe.png",
+    "detailImages": [
+      "images/globe_detail1.png",
+      "images/globe_detail2.png",
+      "images/globe_detail3.png"
+    ],
+    "tags": ["déco", "bois", "enseignement"]
   }
 ]
