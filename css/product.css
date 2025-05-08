@@ -1,27 +1,49 @@
-/* css/product.css */
-
-/* Grid in boutique */
+/* Boutique – cartes horizontales */
 .shop-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
 }
 
-/* Product card */
-.product-card a {
-  text-decoration: none;
-  color: inherit;
-}
-.product-card img {
-  width: 100%;
+.product-card {
+  display: flex;
+  flex-direction: row;
+  background: #fff;
   border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  /* Force un peu de hauteur pour que la carte soit plus large que haute */
+  min-height: 150px;
 }
+
+.product-card img {
+  flex-shrink: 0;
+  width: 150px;
+  height: 100%;
+  object-fit: cover;
+}
+
 .product-card .info {
-  padding: 0.5rem 0;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.product-card .price {
+
+.product-card .info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.product-card .info p {
+  margin: 0.25rem 0;
+  line-height: 1.4;
+}
+
+.product-card .info .price {
   font-weight: bold;
+  margin-top: 0.5rem;
 }
 
 /* Detail page */
