@@ -34,6 +34,11 @@ a:hover {
   margin: 0 auto;
 }
 
+.feature-inner {
+  margin: 0 0 0 0 !important;
+  padding: 0 0 0 0 !important;
+}
+
 /* Header */
 .site-header {
   background: rgba(255, 255, 255, 0.95);
@@ -262,7 +267,7 @@ a:hover {
   margin-bottom: 1rem;
 }
 .footer-accordions summary {
-  list-style: none;\n  cursor: pointer;
+  list-style: none;\cursor: pointer;
   padding: 1rem 0;
   border-bottom: 1px solid var(--accent-text-color);
   font-weight: bold;
@@ -286,4 +291,77 @@ a:hover {
   padding: 0.5rem 0;
   margin: 0;
   color: var(--accent-text-color);
+}
+/* Footer styling inherit from style.css */
+/* Assure que le logo ne soit pas trop grand */
+.site-header .logo img {
+  max-height: 70px;
+  width: auto;
+  display: block;
+  border-radius: 20px;
+}
+/* ——————————————
+   FEATURE-BOX PLEIN LARGEUR
+   —————————————— */
+
+.feature-box {
+  width: 100%;
+  background: #fff;
+  /* on ne garde que la marge basse */
+  margin: 0 0 3rem;
+}
+
+
+.feature-box .feature-inner {
+  display: flex;
+  justify-content: space-between;
+  /* avant : align-items: flex-end; */
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+
+/* Image à gauche — on la décale de la moitié de l’espace restant */
+.feature-box .feature-image {
+  flex: 0 0 auto;
+  max-width: 800px;
+  align-self: flex-end;
+  margin-left: calc((100vw - var(--container-max-width)) / -2);
+}
+
+.feature-box .feature-image img {
+  display: block;
+  max-height: 500px;    /* ou la hauteur exacte de votre PNG */
+  width: auto;
+  border-radius: 0;     /* coins carrés */
+}
+
+/* Texte à droite, avec un peu d’air */
+.feature-box .feature-content {
+  flex: 1;
+  padding-left: 2rem;
+}
+.feature-box .feature-content h2 {
+  margin: 0 0 1rem;
+  color: var(--accent-color-secondary);
+}
+.feature-box .feature-content p {
+  margin: 0;
+  color: var(--main-text-color);
+  line-height: 1.4;
+}
+
+/* Empilage sur mobile */
+@media (max-width: 768px) {
+  .feature-box .feature-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .feature-box .feature-content {
+    padding-left: 0;
+    margin-top: 1.5rem;
+  }
 }

@@ -1,0 +1,110 @@
+@import url('style.css');
+
+/* Services page styling */
+
+body {
+  background-color: var(--background-color, #f9f9f9);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Container centralisé pour la section services */
+.service-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 90%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0;
+}
+
+.service-item {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.service-item h2 {
+  font-size: 1.5rem;
+  margin: 1rem;
+  color: var(--main-text-color);
+}
+
+.service-item p {
+  flex-grow: 1;
+  margin: 0 1rem 1rem;
+  color: var(--accent-text-color);
+  line-height: 1.6;
+}
+
+/* Title styling */
+.service-title h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 2rem 0;
+  color: var(--main-text-color);
+}
+
+/* Header override: sticky nav like other pages */
+.top-band {
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 1rem 0;
+}
+
+.navigation button,
+.logo button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: var(--main-text-color);
+  cursor: pointer;
+  margin: 0 0.5rem;
+}
+
+.navigation button:hover,
+.logo button:hover {
+  color: var(--accent-color);
+}
+
+/* Ensure service sections do not expand */
+.site-header,
+.service-title,
+.service-container {
+  flex: 0 0 auto;
+}
+
+/* Footer order and sticky positioning */
+.footer-bottom {
+  order: 4;
+  flex: 0 0 auto;
+}
+.site-footer {
+  order: 5;
+  margin-top: auto;
+  flex: 0 0 auto;
+}
+
+/* Footer styling inherit from style.css */
+/* Assure que le logo ne soit pas trop grand */
+.site-header .logo img {
+  max-height: 70px;
+  width: auto;
+  display: block;
+  border-radius: 20px;
+}

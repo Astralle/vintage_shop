@@ -1,0 +1,96 @@
+/* contact.css */
+
+/* Variables (repris de style.css) */
+:root {
+  --accent-color: #bfa77f;
+  --accent-color-secondary: #333;
+  --main-text-color: #333;
+  --accent-text-color: #777;
+  --bg-light: #f9f9f9;
+}
+
+/* Header (hérité de style.css) – pas de changes si .site-header déjà défini */
+
+/* Section Réseaux Sociaux */
+.media-app {
+  background: var(--bg-light);
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+.media-app a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--main-text-color);
+  transition: transform 0.2s;
+}
+.media-app a:hover {
+  transform: translateY(-5px);
+}
+.media-app img {
+  width: 60px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+.media-app span {
+  font-weight: bold;
+}
+
+/* Formulaire de contact */
+.form-container {
+  background: #fff;
+  padding: 3rem 1rem;
+}
+.form-container form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+}
+.form-container label {
+  font-weight: bold;
+  color: var(--main-text-color);
+}
+.form-container input,
+.form-container textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--accent-text-color);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+.form-container input:focus,
+.form-container textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+.form-container button[type="submit"] {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  background: var(--accent-color-secondary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.form-container button[type="submit"]:hover {
+  background: var(--accent-color);
+}
+
+/* Footer haut (site-footer) et Footer bas (footer-bottom) hérités de style.css */
+/* Footer styling inherit from style.css */
+/* Assure que le logo ne soit pas trop grand */
+.site-header .logo img {
+  max-height: 70px;
+  width: auto;
+  display: block;
+  border-radius: 20px;
+}

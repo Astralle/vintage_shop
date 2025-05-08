@@ -1,75 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="images/VS_logo.png" type="image/png">
-    <title>Vintage Shop</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Vintage Store – Services</title>
+  <link rel="icon" href="images/VS_logo.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/service.css">
 </head>
 <body>
-  <header>
-    <div class="top-band">
-      <div class="logo">
-        <a href="index.html"><button>Vintage Shop</button></a>
-      </div>
-      <div class="navigation">
-        <a href="boutique.html"><button>Boutique</button></a>
-        <a href="service.html"><button>Service</button></a>
-        <a href="contact.html"><button>Contact</button></a>
-      </div>
+
+  <!-- Header avec logo image -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="images/logos/logo-store.png" alt="Vintage Store" />
+      </a>
+      <nav class="site-nav">
+        <a href="index.html">Accueil</a>
+        <a href="boutique.html">Boutique</a>
+        <a href="service.html" class="active">Services</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
   </header>
-  <div class="service-title">
-      <h1>
-          Nos services
-      </h1>
-  </div>
-  <div class="service-container">
-      <div class="service-item">
-    <h2>Restauration de mobilier</h2>
-        <p>
-        Depuis plus de 10 ans, notre boutique est spécialisée dans la rénovation d'antiquités rares et précieuses.
-        Nos artisans experts redonnent vie à des objets anciens, en préservant leur authenticité tout en améliorant leur état.
-        Nous proposons des services de restauration pour des meubles, des sculptures et des objets d'art provenant de diverses époques historiques.
-        </p>
-        <img src="images/chair_renovation.png" alt="Chair Renovation">
-      </div>
-      <div class="service-item">
-          <img src="images/chair.png">
-          <p>
-              Notre entreprise organise des expositions régulières dans diverses villes, mettant en valeur nos objets restaurés et nos pièces les plus rares.
-              Ces événements sont une occasion unique pour les amateurs d'art et les collectionneurs de découvrir des antiquités en parfait état,
-              tout en appréciant l'histoire et la beauté de chaque pièce. Nous avons participé à de nombreuses expositions à travers le monde.
-          </p>
-          <h2>Salons et conférence</h2>
 
-      </div>
-      <div class="service-item">
-          <h2>Livraison mondiale</h2>
-          <p>
-              Nous proposons une expédition mondiale pour nos clients, avec une option de livraison express en France.
-              Que vous soyez en Europe, en Asie ou aux États-Unis, nous nous assurons que vos achats arrivent dans les meilleures conditions,
-              en toute sécurité et dans les plus brefs délais. Pour nos clients français,
-              nous offrons une option de livraison express pour garantir une réception rapide de vos articles.
-          </p>
-          <img src="images/shipping.png">
-      </div>
-  </div>
+  <!-- Titre de la page -->
+  <section class="service-title">
+    <h1>Nos services</h1>
+  </section>
 
-  <footer>
-    <code>
-      <div>
-        <p>Développé par Az Development pour Az Websites</p>
-      </div>
-      <div>
-        <a>mentions légal</a>
-        <a>cookies</a>
-      </div>
-      <div>
-        <a>plan du site</a>
-      </div>
-    </code>
+  <!-- Grille des services -->
+  <section class="service-container container">
+    <div class="service-item">
+      <h2>Restauration de mobilier</h2>
+      <p>Depuis plus de 10 ans, notre boutique est spécialisée dans la rénovation d'antiquités rares et précieuses. Nos artisans experts redonnent vie à des objets anciens, en préservant leur authenticité tout en améliorant leur état.</p>
+      <img src="images/interrieur-boutique.png" alt="Restauration mobilier">
+    </div>
+    <div class="service-item">
+      <h2>Salons & conférences</h2>
+      <p>Nous organisons des expositions régulières dans diverses villes, mettant en valeur nos objets restaurés et nos pièces les plus rares. Une occasion unique pour les collectionneurs et amateurs d'art.</p>
+      <img src="images/exhibition.png" alt="Salon d'exposition">
+    </div>
+    <div class="service-item">
+      <h2>Livraison mondiale</h2>
+      <p>Expédition mondiale avec option de livraison express en France. Que vous soyez en Europe, en Asie ou aux États-Unis, nous garantissons la réception rapide et sécurisée de vos articles.</p>
+      <img src="images/jean-phillipo.jpg" alt="Livraison mondiale">
+    </div>
+  </section>
+
+  <!-- Footer haut (site-footer) -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>Développé par Az Development pour Az Websites</p>
+      <nav class="footer-nav">
+        <a href="#">Mentions légales</a>
+        <a href="#">Cookies</a>
+        <a href="#">Plan du site</a>
+      </nav>
+    </div>
   </footer>
+
+  <!-- Footer bas (footer-bottom) -->
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="payment-logos">
+        <img src="images/logos/visa.svg" alt="Visa">
+        <img src="images/logos/mastercard.svg" alt="MasterCard">
+        <img src="images/logos/paypal.svg" alt="PayPal">
+        <img src="images/logos/apple-pay.svg" alt="Apple Pay">
+      </div>
+      <div class="newsletter">
+        <h2>Inscrivez-vous à notre newsletter</h2>
+        <form action="#" method="post">
+          <input type="text" name="name" placeholder="Nom" required>
+          <input type="email" name="email" placeholder="Adresse e-mail" required>
+          <label>
+            <input type="checkbox" name="privacy" required>
+            J'ai lu et j'accepte la <a href="politique.html">politique de confidentialité</a>
+          </label>
+          <button type="submit">S'abonner</button>
+        </form>
+      </div>
+      <div class="footer-accordions">
+        <details><summary>Paiements</summary><p>Visa, MasterCard, PayPal, Apple Pay</p></details>
+        <details><summary>Livraison</summary><p>Colissimo, Chronopost, Mondial Relay</p></details>
+        <details><summary>Retours et remboursements</summary><p>Retour sous 14 jours, remboursement intégral</p></details>
+        <details><summary>Assistance</summary><p>Email : support@vintage-shop.com<br>Téléphone : 04 72 00 00 00</p></details>
+        <details><summary>Informations juridiques</summary><p>Mentions légales, CGV, CGU</p></details>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>
