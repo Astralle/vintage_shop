@@ -112,6 +112,10 @@ a:hover {
   background: var(--accent-color-secondary);
 }
 
+.spacer {
+  margin-left: 6em;
+}
+
 /* Featured Products */
 .featured-products {
   background: #fff;

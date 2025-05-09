@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestion des produits</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Produits en vitrine</h1>
+  <ul id="item-list"></ul>
+
+  <h2 id="form-title">Ajouter un produit</h2>
+  <form id="item-form">
+    <input type="hidden" id="item-id" value="">
+    <label>
+      Nom :
+      <input type="text" id="name" required>
+    </label>
+    <label>
+      Prix :
+      <input type="number" id="price" required>
+    </label>
+    <label>
+      Description courte :
+      <input type="text" id="shortDescription">
+    </label>
+    <label>
+      Description longue :
+      <textarea id="longDescription"></textarea>
+    </label>
+    <label>
+      Tags (virgule-séparés) :
+      <input type="text" id="tags">
+    </label>
+    <button type="submit">Enregistrer</button>
+    <button type="button" id="cancel-btn" style="display:none">Annuler</button>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>
