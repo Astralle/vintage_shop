@@ -13,8 +13,8 @@
 
 /* Main cover now larger but always square */
 .product-images .cover {
-  width: 615px;
-  height: 615px;
+  width: 400px;
+  height: 400px;
   object-fit: cover;
   border-radius: 8px;
 }
