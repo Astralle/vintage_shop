@@ -1,7 +1,10 @@
-// product.js
-
 document.addEventListener('DOMContentLoaded', () => {
-  const jsonPath = './products.json';  // Ajustez si besoin
+  // Récupère l’ID depuis l’URL (?id=)
+  const params = new URLSearchParams(window.location.search);
+  const id = parseInt(params.get('id'), 10);
+
+  // Détermine le fichier JSON à charger
+  const jsonPath = id > 0 ? './products.json' : './featured.json';  // Si l'ID est positif, charge products.json, sinon featured.json
   console.log('📦 [Produit] fetch vers :', jsonPath);
 
   fetch(jsonPath)
@@ -10,17 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return res.json();
     })
-    .then(products => {
+    .then(data => {
       const container = document.getElementById('product-container');
       if (!container) {
         console.error('❌ [Produit] #product-container introuvable');
         return;
       }
 
-      // Récupère l’ID depuis l’URL (?id=)
-      const params = new URLSearchParams(window.location.search);
-      const id = parseInt(params.get('id'), 10);
-      const p = products.find(item => item.id === id);
+      // Récupère le produit correspondant à l'ID
+      const p = data.find(item => item.id === id);
 
       if (!p) {
         container.innerHTML = '<p>Produit non trouvé.</p>';
@@ -47,6 +48,19 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
 
+      // Swap cover on thumbnail hover or click
+      const coverImg = container.querySelector('.product-images .cover');
+      const thumbImgs = container.querySelectorAll('.product-images .details img');
+      thumbImgs.forEach(thumb => {
+        thumb.addEventListener('mouseover', () => {
+          coverImg.src = thumb.src;
+        });
+        thumb.addEventListener('click', () => {
+          coverImg.src = thumb.src;
+        });
+      });
+
+      // Réservation
       document.getElementById('reserve-btn').addEventListener('click', () => {
         alert(`Vous avez réservé : ${p.name}`);
       });

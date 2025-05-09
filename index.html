@@ -6,31 +6,8 @@
   <title>Vintage Shop</title>
   <link rel="icon" href="images/VS_logo.png" type="image/png">
   <link rel="stylesheet" href="css/style.css">
-
-  <!-- Overrides pour la section « Nos coups de cœur » -->
-  <style>
-    /* Fond gris sur toute la largeur */
-    .featured-products {
-      background-color: #f9f9f9;
-      padding: 4rem 0;
-    }
-    /* On enlève tout fond blanc autour de la grille */
-    .featured-products .container {
-      background: transparent;
-      padding: 0;
-    }
-    /* Grille en 3 colonnes */
-    .featured-products .product-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    /* Images réduites et cadrées */
-    .featured-products .product-card img {
-      height: 250px;
-      object-fit: cover;
-    }
-  </style>
+  <link rel="stylesheet" href="css/index.css">
+  <script src="js/index.js"></script>
 </head>
 <body>
 
@@ -79,23 +56,11 @@
   <section class="featured-products">
     <div class="container">
       <h2>Nos coups de cœur</h2>
-      <div class="product-grid">
-        <div class="product-card">
-          <img src="images/boutique/img1.png" alt="Chaise en bois">
-          <h3>Chaise en bois</h3>
-          <p>120 €</p>
+      <section class="featured-products">
+        <div class="container product-grid" id="shop-grid">
+          <!-- Product Cards will be dynamically loaded here -->
         </div>
-        <div class="product-card">
-          <img src="images/boutique/img2.png" alt="Lampe de Bureau Vintage">
-          <h3>Lampe d’atelier</h3>
-          <p>85 €</p>
-        </div>
-        <div class="product-card">
-          <img src="images/boutique/img3.png" alt="Horloge murale vintage">
-          <h3>Horloge murale vintage</h3>
-          <p>45 €</p>
-        </div>
-      </div>
+      </section>
     </div>
   </section>
 

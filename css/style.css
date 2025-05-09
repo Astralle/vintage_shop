@@ -328,7 +328,6 @@ a:hover {
   flex: 0 0 auto;
   max-width: 800px;
   align-self: flex-end;
-  margin-left: calc((100vw - var(--container-max-width)) / -2);
 }
 
 .feature-box .feature-image img {

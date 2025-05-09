@@ -1,0 +1,27 @@
+.featured-products {
+  background-color: #f9f9f9;
+  padding: 4rem 0;
+}
+
+.featured-products .container {
+  background: transparent;
+  padding: 0;
+}
+
+/* Adjusted grid layout */
+.featured-products .product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* 3 columns */
+  gap: 1.5rem;
+  max-height: 500px;  /* You can adjust this value based on your needs */
+  overflow-y: auto; /* Ensure the grid doesn't exceed the height */
+}
+
+/* Optional: Prevent the images from becoming too large */
+.featured-products .product-card img {
+  height: 250px;
+  object-fit: cover;
+  max-width: 100%;
+}
+
+

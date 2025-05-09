@@ -1,51 +1,3 @@
-/* Boutique – cartes horizontales */
-.shop-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.product-card {
-  display: flex;
-  flex-direction: row;
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  /* Force un peu de hauteur pour que la carte soit plus large que haute */
-  min-height: 150px;
-}
-
-.product-card img {
-  flex-shrink: 0;
-  width: 150px;
-  height: 100%;
-  object-fit: cover;
-}
-
-.product-card .info {
-  padding: 0.75rem 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.product-card .info h3 {
-  margin: 0;
-  font-size: 1.1rem;
-}
-
-.product-card .info p {
-  margin: 0.25rem 0;
-  line-height: 1.4;
-}
-
-.product-card .info .price {
-  font-weight: bold;
-  margin-top: 0.5rem;
-}
-
 /* Detail page */
 #product-container {
   display: grid;
@@ -53,39 +5,57 @@
   gap: 2rem;
   margin-top: 2rem;
 }
+
 .product-images {
   display: flex;
   flex-direction: column;
 }
+
+/* Main cover now larger but always square */
 .product-images .cover {
-  width: 100%;
+  width: 615px;
+  height: 615px;
+  object-fit: cover;
   border-radius: 8px;
 }
+
 .product-images .details {
   display: flex;
   gap: 0.5rem;
   margin-top: 1rem;
 }
+
+/* Thumbnails fixed smaller square */
 .product-images .details img {
-  width: 100%;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.product-images .details img:hover {
+  transform: scale(1.05);
 }
 
 .product-info h1 {
   margin-bottom: 0.5rem;
 }
+
 .product-info .price {
   font-size: 1.5rem;
   color: #c0392b;
   margin-bottom: 1rem;
 }
+
 .product-info p {
   line-height: 1.6;
 }
+
 .product-info .tags {
   margin-top: 1rem;
 }
+
 .product-info .tags span {
   display: inline-block;
   background: #ecf0f1;
@@ -94,6 +64,7 @@
   margin-right: 6px;
   font-size: 0.9rem;
 }
+
 .product-info button {
   margin-top: 1.5rem;
   padding: 0.75rem 1.5rem;
@@ -109,8 +80,18 @@
 }
 
 /* Responsive */
-@media(max-width: 768px){
+@media (max-width: 768px) {
   #product-container {
     grid-template-columns: 1fr;
   }
+}
+
+/* UNIVERSAL FIXED IMAGE SIZES */
+/* Applies to grid cards and detail thumbnails */
+.product-card img,
+.product-images .details img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  display: block;
 }
