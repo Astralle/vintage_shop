@@ -38,7 +38,7 @@
   {
     "id": -3,
     "name": "Horloge murale vintage",
-    "price": 45,
+    "price": 89,
     "shortDescription": "Horloge murale de style rétro.",
     "longDescription": "Horloge murale vintage, avec un cadran rétro et des chiffres élégants, parfaite pour une décoration classique.",
     "coverImage": "images/boutique/img3.png",
@@ -52,5 +52,15 @@
       "vintage",
       "rétro"
     ]
+  },
+  {
+    "name": "GASPARD",
+    "price": 78,
+    "shortDescription": "sqdf",
+    "longDescription": "sdf",
+    "tags": [
+      "sdf"
+    ],
+    "id": 1746830790727
   }
 ]
