@@ -307,64 +307,67 @@ a:hover {
 /* ——————————————
    FEATURE-BOX PLEIN LARGEUR
    —————————————— */
-
+/* Feature-Box Full-Width Section */
 .feature-box {
-  width: 100%;
+  width: 98vw;
   background: #fff;
-  /* on ne garde que la marge basse */
-  margin: 0 0 3rem;
+  margin-bottom: 3rem;
 }
-
 
 .feature-box .feature-inner {
   display: flex;
-  justify-content: space-between;
-  /* avant : align-items: flex-end; */
+  justify-content: space-between;   /* distributes items across the container */
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
 }
 
-
-/* Image à gauche — on la décale de la moitié de l’espace restant */
+/* Left & Right Images */
 .feature-box .feature-image {
-  flex: 0 0 auto;
-  max-width: 800px;
-  align-self: flex-end;
+  flex: 0 0 25vw;        /* 25% of container width */
+  max-width: 25vw;
 }
 
 .feature-box .feature-image img {
   display: block;
-  max-height: 500px;    /* ou la hauteur exacte de votre PNG */
-  width: auto;
-  border-radius: 0;     /* coins carrés */
+  width: 98vw;
+  height: auto;
 }
 
-/* Texte à droite, avec un peu d’air */
+/* Center Text */
 .feature-box .feature-content {
-  flex: 1;
-  padding-left: 2rem;
+  flex: 0 0 50vw;        /* 50% of container width */
+  max-width: 50vw;
+  text-align: center;
+  padding: 0 1rem;
 }
+
 .feature-box .feature-content h2 {
-  margin: 0 0 1rem;
+  margin-bottom: 1rem;
   color: var(--accent-color-secondary);
 }
+
 .feature-box .feature-content p {
   margin: 0;
   color: var(--main-text-color);
   line-height: 1.4;
 }
 
-/* Empilage sur mobile */
+/* Responsive: stack on mobile */
 @media (max-width: 768px) {
   .feature-box .feature-inner {
     flex-direction: column;
-    align-items: center;
     text-align: center;
   }
+  .feature-box .feature-image,
   .feature-box .feature-content {
-    padding-left: 0;
+    flex: 0 0 auto;
+    max-width: 95vw;
+    width: 95vw;
+  }
+  .feature-box .feature-content {
     margin-top: 1.5rem;
+    padding: 0 1rem;
   }
 }
