@@ -118,7 +118,7 @@
           <input type="email" name="email" placeholder="Adresse e-mail" required>
           <label>
             <input type="checkbox" name="privacy" required>
-            J'ai lu et j'accepte la <a href="politique.html">politique de confidentialité</a>
+            J'ai lu et j'accepte la <a href="{{ url_for('politique') }}">politique de confidentialité</a>
           </label>
           <button type="submit">S'abonner</button>
         </form>

@@ -33,13 +33,13 @@ def require_key():
 # ─── Front-end routes ─────────────────────────────────────────────────────
 @app.route('/')
 def index():
-    return send_from_directory(PUBLIC_DIR, 'index.html')
+    return send_from_directory(PUBLIC_DIR, 'index_inv.html')
 
 @app.errorhandler(404)
 def spa_fallback(e):
     if request.path.startswith('/api/'):
         return e
-    return send_from_directory(PUBLIC_DIR, 'index.html')
+    return send_from_directory(PUBLIC_DIR, 'index_inv.html')
 
 # ─── API: Read is open ─────────────────────────────────────────────────────
 @app.route('/api/items', methods=['GET'])

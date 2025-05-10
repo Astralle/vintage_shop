@@ -1,4 +1,4 @@
-// public/script.js
+// public/script_inv.js
 
 // We'll store the key here once unlocked
 let API_KEY = null;
