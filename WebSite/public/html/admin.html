@@ -1,0 +1,128 @@
+<!-- WebSite/public/html/admin.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Manage Products</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; }
+    header { background: #333; color: #fff; padding: 10px; }
+    .container { display: flex; padding: 20px; }
+    .product-list, .product-form { width: 48%; }
+    .product-list ul { list-style: none; padding: 0; }
+    .product-list li { margin-bottom: 8px; display: flex; justify-content: space-between; }
+    .product-list button { margin-left: 5px; }
+    form input, form textarea, form button { width: 100%; margin-bottom: 10px; padding: 8px; }
+    form label { display: block; margin-top: 10px; }
+    textarea { height: 80px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Admin – Manage Products</h1>
+  </header>
+
+  <div class="container">
+    <!-- Left: existing products -->
+    <div class="product-list">
+      <h2>Existing Products</h2>
+      <ul id="product-list"></ul>
+    </div>
+
+    <!-- Right: form -->
+    <div class="product-form">
+      <h2>Create / Modify Product</h2>
+      <form id="product-form" enctype="multipart/form-data">
+        <input type="hidden" id="product-id" name="id" />
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="price">Price</label>
+        <input type="number" id="price" name="price" required />
+
+        <label for="short-description">Short Description</label>
+        <textarea id="short-description" name="short-description" required></textarea>
+
+        <label for="long-description">Long Description</label>
+        <textarea id="long-description" name="long-description" required></textarea>
+
+        <label for="tags">Tags (comma-separated)</label>
+        <input type="text" id="tags" name="tags" />
+
+        <label for="cover">Cover Image (PNG)</label>
+        <input type="file" id="cover" name="cover" accept=".png" />
+
+        <label for="details">Detail Images (up to 3 PNGs)</label>
+        <input type="file" id="details" name="details" accept=".png" multiple />
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const listEl = document.getElementById('product-list');
+      const formEl = document.getElementById('product-form');
+      const idInput = document.getElementById('product-id');
+
+      // Fetch and render product list
+      async function fetchProducts() {
+        const res = await fetch('/api/products');
+        const products = await res.json();
+        listEl.innerHTML = '';
+        products.forEach(p => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <span>${p.name}</span>
+            <div>
+              <button onclick="edit(${p.id})">Edit</button>
+              <button onclick="del(${p.id})">Delete</button>
+            </div>`;
+          listEl.appendChild(li);
+        });
+      }
+
+      // Handle form submit
+      formEl.addEventListener('submit', async e => {
+        e.preventDefault();
+        const formData = new FormData(formEl);
+        const isEdit = Boolean(idInput.value);
+        const url = isEdit ? `/api/products/${idInput.value}` : '/api/products';
+        const method = isEdit ? 'PUT' : 'POST';
+
+        const res = await fetch(url, { method, body: formData });
+        if (res.ok) {
+          formEl.reset();
+          idInput.value = '';
+          fetchProducts();
+        }
+      });
+
+      // Populate form for editing
+      window.edit = async id => {
+        const res = await fetch(`/api/products/${id}`);
+        const p = await res.json();
+        idInput.value = p.id;
+        formEl.name.value = p.name;
+        formEl.price.value = p.price;
+        formEl['short-description'].value = p.shortDescription;
+        formEl['long-description'].value = p.longDescription;
+        formEl.tags.value = p.tags.join(', ');
+      };
+
+      // Delete a product
+      window.del = async id => {
+        if (!confirm('Delete this product?')) return;
+        await fetch(`/api/products/${id}`, { method: 'DELETE' });
+        fetchProducts();
+      };
+
+      // Initial load
+      fetchProducts();
+    });
+  </script>
+</body>
+</html>

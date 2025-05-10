@@ -1,128 +1,164 @@
 [
-  {
-    "id": 1,
-    "name": "Chaise en bois",
-    "price": 120,
-    "shortDescription": "Chaise en bois de style ancien.",
-    "longDescription": "Chaise en bois de style vintage, avec un design élégant et une finition soignée.",
-    "coverImage": "images/boutique/img1.png",
-    "detailImages": [
-      "images/boutique/img2.png",
-      "images/boutique/img3.png",
-      "images/boutique/img1.png"
-    ],
-    "tags": ["déco", "bois", "vintage"]
-  },
-  {
-    "id": 2,
-    "name": "Lampe d’atelier",
-    "price": 85,
-    "shortDescription": "Lampe de bureau vintage de style industriel.",
-    "longDescription": "Lampe d'atelier ancienne, parfaite pour donner un style industriel à votre bureau ou votre espace de travail.",
-    "coverImage": "images/boutique/img2.png",
-    "detailImages": [
-      "images/boutique/img2.png",
-      "images/boutique/img2.png",
-      "images/boutique/img2.png"
-    ],
-    "tags": ["déco", "lampe", "industriel"]
-  },
-  {
-    "id": 3,
-    "name": "Horloge murale vintage",
-    "price": 45,
-    "shortDescription": "Horloge murale de style rétro.",
-    "longDescription": "Horloge murale vintage, avec un cadran rétro et des chiffres élégants, parfaite pour une décoration classique.",
-    "coverImage": "images/boutique/img3.png",
-    "detailImages": [
-      "images/boutique/img3.png",
-      "images/boutique/img3.png",
-      "images/boutique/img3.png"
-    ],
-    "tags": ["horloge", "vintage", "rétro"]
-  },
-  {
-    "id": 4,
-    "name": "Lampe Rétro",
-    "price": 85,
-    "shortDescription": "Lampe en métal patiné, parfaite pour une ambiance vintage.",
-    "longDescription": "Cette lampe rétro années 50, en métal patiné, diffuse une lumière douce idéale pour un coin lecture ou comme éclairage d'appoint. Abat-jour réglable, câble tressé et interrupteur sur socle.",
-    "coverImage": "images/lamp.png",
-    "detailImages": [
-      "images/lamp_detail1.png",
-      "images/lamp_detail2.png",
-      "images/lamp_detail3.png"
-    ],
-    "tags": ["luminaire", "vintage", "métal"]
-  },
-  {
-    "id": 5,
-    "name": "Boussole XIXe siècle",
-    "price": 120,
-    "shortDescription": "Boussole ancienne en laiton, collection d’époque.",
-    "longDescription": "Boussole du XIXe siècle, boîtier en laiton et verre d’origine, fonctionne parfaitement. Idéale pour collectionneur ou décor maritime.",
-    "coverImage": "images/boussole.png",
-    "detailImages": [
-      "images/boussole_detail1.png",
-      "images/boussole_detail2.png",
-      "images/boussole_detail3.png"
-    ],
-    "tags": ["nautique", "collection", "laiton"]
-  },
-  {
-    "id": 6,
-    "name": "Machine à écrire Remington",
-    "price": 230,
-    "shortDescription": "Modèle des années 20, entièrement restauré.",
-    "longDescription": "Machine à écrire Remington des années 1920, touches en celluloïd, rouleau neuf et mécanisme restauré. Fonctionnelle et esthétique pour bureau rétro ou collection.",
-    "coverImage": "images/typewritter.png",
-    "detailImages": [
-      "images/typewritter_detail1.png",
-      "images/typewritter_detail2.png",
-      "images/typewritter_detail3.png"
-    ],
-    "tags": ["bureau", "collection", "métal"]
-  },
-  {
-    "id": 7,
-    "name": "Téléphone Rotatif",
-    "price": 95,
-    "shortDescription": "Téléphone à cadran original, noir brillant.",
-    "longDescription": "Téléphone rotatif noir des années 60, restauré avec prise moderne. Cadran fonctionnel, sonnerie classique, parfait pour déco vintage.",
-    "coverImage": "images/tel.png",
-    "detailImages": [
-      "images/tel_detail1.png",
-      "images/tel_detail2.png",
-      "images/tel_detail3.png"
-    ],
-    "tags": ["télécom", "années 60", "restauré"]
-  },
-  {
-    "id": 8,
-    "name": "Montre à gousset",
-    "price": 140,
-    "shortDescription": "Montre à gousset argentée, gravures florales.",
-    "longDescription": "Montre à gousset en argent, gravures florales fines, mouvement mécanique visible. Chaîne de 30 cm incluse.",
-    "coverImage": "images/montre_.png",
-    "detailImages": [
-      "images/montre_detail1.png",
-      "images/montre_detail2.png",
-      "images/montre_detail3.png"
-    ],
-    "tags": ["bijou", "argent", "mécanique"]
-  },
-  {
-    "id": 9,
-    "name": "Globe Terrestre",
-    "price": 180,
-    "shortDescription": "Globe ancien sur pied en bois.",
-    "longDescription": "Globe terrestre ancien, socle en bois tourné, cartographie début XXe siècle. Bel objet de décoration et d’étude.",
-    "coverImage": "images/globe.png",
-    "detailImages": [
-      "images/globe_detail1.png",
-      "images/globe_detail2.png",
-      "images/globe_detail3.png"
-    ],
-    "tags": ["déco", "bois", "enseignement"]
-  }
+    {
+        "id": 1,
+        "name": "Chaise en bois",
+        "price": 120,
+        "shortDescription": "Chaise en bois de style ancien.",
+        "longDescription": "Chaise en bois de style vintage, avec un design \u00e9l\u00e9gant et une finition soign\u00e9e.",
+        "coverImage": "images/boutique/img1.png",
+        "detailImages": [
+            "images/boutique/img2.png",
+            "images/boutique/img3.png",
+            "images/boutique/img1.png"
+        ],
+        "tags": [
+            "d\u00e9co",
+            "bois",
+            "vintage"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Lampe d\u2019atelier",
+        "price": 85,
+        "shortDescription": "Lampe de bureau vintage de style industriel.",
+        "longDescription": "Lampe d'atelier ancienne, parfaite pour donner un style industriel \u00e0 votre bureau ou votre espace de travail.",
+        "coverImage": "images/boutique/img2.png",
+        "detailImages": [
+            "images/boutique/img2.png",
+            "images/boutique/img2.png",
+            "images/boutique/img2.png"
+        ],
+        "tags": [
+            "d\u00e9co",
+            "lampe",
+            "industriel"
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Horloge murale vintage",
+        "price": 45,
+        "shortDescription": "Horloge murale de style r\u00e9tro.",
+        "longDescription": "Horloge murale vintage, avec un cadran r\u00e9tro et des chiffres \u00e9l\u00e9gants, parfaite pour une d\u00e9coration classique.",
+        "coverImage": "images/boutique/img3.png",
+        "detailImages": [
+            "images/boutique/img3.png",
+            "images/boutique/img3.png",
+            "images/boutique/img3.png"
+        ],
+        "tags": [
+            "horloge",
+            "vintage",
+            "r\u00e9tro"
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Lampe R\u00e9tro",
+        "price": 85,
+        "shortDescription": "Lampe en m\u00e9tal patin\u00e9, parfaite pour une ambiance vintage.",
+        "longDescription": "Cette lampe r\u00e9tro ann\u00e9es 50, en m\u00e9tal patin\u00e9, diffuse une lumi\u00e8re douce id\u00e9ale pour un coin lecture ou comme \u00e9clairage d'appoint. Abat-jour r\u00e9glable, c\u00e2ble tress\u00e9 et interrupteur sur socle.",
+        "coverImage": "images/lamp.png",
+        "detailImages": [
+            "images/lamp_detail1.png",
+            "images/lamp_detail2.png",
+            "images/lamp_detail3.png"
+        ],
+        "tags": [
+            "luminaire",
+            "vintage",
+            "m\u00e9tal"
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Boussole XIXe si\u00e8cle",
+        "price": 120,
+        "shortDescription": "Boussole ancienne en laiton, collection d\u2019\u00e9poque.",
+        "longDescription": "Boussole du XIXe si\u00e8cle, bo\u00eetier en laiton et verre d\u2019origine, fonctionne parfaitement. Id\u00e9ale pour collectionneur ou d\u00e9cor maritime.",
+        "coverImage": "images/boussole.png",
+        "detailImages": [
+            "images/boussole_detail1.png",
+            "images/boussole_detail2.png",
+            "images/boussole_detail3.png"
+        ],
+        "tags": [
+            "nautique",
+            "collection",
+            "laiton"
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Machine \u00e0 \u00e9crire Remington",
+        "price": 230,
+        "shortDescription": "Mod\u00e8le des ann\u00e9es\u00a020, enti\u00e8rement restaur\u00e9.",
+        "longDescription": "Machine \u00e0 \u00e9crire Remington des ann\u00e9es\u00a01920, touches en cellulo\u00efd, rouleau neuf et m\u00e9canisme restaur\u00e9. Fonctionnelle et esth\u00e9tique pour bureau r\u00e9tro ou collection.",
+        "coverImage": "images/typewritter.png",
+        "detailImages": [
+            "images/typewritter_detail1.png",
+            "images/typewritter_detail2.png",
+            "images/typewritter_detail3.png"
+        ],
+        "tags": [
+            "bureau",
+            "collection",
+            "m\u00e9tal"
+        ]
+    },
+    {
+        "id": 7,
+        "name": "T\u00e9l\u00e9phone Rotatif",
+        "price": "12",
+        "shortDescription": "T\u00e9l\u00e9phone \u00e0\u00a0cadran original, noir brillant.",
+        "longDescription": "T\u00e9l\u00e9phone rotatif noir des ann\u00e9es\u00a060, restaur\u00e9 avec prise moderne. Cadran fonctionnel, sonnerie classique, parfait pour d\u00e9co vintage.",
+        "coverImage": "images/tel.png",
+        "detailImages": [
+            "images/tel_detail1.png",
+            "images/tel_detail2.png",
+            "images/tel_detail3.png"
+        ],
+        "tags": [
+            "t\u00e9l\u00e9com",
+            "ann\u00e9es\u00a060",
+            "restaur\u00e9"
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Montre \u00e0\u00a0gousset",
+        "price": 140,
+        "shortDescription": "Montre \u00e0\u00a0gousset argent\u00e9e, gravures florales.",
+        "longDescription": "Montre \u00e0\u00a0gousset en argent, gravures florales fines, mouvement m\u00e9canique visible. Cha\u00eene de 30\u00a0cm incluse.",
+        "coverImage": "images/montre_.png",
+        "detailImages": [
+            "images/montre_detail1.png",
+            "images/montre_detail2.png",
+            "images/montre_detail3.png"
+        ],
+        "tags": [
+            "bijou",
+            "argent",
+            "m\u00e9canique"
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Globe Terrestre",
+        "price": 180,
+        "shortDescription": "Globe ancien sur pied en bois.",
+        "longDescription": "Globe terrestre ancien, socle en bois tourn\u00e9, cartographie d\u00e9but\u00a0XXe\u00a0si\u00e8cle. Bel objet de d\u00e9coration et d\u2019\u00e9tude.",
+        "coverImage": "images/globe.png",
+        "detailImages": [
+            "images/globe_detail1.png",
+            "images/globe_detail2.png",
+            "images/globe_detail3.png"
+        ],
+        "tags": [
+            "d\u00e9co",
+            "bois",
+            "enseignement"
+        ]
+    }
 ]
