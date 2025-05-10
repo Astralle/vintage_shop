@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Détermine le fichier JSON à charger
   const jsonPath = id > 0 ? './products.json' : './featured.json';  // Si l'ID est positif, charge products.json, sinon featured.json
-  console.log('📦 [Produit] fetch vers :', jsonPath);
+  console.log('[Produit] fetch vers :', jsonPath);
 
   fetch(jsonPath)
     .then(res => {
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(data => {
       const container = document.getElementById('product-container');
       if (!container) {
-        console.error('❌ [Produit] #product-container introuvable');
+        console.error('[Produit] #product-container introuvable');
         return;
       }
 
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!p) {
         container.innerHTML = '<p>Produit non trouvé.</p>';
-        console.warn(`⚠️ [Produit] Aucun produit avec id=${id}`);
+        console.warn(`[Produit] Aucun produit avec id=${id}`);
         return;
       }
 
@@ -65,10 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
         alert(`Vous avez réservé : ${p.name}`);
       });
 
-      console.log(`✅ [Produit] Détails affichés pour id=${id}`);
+      console.log(`[Produit] Détails affichés pour id=${id}`);
     })
     .catch(err => {
-      console.error('🔥 [Produit] Erreur chargement produit :', err);
+      console.error('[Produit] Erreur chargement produit :', err);
       const container = document.getElementById('product-container');
       if (container) container.innerHTML = '<p>Impossible de charger le produit.</p>';
     });
