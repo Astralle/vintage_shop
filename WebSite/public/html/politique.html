@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Politique de confidentialité – Vintage Shop</title>
+  <link rel="icon" href="images/logos/logo-store.png" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="{{ url_for('index') }}" class="logo">
+        <img src="../static/images/logos/logo-store.png" alt="Vintage Store" />
+      </a>
+      <nav class="site-nav">
+        <a href="{{ url_for('index') }}">Accueil</a>
+        <a href="{{ url_for('boutique') }}">Boutique</a>
+        <a href="{{ url_for('service') }}">Services</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Politique de confidentialité -->
+  <section class="privacy-policy">
+    <div class="container">
+      <br></br>
+      <h1>Politique de confidentialité</h1>
+      <br></br>
+      <p>Chez <strong>Vintage Shop</strong>, nous attachons une grande importance à la protection de vos données personnelles. Cette politique de confidentialité vous explique quelles données nous recueillons, comment nous les utilisons et les droits dont vous disposez.</p>
+<br></br>
+      <h2>1. Données collectées</h2>
+      <p>Lorsque vous réservez des articles, nous pouvons collecter :</p>
+      <ul>
+        <li>Vos nom et prénom</li>
+        <li>Votre adresse e-mail</li>
+        <li>Votre numéro de téléphone</li>
+        <li>Les données de navigation (cookies)</li>
+        <br></br>
+      </ul>
+
+      <h2>2. Finalités du traitement</h2>
+      <ul>
+        <li>Gérer vos réservations et vous envoyer des confirmations</li>
+        <li>Vous informer d’offres ou d’actualités (si vous y avez consenti)</li>
+        <li>Améliorer la navigation sur notre site</li>
+        <br></br>
+      </ul>
+
+      <h2>3. Cookies</h2>
+      <p>Nous utilisons des cookies pour :</p>
+      <ul>
+        <li>Analyser la fréquentation du site (Google Analytics)</li>
+        <li>Mémoriser vos préférences (langue, affichage)</li>
+      </ul>
+      <p>Vous pouvez gérer ou désactiver les cookies via les paramètres de votre navigateur.</p>
+      <br></br>
+
+      <h2>4. Partage et transferts</h2>
+      <p>Vos données ne sont pas vendues à des tiers ; elles peuvent être communiquées à nos prestataires (envoi d’e-mails, hébergement) sous contrat de confidentialité.</p>
+      <br></br>
+      <h2>5. Sécurité</h2>
+      <p>Nous mettons en œuvre des mesures techniques et organisationnelles pour protéger vos données contre tout accès non autorisé.</p>
+      <br></br>
+      <h2>6. Vos droits</h2>
+      <p>Conformément au RGPD, vous disposez d’un droit d’accès, de rectification, d’opposition et de suppression de vos données :
+      pour exercer ces droits, écrivez à support@vintage-shop.com.</p>
+      <br></br>
+      <h2>7. Durée de conservation</h2>
+      <p>Vos données sont conservées pendant la durée nécessaire à la gestion de votre réservation, puis archivées 3 ans maximum.</p>
+      <br></br>
+      <h2>8. Contact</h2>
+      <p>Pour toute question relative à cette politique, contactez-nous à : <a href="mailto:support@vintage-shop.com">support@vintage-shop.com</a>.</p>
+      <br></br>
+    </div>
+  </section>
+
+  <!-- Footer bottom -->
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="payment-logos">
+        <img src="images/logos/visa.svg" alt="Visa">
+        <img src="images/logos/mastercard.svg" alt="MasterCard">
+        <img src="images/logos/paypal.svg" alt="PayPal">
+        <img src="images/logos/apple-pay.svg" alt="Apple Pay">
+      </div>
+      <div class="newsletter">
+        <h2>Inscrivez-vous à notre newsletter</h2>
+        <form action="#" method="post">
+          <input type="text" name="name" placeholder="Nom" required>
+          <input type="email" name="email" placeholder="Adresse e-mail" required>
+          <label>
+            <input type="checkbox" name="privacy" required>
+            J'ai lu et j'accepte la <a href="politique.html">politique de confidentialité</a>
+          </label>
+          <button type="submit">S'abonner</button>
+        </form>
+      </div>
+      <div class="footer-accordions">
+        <details><summary>Paiements</summary><p>Visa, MasterCard, PayPal, Apple Pay</p></details>
+        <details><summary>Livraison</summary><p>Colissimo, Chronopost, Mondial Relay</p></details>
+        <details><summary>Retours et remboursements</summary><p>Retour sous 14 jours, remboursement intégral</p></details>
+        <details><summary>Assistance</summary><p>Email : support@vintage-shop.com<br>Téléphone : 04 72 00 00 00</p></details>
+        <details><summary>Informations juridiques</summary><p><a href="mentions-legales.html">Mentions légales</a>, <a href="politique.html">Politique de confidentialité</a>, <a href="../../../../../Downloads/plan-du-site.html">Plan du site</a></p></details>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer top -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>Développé par Az Development pour Az Websites</p>
+      <nav class="footer-nav">
+        <a href="{{ url_for('mentions') }}">Mentions légales</a>
+        <a href="{{ url_for('cookies') }}">Cookies</a>
+        <a href="{{ url_for('plan') }}">Plan du site</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mentions légales – Vintage Shop</title>
-  <link rel="icon" href="../static/images/logos/VS_logo.png" type="image/png">
-  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="icon" href="images/logos/VS_logo.png" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
@@ -18,7 +18,7 @@
       <nav class="site-nav">
         <a href="{{ url_for('index') }}">Accueil</a>
         <a href="{{ url_for('boutique') }}">Boutique</a>
-        <a href="{{ url_for('service') }}" class="active">Services</a>
+        <a href="{{ url_for('service') }}">Services</a>
         <a href="{{ url_for('contact') }}">Contact</a>
       </nav>
     </div>
@@ -81,27 +81,39 @@
         <img src="../static/images/logos/paypal.svg" alt="PayPal">
         <img src="../static/images/logos/apple-pay.svg" alt="Apple Pay">
       </div>
+      <div class="newsletter">
+        <h2>Inscrivez-vous à notre newsletter</h2>
+        <form action="#" method="post">
+          <input type="text" name="name" placeholder="Nom" required>
+          <input type="email" name="email" placeholder="Adresse e-mail" required>
+          <label>
+            <input type="checkbox" name="privacy" required>
+            J'ai lu et j'accepte la <a href="politique.html">politique de confidentialité</a>
+          </label>
+          <button type="submit">S'abonner</button>
+        </form>
+      </div>
       <div class="footer-accordions">
         <details><summary>Paiements</summary><p>Visa, MasterCard, PayPal, Apple Pay</p></details>
         <details><summary>Livraison</summary><p>Colissimo, Chronopost, Mondial Relay</p></details>
         <details><summary>Retours et remboursements</summary><p>Retour sous 14 jours, remboursement intégral</p></details>
-        <details><summary>Assistance</summary><p>Email : support@vintage-shop.com<br>Tél : 04 72 00 00 00</p></details>
+        <details><summary>Assistance</summary><p>Email : support@vintage-shop.com<br>Téléphone : 04 72 00 00 00</p></details>
         <details><summary>Informations juridiques</summary><p>Mentions légales, CGV, CGU</p></details>
       </div>
     </div>
   </div>
 
-  <!-- Site-footer (noir) -->
   <footer class="site-footer">
     <div class="container">
       <p>Développé par Az Development pour Az Websites</p>
       <nav class="footer-nav">
-        <a href="mentions-legales.html">Mentions légales</a>
-        <a href="cookies.html">Cookies</a>
-        <a href="plan-du-site.html">Plan du site</a>
+        <a href="{{ url_for('mentions') }}">Mentions légales</a>
+        <a href="{{ url_for('cookies') }}">Cookies</a>
+        <a href="{{ url_for('plan') }}">Plan du site</a>
       </nav>
     </div>
   </footer>
 
 </body>
 </html>
+

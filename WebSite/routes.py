@@ -36,6 +36,18 @@ def register_routes(app):
     def mentions():
         return render_template("mentions-legales.html")
 
+    @app.route("/plan")
+    def plan():
+        return render_template("plan-du-site.html")
+
+    @app.route("/cookies")
+    def cookies():
+        return render_template("cookies.html")
+
+    @app.route("/politique")
+    def politique():
+        return render_template("politique.html")
+
     # ---- JSON API ----
     @app.route("/api/products")
     def api_products():

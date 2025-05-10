@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Politique de cookies – Vintage Shop</title>
+  <link rel="icon" href="images/logos/logo-store.png" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="{{ url_for('index') }}" class="logo">
+        <img src="../static/images/logos/logo-store.png" alt="Vintage Store" />
+      </a>
+      <nav class="site-nav">
+        <a href="{{ url_for('index') }}">Accueil</a>
+        <a href="{{ url_for('boutique') }}">Boutique</a>
+        <a href="{{ url_for('service') }}">Services</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Politique de cookies -->
+  <section class="cookie-policy">
+    <div class="container">
+      <h1>Politique de cookies</h1>
+
+      <p>La présente politique vous informe de l’usage de cookies et traceurs sur le site <strong>Vintage Shop</strong>, de leur finalité, et des moyens de les gérer.</p>
+
+      <h2>1. Qu’est-ce qu’un cookie ?</h2>
+      <p>Un cookie est un petit fichier texte déposé lors de votre visite sur un site web, qui permet de mémoriser des informations relatives à votre navigation.</p>
+
+      <h2>2. Cookies utilisés sur Vintage Shop</h2>
+      <ul>
+        <li><strong>Cookies strictement nécessaires</strong> (ex. session) : indispensables pour le fonctionnement du site.</li>
+        <li><strong>Cookies de préférences</strong> : mémorisent vos choix (langue, affichage).</li>
+        <li><strong>Cookies statistiques</strong> : analysent la fréquentation (Google Analytics).</li>
+        <li><strong>Cookies marketing</strong> : suivent votre navigation pour afficher des publicités ciblées.</li>
+      </ul>
+      <p>Exemples concrets :</p>
+      <ul>
+        <li>_ga, _gid, _gat (Google Analytics) pour mesurer l’audience.</li>
+        <li>pll_language pour mémoriser la langue choisie.</li>
+      </ul>
+
+      <h2>3. Gestion et paramétrage</h2>
+      <p>Vous pouvez accepter, refuser ou supprimer les cookies à tout moment :</p>
+      <ul>
+        <li>Via le bandeau de cookies à votre première visite.</li>
+        <li>Dans les paramètres de votre navigateur :
+          <a href="https://support.mozilla.org/fr/kb/activer-desactiver-cookies">Firefox</a>,
+          <a href="https://support.google.com/chrome/answer/95647">Chrome</a>,
+          <a href="https://support.apple.com/fr-fr/guide/safari/sfri11471/mac">Safari</a>,
+          <a href="https://support.microsoft.com/fr-fr/help/4468242/microsoft-edge-browsing-data-and-privacy">Edge</a>.
+        </li>
+      </ul>
+
+      <h2>4. Consentement</h2>
+      <p>Lors de votre première visite, un bandeau vous demande d’accepter ou de refuser les cookies non essentiels. Vous pouvez modifier votre choix à tout moment via le lien « Paramètres cookies » en bas de page.</p>
+
+      <h2>5. Durée de conservation</h2>
+      <p>Chaque cookie possède une durée de vie propre, indiquée lorsque le bandeau s’affiche. Vous pouvez également les supprimer manuellement à partir de votre navigateur.</p>
+
+      <h2>6. Modifications de la politique</h2>
+      <p>Nous nous réservons le droit de mettre à jour cette politique. La date de dernière mise à jour figure en haut de la page.</p>
+
+      <h2>7. Contact</h2>
+      <p>Pour toute question relative aux cookies ou à la protection de vos données, écrivez-nous à :
+      <a href="mailto:support@vintage-shop.com">support@vintage-shop.com</a>.</p>
+    </div>
+  </section>
+
+  <!-- Footer bottom -->
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="payment-logos">
+        <img src="../static/images/logos/visa.svg" alt="Visa">
+        <img src="../static/images/logos/mastercard.svg" alt="MasterCard">
+        <img src="../static/images/logos/paypal.svg" alt="PayPal">
+        <img src="../static/images/logos/apple-pay.svg" alt="Apple Pay">
+      </div>
+      <div class="newsletter">
+        <h2>Inscrivez-vous à notre newsletter</h2>
+        <form action="#" method="post">
+          <input type="text" name="name" placeholder="Nom" required>
+          <input type="email" name="email" placeholder="Adresse e-mail" required>
+          <label>
+            <input type="checkbox" name="privacy" required>
+            J'ai lu et j'accepte la <a href="politique.html">politique de confidentialité</a>
+          </label>
+          <button type="submit">S'abonner</button>
+        </form>
+      </div>
+      <div class="footer-accordions">
+        <details><summary>Paiements</summary><p>Visa, MasterCard, PayPal, Apple Pay</p></details>
+        <details><summary>Livraison</summary><p>Colissimo, Chronopost, Mondial Relay</p></details>
+        <details><summary>Retours et remboursements</summary><p>Retour sous 14 jours, remboursement intégral</p></details>
+        <details><summary>Assistance</summary><p>Email : support@vintage-shop.com<br>Téléphone : 04 72 00 00 00</p></details>
+        <details><summary>Informations juridiques</summary><p>Mentions légales, CGV, CGU</p></details>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Développé par Az Development pour Az Websites</p>
+      <nav class="footer-nav">
+        <a href="{{ url_for('mentions') }}">Mentions légales</a>
+        <a href="{{ url_for('cookies') }}">Cookies</a>
+        <a href="{{ url_for('plan') }}">Plan du site</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

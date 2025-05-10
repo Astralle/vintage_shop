@@ -3,23 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Vintage Shop</title>
-  <link rel="icon" href="../static/images/logos/VS_logo.png" type="image/png">
+  <title>Plan du site – Vintage Shop</title>
+  <link rel="icon" href="images/logos/VS_logo.png" type="image/png">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-  <script src="{{ url_for('static', filename='js/index.js') }}"></script>
-
 </head>
 <body>
 
   <!-- Header -->
-    <header class="site-header">
+  <header class="site-header">
     <div class="container">
       <a href="{{ url_for('index') }}" class="logo">
         <img src="../static/images/logos/logo-store.png" alt="Vintage Store" />
       </a>
       <nav class="site-nav">
-
         <a href="{{ url_for('index') }}">Accueil</a>
         <a href="{{ url_for('boutique') }}">Boutique</a>
         <a href="{{ url_for('service') }}">Services</a>
@@ -28,81 +24,43 @@
     </div>
   </header>
 
-  <!-- Hero plein écran -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Redécouvrez le charme du vintage</h1>
-      <a href="{{ url_for('boutique') }}" class="btn btn-primary">Découvrir la boutique</a>
-      <a class="spacer"></a>
-      <a href="{{ url_for('service') }}" class="btn btn-primary">À props du Store</a>
-    </div>
-  </section>
-
-<section class="feature-box">
-  <div class="container feature-inner">
-
-    <!-- Gauche -->
-    <div class="feature-image">
-      <img src="../static/images/jp2.png" alt="Portrait du gérant à gauche">
-    </div>
-
-    <!-- Milieu (texte) -->
-    <div class="feature-content">
-      <h2>À la rencontre du gérant</h2>
-      <p>
-        Jean Philippault, découvreur de mobilier et d'objets, décorateur d’intérieur,<br>
-        et home staging pour événements divers, vous accueille dans la boutique de 10h à 12h30,<br>
-        puis de 14h30 à 19h du lundi au samedi !
-        <br><br><br><br><br><br><br><br><br><br>
-      </p>
-    </div>
-  </div>
-</section>
-
-
-
-    <!-- Encadré portrait plein-largeur -->
-
-  <!-- Nos coups de cœur -->
-  <section class="featured-products">
+  <!-- Plan du site -->
+  <section class="site-map">
     <div class="container">
-      <h2>Nos coups de cœur</h2>
-      <section class="featured-products">
-        <div class="container product-grid" id="shop-grid">
-          <!-- Product Cards will be dynamically loaded here -->
+        <br></br>
+      <h1>Plan du site</h1>
+
+
+      <div class="site-map-columns">
+        <!-- Colonne 1 : Pages -->
+        <div class="site-map-column">
+          <h2>Pages :</h2>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="boutique.html">Boutique</a></li>
+            <li><a href="contact.html">Nous contacter</a></li>
+            <li><a href="product.html">Produit</a></li>
+          </ul>
         </div>
-      </section>
-    </div>
-  </section>
 
-  <!-- À propos & Contact -->
-  <section class="contact-section">
-    <div class="container">
-      <div class="contact-info">
-        <h2>À propos & Contact</h2>
-        <p><strong>Adresse</strong><br>
-           23 rue Bugeaud<br>
-           69006 Lyon</p>
-        <p><strong>Horaires</strong><br>
-           Du Lundi au Samedi : 10h-12h30 & 14h30-19h<br>
-           Dimanche : Fermé</p>
-        <p><strong>Téléphone</strong><br>
-           06 71 86 18 66</p>
-        <a href="{{ url_for('contact') }}" class="btn">Nous contacter</a>
+        <!-- Colonne 2 : Informations légales -->
+        <div class="site-map-column">
+          <h2>Informations légales :</h2>
+
+          <ul>
+            <li><a href="mentions-legales.html">Mentions légales</a></li>
+            <li><a href="#">Cookies</a></li>
+            <li><a href="#">Politique de confidentialité</a></li>
+            <li><a href="plan-du-site.html">Plan du site</a></li>
+              <br></br><br></br><br></br>
+          </ul>
+        </div>
       </div>
-      <iframe
-        class="map-container"
-        src="https://maps.google.com/maps?q=23%20Rue%20Bugeaud%2C%2069006%20Lyon&output=embed"
-        allowfullscreen
-        loading="lazy">
-      </iframe>
     </div>
   </section>
 
-  <!-- Footer Top -->
 
-
-  <!-- Footer Bottom -->
   <div class="footer-bottom">
     <div class="container">
       <div class="payment-logos">

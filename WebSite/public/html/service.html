@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Vintage Store – Services</title>
   <link rel="icon" href="../static/images/logos/VS_logo.png" type="image/png">
-  <link rel="stylesheet" href="../static/css/style.css">
-  <link rel="stylesheet" href="../static/css/service.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/service.css') }}">
 </head>
 <body>
 
@@ -56,9 +56,9 @@
     <div class="container">
       <p>Développé par Az Development pour Az Websites</p>
       <nav class="footer-nav">
-        <a href="#">Mentions légales</a>
-        <a href="#">Cookies</a>
-        <a href="#">Plan du site</a>
+        <a href="{{ url_for('mentions') }}">Mentions légales</a>
+        <a href="{{ url_for('cookies') }}">Cookies</a>
+        <a href="{{ url_for('plan') }}">Plan du site</a>
       </nav>
     </div>
   </footer>
@@ -93,6 +93,17 @@
       </div>
     </div>
   </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Développé par Az Development pour Az Websites</p>
+      <nav class="footer-nav">
+        <a href="{{ url_for('mentions') }}">Mentions légales</a>
+        <a href="{{ url_for('cookies') }}">Cookies</a>
+        <a href="{{ url_for('plan') }}">Plan du site</a>
+      </nav>
+    </div>
+  </footer>
 
 </body>
 </html>
