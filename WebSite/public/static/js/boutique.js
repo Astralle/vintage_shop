@@ -1,5 +1,3 @@
-// boutique.js
-
 document.addEventListener('DOMContentLoaded', async () => {
   const shopGrid = document.getElementById('shop-grid');
   if (!shopGrid) {
@@ -8,7 +6,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   try {
-    const response = await fetch('/products.json');
+    // Fetch products from secured API
+    const response = await fetch('/api/products');
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
@@ -25,9 +24,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       products.forEach(p => {
         const card = document.createElement('div');
         card.className = 'product-card';
+        // Prefix static path for cover image
+        const coverSrc = `/static/${p.coverImage}`;
         card.innerHTML = `
-          <a href="product.html?id=${p.id}">
-            <img src="${p.coverImage}" alt="${p.name}">
+          <a href="/product/${p.id}">
+            <img src="${coverSrc}" alt="${p.name}">
             <div class="info">
               <h3>${p.name}</h3>
               <p class="price">${p.price} €</p>
@@ -42,6 +43,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   } catch (err) {
     console.error('[Boutique] Erreur chargement produits :', err);
-    shopGrid.innerHTML = `<p>Impossible de charger les produits : ${err.message}</p>`;
+    shopGrid.innerHTML = `<p>Impossible de charger les produits : ${err.message}</p>`;
   }
 });

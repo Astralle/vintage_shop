@@ -4,24 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Vintage Shop</title>
-  <link rel="icon" href="images/logos/VS_logo.png" type="image/png">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/index.css">
-  <script src="js/index.js"></script>
+  <link rel="icon" href="../static/images/logos/VS_logo.png" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
 </head>
 <body>
 
   <!-- Header -->
     <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo">
-        <img src="images/logos/logo-store.png" alt="Vintage Store" />
+      <a href="{{ url_for('index') }}" class="logo">
+        <img src="../static/images/logos/logo-store.png" alt="Vintage Store" />
       </a>
       <nav class="site-nav">
-        <a href="index.html">Accueil</a>
-        <a href="boutique.html">Boutique</a>
-        <a href="service.html" class="active">Services</a>
-        <a href="contact.html">Contact</a>
+
+        <a href="{{ url_for('index') }}">Accueil</a>
+        <a href="{{ url_for('boutique') }}">Boutique</a>
+        <a href="{{ url_for('service') }}">Services</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
       </nav>
     </div>
   </header>
@@ -30,9 +32,9 @@
   <section class="hero">
     <div class="hero-content">
       <h1>Redécouvrez le charme du vintage</h1>
-      <a href="boutique.html" class="btn btn-primary">Découvrir la boutique</a>
+      <a href="{{ url_for('boutique') }}" class="btn btn-primary">Découvrir la boutique</a>
       <a class="spacer"></a>
-      <a href="service.html" class="btn btn-primary">À props du Store</a>
+      <a href="{{ url_for('service') }}" class="btn btn-primary">À props du Store</a>
     </div>
   </section>
 
@@ -41,7 +43,7 @@
 
     <!-- Gauche -->
     <div class="feature-image">
-      <img src="images/jp2.png" alt="Portrait du gérant à gauche">
+      <img src="../static/images/jp2.png" alt="Portrait du gérant à gauche">
     </div>
 
     <!-- Milieu (texte) -->
@@ -86,7 +88,7 @@
            Dimanche : Fermé</p>
         <p><strong>Téléphone</strong><br>
            06 71 86 18 66</p>
-        <a href="contact.html" class="btn">Nous contacter</a>
+        <a href="{{ url_for('contact') }}" class="btn">Nous contacter</a>
       </div>
       <iframe
         class="map-container"
@@ -104,10 +106,10 @@
   <div class="footer-bottom">
     <div class="container">
       <div class="payment-logos">
-        <img src="images/logos/visa.svg" alt="Visa">
-        <img src="images/logos/mastercard.svg" alt="MasterCard">
-        <img src="images/logos/paypal.svg" alt="PayPal">
-        <img src="images/logos/apple-pay.svg" alt="Apple Pay">
+        <img src="../static/images/logos/visa.svg" alt="Visa">
+        <img src="../static/images/logos/mastercard.svg" alt="MasterCard">
+        <img src="../static/images/logos/paypal.svg" alt="PayPal">
+        <img src="../static/images/logos/apple-pay.svg" alt="Apple Pay">
       </div>
       <div class="newsletter">
         <h2>Inscrivez-vous à notre newsletter</h2>
@@ -135,7 +137,7 @@
     <div class="container">
       <p>Développé par Az Development pour Az Websites</p>
       <nav class="footer-nav">
-        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="{{ url_for('mentions') }}">Mentions légales</a>
         <a href="#">Cookies</a>
         <a href="#">Plan du site</a>
       </nav>

@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  const shopGrid = document.getElementById('shop-grid'); // Ensure this container exists in HTML
+  const shopGrid = document.getElementById('shop-grid');
   if (!shopGrid) {
     console.error('[Index] #shop-grid introuvable dans le DOM');
     return;
   }
 
   try {
-    const response = await fetch('featured.json');  // Fetch data from featured.json
+    // Fetch all products from secured API
+    const response = await fetch('/api/products');
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
@@ -16,17 +17,22 @@ document.addEventListener('DOMContentLoaded', async () => {
       throw new Error('Le JSON retourné n’est pas un tableau');
     }
 
-    if (products.length === 0) {
+    // Only positive IDs and limit to first 4 items
+    const positiveProducts = products.filter(p => p.id > 0);
+    const limitedProducts = positiveProducts.slice(0, 3);
+
+    if (limitedProducts.length === 0) {
       shopGrid.innerHTML = '<p>Aucun produit disponible.</p>';
     } else {
-      shopGrid.innerHTML = ''; // Clear the grid
-      const limitedProducts = products.slice(0, 6); // Limit to 6 products
+      shopGrid.innerHTML = '';
       limitedProducts.forEach(p => {
+        // Prefix static path for cover image
+        const coverSrc = `/static/${p.coverImage}`;
         const card = document.createElement('div');
         card.className = 'product-card';
         card.innerHTML = `
-          <a href="product.html?id=${p.id}">
-            <img src="${p.coverImage}" alt="${p.name}">
+          <a href="/product/${p.id}">
+            <img src="${coverSrc}" alt="${p.name}">
             <div class="info">
               <h3>${p.name}</h3>
               <p class="price">${p.price} €</p>
@@ -41,6 +47,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   } catch (err) {
     console.error('[Index] Erreur chargement produits :', err);
-    shopGrid.innerHTML = `<p>Impossible de charger les produits : ${err.message}</p>`;
+    shopGrid.innerHTML = `<p>Impossible de charger les produits : ${err.message}</p>`;
   }
 });

@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Vintage Shop – Contact</title>
-  <link rel="icon" href="images/logos/VS_logo.png" type="image/png">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/contact.css">
+  <link rel="icon" href="../static/images/logos/VS_logo.png" type="image/png">
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/contact.css">
 </head>
 <body>
 
@@ -14,14 +14,14 @@
  <!-- Header avec logo image -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo">
-        <img src="images/logos/logo-store.png" alt="Vintage Store" />
+      <a href="{{ url_for('index') }}" class="logo">
+        <img src="../static/images/logos/logo-store.png" alt="Vintage Store" />
       </a>
       <nav class="site-nav">
-        <a href="index.html">Accueil</a>
-        <a href="boutique.html">Boutique</a>
-        <a href="service.html" class="active">Services</a>
-        <a href="contact.html">Contact</a>
+        <a href="{{ url_for('index') }}">Accueil</a>
+        <a href="{{ url_for('boutique') }}">Boutique</a>
+        <a href="{{ url_for('service') }}">Services</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
       </nav>
     </div>
   </header>
@@ -29,15 +29,15 @@
   <!-- Réseaux Sociaux -->
   <section class="media-app container">
     <a href="https://www.instagram.com/4home1952/?hl=fr" target="_blank" rel="noopener">
-      <img src="images/logos/Instagram_icon.png" alt="Instagram">
+      <img src="../static/images/logos/Instagram_icon.png" alt="Instagram">
       <span>Instagram</span>
     </a>
     <a href="https://www.tiktok.com/" target="_blank" rel="noopener">
-      <img src="images/logos/tiktok_icon.png" alt="TikTok">
+      <img src="../static/images/logos/tiktok_icon.png" alt="TikTok">
       <span>TikTok</span>
     </a>
     <a href="https://www.facebook.com/profile.php?id=100093275883547" target="_blank" rel="noopener">
-      <img src="images/logos/2023_Facebook_icon.svg.png" alt="FaceBook">
+      <img src="../static/images/logos/2023_Facebook_icon.svg.png" alt="FaceBook">
       <span>FaceBook</span>
     </a>
   </section>
@@ -71,10 +71,10 @@
   <div class="footer-bottom">
     <div class="container">
       <div class="payment-logos">
-        <img src="images/logos/visa.svg" alt="Visa">
-        <img src="images/logos/mastercard.svg" alt="MasterCard">
-        <img src="images/logos/paypal.svg" alt="PayPal">
-        <img src="images/logos/apple-pay.svg" alt="Apple Pay">
+        <img src="../static/images/logos/visa.svg" alt="Visa">
+        <img src="../static/images/logos/mastercard.svg" alt="MasterCard">
+        <img src="../static/images/logos/paypal.svg" alt="PayPal">
+        <img src="../static/images/logos/apple-pay.svg" alt="Apple Pay">
       </div>
       <div class="newsletter">
         <h2>Inscrivez-vous à notre newsletter</h2>

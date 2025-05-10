@@ -1,6 +1,48 @@
 [
   {
     "id": 1,
+    "name": "Chaise en bois",
+    "price": 120,
+    "shortDescription": "Chaise en bois de style ancien.",
+    "longDescription": "Chaise en bois de style vintage, avec un design élégant et une finition soignée.",
+    "coverImage": "images/boutique/img1.png",
+    "detailImages": [
+      "images/boutique/img2.png",
+      "images/boutique/img3.png",
+      "images/boutique/img1.png"
+    ],
+    "tags": ["déco", "bois", "vintage"]
+  },
+  {
+    "id": 2,
+    "name": "Lampe d’atelier",
+    "price": 85,
+    "shortDescription": "Lampe de bureau vintage de style industriel.",
+    "longDescription": "Lampe d'atelier ancienne, parfaite pour donner un style industriel à votre bureau ou votre espace de travail.",
+    "coverImage": "images/boutique/img2.png",
+    "detailImages": [
+      "images/boutique/img2.png",
+      "images/boutique/img2.png",
+      "images/boutique/img2.png"
+    ],
+    "tags": ["déco", "lampe", "industriel"]
+  },
+  {
+    "id": 3,
+    "name": "Horloge murale vintage",
+    "price": 45,
+    "shortDescription": "Horloge murale de style rétro.",
+    "longDescription": "Horloge murale vintage, avec un cadran rétro et des chiffres élégants, parfaite pour une décoration classique.",
+    "coverImage": "images/boutique/img3.png",
+    "detailImages": [
+      "images/boutique/img3.png",
+      "images/boutique/img3.png",
+      "images/boutique/img3.png"
+    ],
+    "tags": ["horloge", "vintage", "rétro"]
+  },
+  {
+    "id": 4,
     "name": "Lampe Rétro",
     "price": 85,
     "shortDescription": "Lampe en métal patiné, parfaite pour une ambiance vintage.",
@@ -14,7 +56,7 @@
     "tags": ["luminaire", "vintage", "métal"]
   },
   {
-    "id": 2,
+    "id": 5,
     "name": "Boussole XIXe siècle",
     "price": 120,
     "shortDescription": "Boussole ancienne en laiton, collection d’époque.",
@@ -28,7 +70,7 @@
     "tags": ["nautique", "collection", "laiton"]
   },
   {
-    "id": 3,
+    "id": 6,
     "name": "Machine à écrire Remington",
     "price": 230,
     "shortDescription": "Modèle des années 20, entièrement restauré.",
@@ -42,7 +84,7 @@
     "tags": ["bureau", "collection", "métal"]
   },
   {
-    "id": 4,
+    "id": 7,
     "name": "Téléphone Rotatif",
     "price": 95,
     "shortDescription": "Téléphone à cadran original, noir brillant.",
@@ -56,7 +98,7 @@
     "tags": ["télécom", "années 60", "restauré"]
   },
   {
-    "id": 5,
+    "id": 8,
     "name": "Montre à gousset",
     "price": 140,
     "shortDescription": "Montre à gousset argentée, gravures florales.",
@@ -70,7 +112,7 @@
     "tags": ["bijou", "argent", "mécanique"]
   },
   {
-    "id": 6,
+    "id": 9,
     "name": "Globe Terrestre",
     "price": 180,
     "shortDescription": "Globe ancien sur pied en bois.",

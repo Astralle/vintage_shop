@@ -4,20 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vintage Shop – Boutique</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/boutique.css">
-  <script src="js/boutique.js"></script>
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/boutique.css">
+  <script src="../static/js/boutique.js"></script>
 </head>
 <body>
   <!-- Header -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo">Vintage Shop</a>
+      <a href="{{ url_for('index') }}" class="logo">
+        <img src="../static/images/logos/logo-store.png" alt="Vintage Store" />
+      </a>
       <nav class="site-nav">
-        <a href="index.html">Accueil</a>
-        <a href="boutique.html" class="active">Boutique</a>
-        <a href="service.html">Services</a>
-        <a href="contact.html">Contact</a>
+        <a href="{{ url_for('index') }}">Accueil</a>
+        <a href="{{ url_for('boutique') }}">Boutique</a>
+        <a href="{{ url_for('service') }}">Services</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
       </nav>
     </div>
   </header>
@@ -60,10 +62,10 @@
 <div class="footer-bottom">
     <div class="container">
       <div class="payment-logos">
-        <img src="images/logos/visa.svg" alt="Visa">
-        <img src="images/logos/mastercard.svg" alt="MasterCard">
-        <img src="images/logos/paypal.svg" alt="PayPal">
-        <img src="images/logos/apple-pay.svg" alt="Apple Pay">
+        <img src="../static/images/logos/visa.svg" alt="Visa">
+        <img src="../static/images/logos/mastercard.svg" alt="MasterCard">
+        <img src="../static/images/logos/paypal.svg" alt="PayPal">
+        <img src="../static/images/logos/apple-pay.svg" alt="Apple Pay">
       </div>
       <div class="newsletter">
         <h2>Inscrivez-vous à notre newsletter</h2>
