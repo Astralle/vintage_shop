@@ -40,23 +40,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     const detailSrcs = p.detailImages.map(img => `/static/${img}`);
 
     // Render product details
+
     container.innerHTML = `
-      <div class="product-images">
-        <img class="cover" src="${coverSrc}" alt="${p.name}">
-        <div class="details">
-          ${detailSrcs.map(src => `<img src="${src}" alt="${p.name} détail">`).join('')}
+        <div class="product-images">
+          <img class="cover" src="${coverSrc}" alt="${p.name}">
+          <div class="details">
+            ${detailSrcs.map(src => `<img src="${src}" alt="${p.name} détail">`).join('')}
+          </div>
         </div>
-      </div>
-      <div class="product-info">
-        <h1>${p.name}</h1>
-        <p class="price">${p.price} €</p>
-        <p>${p.longDescription}</p>
-        <div class="tags">
-          ${p.tags.map(tag => `<span>${tag}</span>`).join('')}
+        <div class="product-info">
+          <h1>${p.name}</h1>
+          <p class="price">${p.price} €</p>
+
+          <details class="description" open>
+            <summary>Description</summary>
+            <p>${p.longDescription}</p>
+          </details>
+
+          <div class="tags">
+            ${p.tags.map(tag => `<span>${tag}</span>`).join('')}
+          </div>
+
+          <button id="reserve-btn">Réserver</button>
         </div>
-        <button id="reserve-btn">Réserver</button>
-      </div>
-    `;
+      `;
 
     // Swap cover on thumbnail hover/click
     const coverImg = container.querySelector('.product-images .cover');

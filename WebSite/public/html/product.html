@@ -5,10 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Produit – Vintage Shop</title>
+  <link rel="icon" href="images/logos/logo-store.png" type="image/png">
+
+  <!-- styles généraux + spécifiques -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/product.css') }}">
+  <script src="{{ url_for('static', filename='js/product.js') }}"></script>
+
 </head>
 <body>
+
+  <!-- HEADER (identique aux autres pages) -->
   <header class="site-header">
     <div class="container">
       <a href="{{ url_for('index') }}" class="logo">
@@ -17,17 +24,18 @@
       <nav class="site-nav">
         <a href="{{ url_for('index') }}">Accueil</a>
         <a href="{{ url_for('boutique') }}">Boutique</a>
-        <a href="{{ url_for('service') }}" class="active">Services</a>
+        <a href="{{ url_for('service') }}">Services</a>
         <a href="{{ url_for('contact') }}">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
+  <!-- CONTENU PRODUIT -->
+  <main class="container product-page">
     <div id="product-container"></div>
   </main>
 
-  <script src="../static/js/product.js"></script>
+  <!-- FOOTER BOTTOM (paiements, newsletter, accordéons) -->
   <div class="footer-bottom">
     <div class="container">
       <div class="payment-logos">
