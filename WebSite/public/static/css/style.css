@@ -66,7 +66,7 @@ a:hover {
 
 /* Hero Section */
 .hero {
-  background: url('../images/index_picture_front.png') center/cover no-repeat;
+  background: url('../images/pages/index/index_picture_front.png') center/cover no-repeat;
   height: 90vh;
   position: relative;
   display: flex;
