@@ -51,17 +51,17 @@
           <input type="email" name="email" placeholder="Adresse e-mail" required>
           <label>
             <input type="checkbox" name="privacy" required>
-            J'ai lu et j'accepte la <a href="politique.html">politique de confidentialité</a>
+            J'ai lu et j'accepte la <a href="{{ url_for('politique') }}">politique de confidentialité</a>
           </label>
           <button type="submit">S'abonner</button>
         </form>
       </div>
       <div class="footer-accordions">
-        <details><summary>Paiements</summary><p>Visa, MasterCard, PayPal, Apple Pay</p></details>
-        <details><summary>Livraison</summary><p>Colissimo, Chronopost, Mondial Relay</p></details>
-        <details><summary>Retours et remboursements</summary><p>Retour sous 14 jours, remboursement intégral</p></details>
-        <details><summary>Assistance</summary><p>Email : support@vintage-shop.com<br>Téléphone : 04 72 00 00 00</p></details>
-        <details><summary>Informations juridiques</summary><p>Mentions légales, CGV, CGU</p></details>
+        <details><summary>Paiements</summary><p>Votre magasin accepte la carte (Visa, MasterCard, PayPal, Apple Pay), les cheques et le liquide. </p></details>
+        <details><summary>Livraison</summary><p>Livraison gratuite à Lyon. Pour des livraisons en France métropolitaine et à l'étranger, <a href="{{ url_for('contact') }}">contacez-nous</a> </p></details>
+        <details><summary>Louer un article</summary><p>Pour reserver des articles, contactez nous par téléphone au 06 71 86 18 66. Le prix dépend de l'article et de la durée de location.</p></details>
+        <details><summary>Assistance</summary><p>Email : <a href="mailto:jeanphilippault@gmail.com">support@vintage-shop.com</a>.<br>Téléphone : 06 71 86 18 66</p></details>
+        <details><summary>Informations juridiques</summary><p><a href="{{ url_for('mentions') }}">Mentions légales</a>, <a href="{{ url_for('politique') }}">Politique de confidentialité</a>, <a href="{{ url_for('plan') }}">Plan du site</a></p></details>
       </div>
     </div>
   </div>

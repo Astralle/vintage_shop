@@ -38,32 +38,7 @@
     </div>
   </section>
 
-<section class="feature-box">
-  <div class="container feature-inner">
 
-    <!-- Gauche -->
-    <div class="feature-image">
-      <img src="../static/images/jp2.png" alt="Portrait du gérant à gauche">
-    </div>
-
-    <!-- Milieu (texte) -->
-    <div class="feature-content">
-      <h2>À la rencontre du gérant</h2>
-      <p>
-        Jean Philippault, découvreur de mobilier et d'objets, décorateur d’intérieur,<br>
-        et home staging pour événements divers, vous accueille dans la boutique de 10h à 12h30,<br>
-        puis de 14h30 à 19h du lundi au samedi !
-        <br><br><br><br><br><br><br><br><br><br>
-      </p>
-    </div>
-  </div>
-</section>
-
-
-
-    <!-- Encadré portrait plein-largeur -->
-
-  <!-- Nos coups de cœur -->
   <section class="featured-products">
     <div class="container">
       <h2>Nos coups de cœur</h2>
@@ -124,11 +99,11 @@
         </form>
       </div>
       <div class="footer-accordions">
-        <details><summary>Paiements</summary><p>Visa, MasterCard, PayPal, Apple Pay</p></details>
-        <details><summary>Livraison</summary><p>Colissimo, Chronopost, Mondial Relay</p></details>
-        <details><summary>Retours et remboursements</summary><p>Retour sous 14 jours, remboursement intégral</p></details>
-        <details><summary>Assistance</summary><p>Email : support@vintage-shop.com<br>Téléphone : 04 72 00 00 00</p></details>
-        <details><summary>Informations juridiques</summary><p>Mentions légales, CGV, CGU</p></details>
+        <details><summary>Paiements</summary><p>Votre magasin accepte la carte (Visa, MasterCard, PayPal, Apple Pay), les cheques et le liquide. </p></details>
+        <details><summary>Livraison</summary><p>Livraison gratuite à Lyon. Pour des livraisons en France métropolitaine et à l'étranger, <a href="{{ url_for('contact') }}">contacez-nous</a> </p></details>
+        <details><summary>Louer un article</summary><p>Pour reserver des articles, contactez nous par téléphone au 06 71 86 18 66. Le prix dépend de l'article et de la durée de location.</p></details>
+        <details><summary>Assistance</summary><p>Email : <a href="mailto:jeanphilippault@gmail.com">support@vintage-shop.com</a>.<br>Téléphone : 06 71 86 18 66</p></details>
+        <details><summary>Informations juridiques</summary><p><a href="{{ url_for('mentions') }}">Mentions légales</a>, <a href="{{ url_for('politique') }}">Politique de confidentialité</a>, <a href="{{ url_for('plan') }}">Plan du site</a></p></details>
       </div>
     </div>
   </div>

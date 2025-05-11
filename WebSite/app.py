@@ -119,6 +119,11 @@ def politique():
     return render_template("politique.html")
 
 
+@app.route("/reservation")
+def reservation():
+    return render_template("reservation.html")
+
+
 # ---- Admin page (protected) ----
 
 @app.route("/admin")

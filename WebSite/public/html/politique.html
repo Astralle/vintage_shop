@@ -24,57 +24,84 @@
     </div>
   </header>
 
-  <!-- Politique de confidentialité -->
+<!-- Politique de confidentialité -->
   <section class="privacy-policy">
     <div class="container">
-      <br></br>
       <h1>Politique de confidentialité</h1>
-      <br></br>
-      <p>Chez <strong>Vintage Shop</strong>, nous attachons une grande importance à la protection de vos données personnelles. Cette politique de confidentialité vous explique quelles données nous recueillons, comment nous les utilisons et les droits dont vous disposez.</p>
-<br></br>
+        <br><br>
+
+      <p>
+        Chez <strong>Vintage Shop</strong>, nous attachons une grande importance à la protection de vos données personnelles.
+        Cette politique vous explique quelles données nous collectons, comment nous les utilisons, avec qui nous les partageons,
+        ainsi que vos droits.
+      </p>
+        <br><br>
       <h2>1. Données collectées</h2>
-      <p>Lorsque vous réservez des articles, nous pouvons collecter :</p>
+       <br>
+      <p>Lorsque vous réservez un article (click & collect) sur notre site, nous pouvons recueillir :</p>
       <ul>
         <li>Vos nom et prénom</li>
         <li>Votre adresse e-mail</li>
         <li>Votre numéro de téléphone</li>
         <li>Les données de navigation (cookies)</li>
-        <br></br>
       </ul>
 
       <h2>2. Finalités du traitement</h2>
+        <br>
       <ul>
         <li>Gérer vos réservations et vous envoyer des confirmations</li>
-        <li>Vous informer d’offres ou d’actualités (si vous y avez consenti)</li>
-        <li>Améliorer la navigation sur notre site</li>
-        <br></br>
+        <li>Vous informer d’offres ou d’actualités si vous y avez consenti</li>
+        <li>Améliorer la navigation et les fonctionnalités du site</li>
       </ul>
-
+<br>
       <h2>3. Cookies</h2>
-      <p>Nous utilisons des cookies pour :</p>
+        <br>
+      <p>
+        Nous utilisons des cookies pour :
+      </p>
       <ul>
-        <li>Analyser la fréquentation du site (Google Analytics)</li>
+        <li>Analyser la fréquentation du site (par exemple via Google Analytics)</li>
         <li>Mémoriser vos préférences (langue, affichage)</li>
       </ul>
-      <p>Vous pouvez gérer ou désactiver les cookies via les paramètres de votre navigateur.</p>
-      <br></br>
-
+      <p>
+        Vous pouvez accepter, refuser ou supprimer les cookies à tout moment via les paramètres de votre navigateur.
+      </p>
+<br>
       <h2>4. Partage et transferts</h2>
-      <p>Vos données ne sont pas vendues à des tiers ; elles peuvent être communiquées à nos prestataires (envoi d’e-mails, hébergement) sous contrat de confidentialité.</p>
-      <br></br>
+        <br>
+      <p>
+        Vos données ne sont jamais vendues à des tiers. Elles peuvent être communiquées à nos prestataires (envoi d’e-mails, hébergement chez OVH, etc.)
+        uniquement dans le cadre de leur mission et sous contrat de confidentialité.
+      </p>
+<br>
       <h2>5. Sécurité</h2>
-      <p>Nous mettons en œuvre des mesures techniques et organisationnelles pour protéger vos données contre tout accès non autorisé.</p>
-      <br></br>
+        <br>
+      <p>
+        Nous mettons en œuvre des mesures techniques et organisationnelles (chiffrement, accès restreint, sauvegardes…)
+        pour protéger vos données contre tout accès non autorisé.
+      </p>
+<br>
       <h2>6. Vos droits</h2>
-      <p>Conformément au RGPD, vous disposez d’un droit d’accès, de rectification, d’opposition et de suppression de vos données :
-      pour exercer ces droits, écrivez à support@vintage-shop.com.</p>
-      <br></br>
+        <br>
+      <p>
+        Conformément au RGPD, vous disposez d’un droit d’accès, de rectification, d’opposition et de suppression de vos données.
+        Pour exercer ces droits, contactez-nous à :
+        <a href="mailto:support@vintage-shop.com">support@vintage-shop.com</a>.
+      </p>
+<br>
       <h2>7. Durée de conservation</h2>
-      <p>Vos données sont conservées pendant la durée nécessaire à la gestion de votre réservation, puis archivées 3 ans maximum.</p>
-      <br></br>
+        <br>
+      <p>
+        Vos données sont conservées pendant la durée nécessaire à la gestion de votre réservation, puis archivées pendant 3 ans maximum.
+      </p>
+<br>
       <h2>8. Contact</h2>
-      <p>Pour toute question relative à cette politique, contactez-nous à : <a href="mailto:support@vintage-shop.com">support@vintage-shop.com</a>.</p>
-      <br></br>
+        <br>
+      <p>
+        Pour toute question relative à cette politique, écrivez-nous à :
+        <a href="mailto:support@vintage-shop.com">support@vintage-shop.com</a>.
+          <br><br>
+      </p>
     </div>
   </section>
 
@@ -82,10 +109,10 @@
   <div class="footer-bottom">
     <div class="container">
       <div class="payment-logos">
-        <img src="images/logos/visa.svg" alt="Visa">
-        <img src="images/logos/mastercard.svg" alt="MasterCard">
-        <img src="images/logos/paypal.svg" alt="PayPal">
-        <img src="images/logos/apple-pay.svg" alt="Apple Pay">
+        <img src="../static/images/logos/footer_logo_visa.svg" alt="Visa">
+        <img src="../static/images/logos/footer_logo_mastercard.svg" alt="MasterCard">
+        <img src="../static/images/logos/footer_logo_paypal.svg" alt="PayPal">
+        <img src="../static/images/logos/footer_logo_applepay.svg" alt="Apple Pay">
       </div>
       <div class="newsletter">
         <h2>Inscrivez-vous à notre newsletter</h2>
@@ -94,17 +121,17 @@
           <input type="email" name="email" placeholder="Adresse e-mail" required>
           <label>
             <input type="checkbox" name="privacy" required>
-            J'ai lu et j'accepte la <a href="politique.html">politique de confidentialité</a>
+            J'ai lu et j'accepte la <a href="{{ url_for('politique') }}">politique de confidentialité</a>
           </label>
           <button type="submit">S'abonner</button>
         </form>
       </div>
       <div class="footer-accordions">
-        <details><summary>Paiements</summary><p>Visa, MasterCard, PayPal, Apple Pay</p></details>
-        <details><summary>Livraison</summary><p>Colissimo, Chronopost, Mondial Relay</p></details>
-        <details><summary>Retours et remboursements</summary><p>Retour sous 14 jours, remboursement intégral</p></details>
-        <details><summary>Assistance</summary><p>Email : support@vintage-shop.com<br>Téléphone : 04 72 00 00 00</p></details>
-        <details><summary>Informations juridiques</summary><p><a href="mentions-legales.html">Mentions légales</a>, <a href="politique.html">Politique de confidentialité</a>, <a href="../../../../../Downloads/plan-du-site.html">Plan du site</a></p></details>
+        <details><summary>Paiements</summary><p>Votre magasin accepte la carte (Visa, MasterCard, PayPal, Apple Pay), les cheques et le liquide. </p></details>
+        <details><summary>Livraison</summary><p>Livraison gratuite à Lyon. Pour des livraisons en France métropolitaine et à l'étranger, <a href="{{ url_for('contact') }}">contacez-nous</a> </p></details>
+        <details><summary>Louer un article</summary><p>Pour reserver des articles, contactez nous par téléphone au 06 71 86 18 66. Le prix dépend de l'article et de la durée de location.</p></details>
+        <details><summary>Assistance</summary><p>Email : <a href="mailto:jeanphilippault@gmail.com">support@vintage-shop.com</a>.<br>Téléphone : 06 71 86 18 66</p></details>
+        <details><summary>Informations juridiques</summary><p><a href="{{ url_for('mentions') }}">Mentions légales</a>, <a href="{{ url_for('politique') }}">Politique de confidentialité</a>, <a href="{{ url_for('plan') }}">Plan du site</a></p></details>
       </div>
     </div>
   </div>
