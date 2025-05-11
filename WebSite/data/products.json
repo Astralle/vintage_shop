@@ -2,15 +2,11 @@
     {
         "id": 1,
         "name": "Chaise en bois",
-        "price": 120,
+        "price": "120",
         "shortDescription": "Chaise en bois de style ancien.",
         "longDescription": "Chaise en bois de style vintage, avec un design \u00e9l\u00e9gant et une finition soign\u00e9e.",
         "coverImage": "images/boutique/img1.png",
-        "detailImages": [
-            "images/boutique/img2.png",
-            "images/boutique/img3.png",
-            "images/boutique/img1.png"
-        ],
+        "detailImages": [],
         "tags": [
             "d\u00e9co",
             "bois",
@@ -146,15 +142,11 @@
     {
         "id": 9,
         "name": "Globe Terrestre",
-        "price": 180,
+        "price": "180",
         "shortDescription": "Globe ancien sur pied en bois.",
         "longDescription": "Globe terrestre ancien, socle en bois tourn\u00e9, cartographie d\u00e9but\u00a0XXe\u00a0si\u00e8cle. Bel objet de d\u00e9coration et d\u2019\u00e9tude.",
         "coverImage": "images/globe.png",
-        "detailImages": [
-            "images/globe_detail1.png",
-            "images/globe_detail2.png",
-            "images/globe_detail3.png"
-        ],
+        "detailImages": [],
         "tags": [
             "d\u00e9co",
             "bois",

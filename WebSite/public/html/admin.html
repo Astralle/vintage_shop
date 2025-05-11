@@ -6,71 +6,184 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin - Manage Products</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; }
-    header { background: #333; color: #fff; padding: 10px; }
-    .container { display: flex; padding: 20px; }
-    .product-list, .product-form { width: 48%; }
-    .product-list ul { list-style: none; padding: 0; }
-    .product-list li { margin-bottom: 8px; display: flex; justify-content: space-between; }
-    .product-list button { margin-left: 5px; }
-    form input, form textarea, form button { width: 100%; margin-bottom: 10px; padding: 8px; }
-    form label { display: block; margin-top: 10px; }
-    textarea { height: 80px; }
+    /* Mobile-first base */
+    :root {
+      --brand-bg: #333;
+      --brand-fg: #fff;
+      --accent: #bfa77f;
+      --text: #333;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: var(--text);
+      background: #f9f9f9;
+      line-height: 1.4;
+    }
+    header {
+      background: var(--brand-bg);
+      color: var(--brand-fg);
+      padding: 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 1.25rem;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+    }
+    .product-list, .product-form {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 1rem;
+      padding: 1rem;
+    }
+    .product-list h2, .product-form h2 {
+      margin-bottom: 0.75rem;
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+
+    /* <— HERE: Limit list to ~10 items then scroll —> */
+    .product-list ul {
+      list-style: none;
+      max-height: 480px;    /* height for roughly 10 items */
+      overflow-y: auto;
+      padding-right: 0.5rem; /* space for scrollbar */
+    }
+    .product-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+      min-height: 3.5rem;   /* ensure consistent item height */
+    }
+    .product-list li:last-child {
+      border-bottom: none;
+    }
+    .product-list button {
+      background: var(--accent);
+      color: var(--brand-fg);
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      margin-left: 0.5rem;
+    }
+    .product-list button:hover {
+      opacity: 0.9;
+    }
+
+    form label {
+      display: block;
+      margin-top: 0.75rem;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    form input[type="text"],
+    form input[type="number"],
+    form input[type="file"],
+    form textarea {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.25rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    form textarea { resize: vertical; height: 4rem; }
+
+    form button {
+      background: var(--accent);
+      color: var(--brand-fg);
+      border: none;
+      padding: 0.75rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      margin-top: 1rem;
+      width: 100%;
+    }
+    form button:hover {
+      opacity: 0.9;
+    }
+
+    /* Larger screens: side-by-side */
+    @media (min-width: 600px) {
+      .container {
+        flex-direction: row;
+        gap: 1rem;
+      }
+      .product-list, .product-form {
+        flex: 1;
+        margin-bottom: 0;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Admin – Manage Products</h1>
+    <h1>Tableau de bord</h1>
+    <h1>Accès strictement réservé</h1>
   </header>
 
   <div class="container">
     <!-- Left: existing products -->
     <div class="product-list">
-      <h2>Existing Products</h2>
+      <h2>Inventaire</h2>
       <ul id="product-list"></ul>
     </div>
 
     <!-- Right: form -->
     <div class="product-form">
-      <h2>Create / Modify Product</h2>
+      <h2>Créer ou modifier les produits</h2>
       <form id="product-form" enctype="multipart/form-data">
         <input type="hidden" id="product-id" name="id" />
 
-        <label for="name">Name</label>
+        <label for="name">Nom</label>
         <input type="text" id="name" name="name" required />
 
-        <label for="price">Price</label>
+        <label for="price">Prix</label>
         <input type="number" id="price" name="price" required />
 
-        <label for="short-description">Short Description</label>
+        <label for="short-description">Description courte</label>
         <textarea id="short-description" name="short-description" required></textarea>
 
-        <label for="long-description">Long Description</label>
+        <label for="long-description">Description longue</label>
         <textarea id="long-description" name="long-description" required></textarea>
 
-        <label for="tags">Tags (comma-separated)</label>
+        <label for="tags">Tags (séparé par des virgules)</label>
         <input type="text" id="tags" name="tags" />
 
-        <label for="cover">Cover Image (PNG)</label>
+        <label for="cover">Image de couverture</label>
         <input type="file" id="cover" name="cover" accept=".png" />
 
-        <label for="details">Detail Images (up to 3 PNGs)</label>
+        <label for="details">Images de détail (max 3)</label>
         <input type="file" id="details" name="details" accept=".png" multiple />
 
-        <button type="submit">Submit</button>
+        <button type="submit">Confirmer</button>
       </form>
     </div>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const listEl = document.getElementById('product-list');
-      const formEl = document.getElementById('product-form');
-      const idInput = document.getElementById('product-id');
+      const listEl       = document.getElementById('product-list');
+      const formEl       = document.getElementById('product-form');
+      const idInput      = document.getElementById('product-id');
+      const nameInput    = document.getElementById('name');
+      const priceInput   = document.getElementById('price');
+      const shortInput   = document.getElementById('short-description');
+      const longInput    = document.getElementById('long-description');
+      const tagsInput    = document.getElementById('tags');
 
       // Fetch and render product list
       async function fetchProducts() {
-        const res = await fetch('/api/products');
+        const res      = await fetch('/api/products');
         const products = await res.json();
         listEl.innerHTML = '';
         products.forEach(p => {
@@ -78,8 +191,8 @@
           li.innerHTML = `
             <span>${p.name}</span>
             <div>
-              <button onclick="edit(${p.id})">Edit</button>
-              <button onclick="del(${p.id})">Delete</button>
+              <button onclick="edit(${p.id})">Modifier</button>
+              <button onclick="del(${p.id})">Supprimer</button>
             </div>`;
           listEl.appendChild(li);
         });
@@ -89,9 +202,9 @@
       formEl.addEventListener('submit', async e => {
         e.preventDefault();
         const formData = new FormData(formEl);
-        const isEdit = Boolean(idInput.value);
-        const url = isEdit ? `/api/products/${idInput.value}` : '/api/products';
-        const method = isEdit ? 'PUT' : 'POST';
+        const isEdit   = Boolean(idInput.value);
+        const url      = isEdit ? `/api/products/${idInput.value}` : '/api/products';
+        const method   = isEdit ? 'PUT' : 'POST';
 
         const res = await fetch(url, { method, body: formData });
         if (res.ok) {
@@ -102,19 +215,21 @@
       });
 
       // Populate form for editing
-      window.edit = async id => {
+      window.edit = async (id) => {
         const res = await fetch(`/api/products/${id}`);
-        const p = await res.json();
-        idInput.value = p.id;
-        formEl.name.value = p.name;
-        formEl.price.value = p.price;
-        formEl['short-description'].value = p.shortDescription;
-        formEl['long-description'].value = p.longDescription;
-        formEl.tags.value = p.tags.join(', ');
+        const p   = await res.json();
+
+        idInput.value              = p.id;
+        nameInput.value            = p.name;
+        priceInput.value           = p.price;
+        shortInput.value           = p.shortDescription;
+        longInput.value            = p.longDescription;
+        tagsInput.value            = p.tags.join(', ');
+        // NOTE: file inputs cannot be pre-populated for security reasons
       };
 
       // Delete a product
-      window.del = async id => {
+      window.del = async (id) => {
         if (!confirm('Delete this product?')) return;
         await fetch(`/api/products/${id}`, { method: 'DELETE' });
         fetchProducts();

@@ -21,12 +21,13 @@ app = Flask(
     static_url_path="/static"
 )
 
-# Secret key for session cookies (change to something unpredictable!)
-app.secret_key = "a_very_secret_key_change_me"
+# Secret key for session cookies (make this unpredictable in production)
+app.secret_key = "y6;qLb4Z#=({jED?YV^uPt"
 
-# Simple hard-coded admin password
-ADMIN_PASSWORD = "YourStrongPasswordHere"
+# Hard-coded admin password
+ADMIN_PASSWORD = "4home1952"
 
+# Data & images directories
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 IMAGES_DIR = os.path.join(app.static_folder, "images")
 os.makedirs(IMAGES_DIR, exist_ok=True)
@@ -60,7 +61,6 @@ def login():
             return redirect(url_for("admin"))
         else:
             error = "Mot de passe incorrect"
-    # GET or failed POST
     return render_template("login.html", error=error)
 
 
@@ -97,7 +97,7 @@ def contact():
     return render_template("contact.html")
 
 
-# plan-du-site under endpoint "plan" so url_for('plan') works
+# plan-du-site under endpoint "plan"
 @app.route("/plan-du-site", endpoint="plan")
 def plan_du_site():
     return render_template("plan-du-site.html")
@@ -128,12 +128,11 @@ def admin():
     return render_template("admin.html")
 
 
-# ---- Catch-all for *.html (protect admin.html here too) ----
+# ---- Catch-all for *.html (protect admin.html) ----
 
 @app.route("/<page>.html")
 def html_pages(page):
     if page == "admin":
-        # no direct /admin.html
         return redirect(url_for("login"))
     try:
         return render_template(f"{page}.html")
@@ -141,7 +140,7 @@ def html_pages(page):
         abort(404)
 
 
-# ---- Products JSON API (same as before) ----
+# ---- Products JSON API ----
 
 @app.route("/api/products", methods=["GET"])
 def api_products():
@@ -174,14 +173,14 @@ def create_product():
         "detailImages": []
     }
 
-    # cover
+    # Handle cover image
     cover = request.files.get("cover")
     if cover and allowed_file(cover.filename):
         filename = f"img_{next_id}_cover.png"
         cover.save(os.path.join(IMAGES_DIR, filename))
         prod["coverImage"] = f"images/{filename}"
 
-    # details
+    # Handle detail images
     for idx, file in enumerate(request.files.getlist("details")[:3], start=1):
         if file and allowed_file(file.filename):
             fn = f"img_{next_id}_detail_{idx}.png"
@@ -191,6 +190,15 @@ def create_product():
     products.append(prod)
     save_json("products.json", products)
     return jsonify(prod), 201
+
+
+@app.route("/api/products/<int:id>", methods=["GET"])
+def get_product(id):
+    products = load_json("products.json")
+    prod = next((p for p in products if p["id"] == id), None)
+    if not prod:
+        return jsonify({"error": "Product not found"}), 404
+    return jsonify(prod)
 
 
 @app.route("/api/products/<int:id>", methods=["PUT"])
@@ -204,7 +212,7 @@ def update_product(id):
         return jsonify({"error": "Product not found"}), 404
 
     form = request.form
-    # text updates
+    # Update text fields
     for fld, key in [
         ("name", "name"),
         ("price", "price"),
@@ -216,22 +224,26 @@ def update_product(id):
         if val is not None:
             prod[key] = [t.strip() for t in val.split(",")] if fld == "tags" else val.strip()
 
-    # cover
+    # Replace cover image
     cover = request.files.get("cover")
     if cover and allowed_file(cover.filename):
         if prod.get("coverImage"):
-            try: os.remove(os.path.join(app.static_folder, prod["coverImage"]))
-            except: pass
+            try:
+                os.remove(os.path.join(app.static_folder, prod["coverImage"]))
+            except:
+                pass
         fn = f"img_{id}_cover.png"
         cover.save(os.path.join(IMAGES_DIR, fn))
         prod["coverImage"] = f"images/{fn}"
 
-    # details
+    # Replace detail images
     details = request.files.getlist("details")
     if details:
         for old in prod.get("detailImages", []):
-            try: os.remove(os.path.join(app.static_folder, old))
-            except: pass
+            try:
+                os.remove(os.path.join(app.static_folder, old))
+            except:
+                pass
         prod["detailImages"] = []
         for idx, file in enumerate(details[:3], start=1):
             if file and allowed_file(file.filename):
@@ -253,18 +265,23 @@ def delete_product(id):
     if not prod:
         return jsonify({"error": "Product not found"}), 404
 
-    # remove images
+    # Delete images
     if prod.get("coverImage"):
-        try: os.remove(os.path.join(app.static_folder, prod["coverImage"]))
-        except: pass
+        try:
+            os.remove(os.path.join(app.static_folder, prod["coverImage"]))
+        except:
+            pass
     for img in prod.get("detailImages", []):
-        try: os.remove(os.path.join(app.static_folder, img))
-        except: pass
+        try:
+            os.remove(os.path.join(app.static_folder, img))
+        except:
+            pass
 
     products.remove(prod)
     save_json("products.json", products)
     return "", 204
 
 
+# ---- Run ----
 if __name__ == "__main__":
     app.run(debug=True)

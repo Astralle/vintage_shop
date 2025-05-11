@@ -1,3 +1,4 @@
+<!-- WebSite/public/html/login.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,16 +6,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin Login</title>
   <style>
-    body { display: flex; align-items: center; justify-content: center; height: 100vh; font-family: Arial; }
-    form { padding: 2rem; border: 1px solid #ccc; border-radius: 8px; width: 300px; }
-    label, input, button { display: block; width: 100%; margin-bottom: 1rem; }
-    button { padding: 0.5rem; }
-    .error { color: red; margin-bottom: 1rem; }
+    /* Mobile‐first styling matching site theme */
+    :root {
+      --brand-bg: #333;
+      --brand-fg: #fff;
+      --accent: #bfa77f;
+      --text: #333;
+      --error: #e74c3c;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #f9f9f9;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: var(--text);
+      padding: 1rem;
+    }
+    form {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 320px;
+      padding: 1.5rem;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      font-size: 1.25rem;
+    }
+    .error {
+      color: var(--error);
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    input[type="password"] {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.25rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      background: var(--accent);
+      color: var(--brand-fg);
+      border: none;
+      padding: 0.75rem;
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      border-radius: 4px;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
   </style>
 </head>
 <body>
   <form method="POST" action="{{ url_for('login') }}">
-    <h2>Connexion Admin</h2>
+    <h2>Connexion Gérant</h2>
     {% if error %}
       <div class="error">{{ error }}</div>
     {% endif %}
