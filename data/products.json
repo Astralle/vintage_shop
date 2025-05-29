@@ -1,1 +1,12 @@
-[]
+[
+    {
+        "id": 1,
+        "name": "aaa",
+        "price": "12",
+        "shortDescription": "a",
+        "longDescription": "a",
+        "tags": [],
+        "coverImage": null,
+        "detailImages": []
+    }
+]

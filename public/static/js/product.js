@@ -73,11 +73,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       thumb.addEventListener('click', () => coverImg.src = thumb.src);
     });
 
-    // Reservation handler
     document.getElementById('reserve-btn').addEventListener('click', () => {
-      alert(`Vous avez réservé : ${p.name}`);
+    const params = new URLSearchParams({
+      product_id: p.id,
+      product_name: p.name,
+      price: p.price
     });
-
+    window.location.href = `/reservation?${params.toString()}`;
+  });
     console.log(`[Produit] Détails affichés pour id=${id} from ${endpoint}`);
 
   } catch (err) {

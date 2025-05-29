@@ -12,6 +12,8 @@ from flask import (
 )
 from jinja2 import TemplateNotFound
 from werkzeug.utils import secure_filename
+from datetime import datetime
+
 
 # ---- Config ----
 app = Flask(
@@ -284,6 +286,80 @@ def delete_product(id):
 
     products.remove(prod)
     save_json("products.json", products)
+    return "", 204
+
+@app.route("/api/reservations", methods=["POST"])
+def create_reservation():
+    data = request.get_json() or {}
+    # pull fields from the POSTed JSON
+    fname = data.get("first_name", "").strip()
+    lname = data.get("last_name", "").strip()
+    email = data.get("email", "").strip()
+    phone = data.get("phone", "").strip()
+    pickup_date = data.get("pickup_date", "").strip()    # e.g. "2025-06-15"
+    pickup_time = data.get("pickup_time", "").strip()    # e.g. "14:30"
+    product_id = data.get("product_id")
+    product_name = data.get("product_name", "")
+    price = data.get("price")
+
+    # combine into ISO-style pickup datetime
+    pickup_datetime = f"{pickup_date}T{pickup_time}"
+    reservation_datetime = datetime.now().isoformat()
+
+    # the “objects” list can include whatever fields you like; here we include one
+    obj = {
+        "id": product_id,
+        "name": product_name,
+        "price": price
+    }
+
+    # load existing reservations (or start empty)
+    try:
+        reservations = load_json("reservation.json")
+    except FileNotFoundError:
+        reservations = []
+
+    # build and append the new entry
+    reservation = {
+        "name": f"{lname} {fname}",
+        "email": email,
+        "phone": phone,
+        "pickup_datetime": pickup_datetime,
+        "reservation_datetime": reservation_datetime,
+        "price": price,
+        "objects": [obj]
+    }
+    reservations.append(reservation)
+    save_json("reservation.json", reservations)
+
+    return jsonify({"status": "success"}), 201
+
+from flask import abort
+
+@app.route("/api/reservations", methods=["GET"])
+def list_reservations():
+    """Return the full array of reservations (for admin)."""
+    try:
+        reservations = load_json("reservation.json")
+    except FileNotFoundError:
+        reservations = []
+    # include index so we can delete by position
+    for idx, r in enumerate(reservations):
+        r["_idx"] = idx
+    return jsonify(reservations)
+
+
+@app.route("/api/reservations/<int:idx>", methods=["DELETE"])
+def delete_reservation(idx):
+    """Delete the reservation at index `idx`."""
+    try:
+        reservations = load_json("reservation.json")
+    except FileNotFoundError:
+        abort(404, "No reservations file")
+    if idx < 0 or idx >= len(reservations):
+        abort(404, "Reservation not found")
+    reservations.pop(idx)
+    save_json("reservation.json", reservations)
     return "", 204
 
 

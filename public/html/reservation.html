@@ -4,245 +4,238 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Réservation – Vintage Shop</title>
-  <link rel="icon" href="images/logos/head_logo_store.png" type="image/png">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <style>
-    /* ==== Multi-step form & calendrier ==== */
-    .form-step { display: none; }
-    .form-step.active { display: block; }
-    .form-step h1 { font-size:1.5rem; margin-bottom:1rem; }
-    label { display:block; margin:0.5rem 0 0.2rem; color:#333; }
-    input { width:100%; padding:0.5rem; box-sizing:border-box; }
-    button { padding:0.6rem 1.2rem; margin-top:1rem; cursor:pointer; }
-    #calendar { margin:1rem 0; }
-    .calendar-header { text-align:center; margin-bottom:0.5rem; }
+    /* Center content */
+    .container { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; padding:1rem; }
+    .reservation-form { width:100%; max-width:400px; margin-bottom:2rem; }
+    .product-preview { margin-bottom:2rem; text-align:center; }
+    .product-preview img { width:200px; height:auto; border-radius:8px; }
+
+    .form-step { display:none; }
+    .form-step.active { display:block; }
+    .form-step h1 { text-align:center; color: #bfa77f; margin-bottom:1rem; }
+    .form-group { margin-bottom:1rem; }
+    label { display:block; margin-bottom:0.2rem; color: #bfa77f; }
+    input, select, button { width:100%; padding:0.6rem; box-sizing:border-box; border-radius:4px; border:1px solid #ccc; }
+    select, input[type="time"] { background:#fff; }
+    button { margin-top:1rem; background: #949494; color:#fff; border:none; font-weight:bold; }
+    button:disabled { background:#999; }
+    button:hover:not(:disabled) { background: #bfa77f; }
+
+    #calendar-controls { display:flex; justify-content:space-between; align-items:center; margin:1rem 0; }
+    #calendar-controls button { width:auto; padding:0.4rem 0.8rem; background: #fff0c6; color: #bfa77f; border:none; }
+    #calendar-controls button:hover { background:#b58e48; }
+    #calendar-controls span { font-weight:bold; color: #c7b58a; }
+
+    #calendar { margin:0; }
+    .calendar-header { text-align:center; margin-bottom:0.5rem; color: #bfa77f; }
     .calendar-table { width:100%; border-collapse:collapse; }
-    .calendar-table th,
-    .calendar-table td {
-      width:14.28%; text-align:center; padding:0.5rem; border:1px solid #ddd;
+    .calendar-table th, .calendar-table td { width:14.28%; text-align:center; padding:0.5rem; border:1px solid #ddd; }
+    .calendar-table td.disabled { background:#f5f5f5; color:#aaa; cursor:not-allowed; }
+    .calendar-table td.active { background:#fff; cursor:pointer; }
+    .calendar-table td.active:hover { background:#efefef; }
+    .calendar-table td.selected { background:#cfa25a; color:#fff; }
+
+    /* Confirmation Card */
+    .confirmation-card {
+      background:#fff; border:2px solid #cfa25a; border-radius:8px;
+      padding:1.5rem; max-width:360px; text-align:center;
+      box-shadow:0 4px 12px rgba(0,0,0,0.1);
     }
-    .calendar-table td.disabled {
-      background:#f5f5f5; color:#aaa; cursor:not-allowed;
-    }
-    .calendar-table td.active {
-      background:#fff; cursor:pointer;
-    }
-    .calendar-table td.active:hover {
-      background:#efefef;
-    }
-    .calendar-table td.selected {
-      background:#cfa25a; color:#fff;
-    }
-    #confirmation-message p {
-      margin-top:2rem; font-size:1.25rem; color:#002b5c;
-    }
+    .confirmation-card img { width:120px; height:auto; border-radius:4px; margin-bottom:1rem; }
+    .confirmation-card h2 { margin:0.5rem 0; color: #c7b58a; }
+    .confirmation-card p { margin:0.5rem 0; font-size:1rem; color:#333; }
+    .confirmation-card .price { font-size:1.25rem; font-weight:bold; color:#cfa25a; margin-top:0.5rem; }
   </style>
 </head>
 <body>
-
-  <!-- Header identical to other pages -->
-  <header class="site-header">
-    <div class="container">
-      <a href="{{ url_for('index') }}" class="logo">
-        <img src="../static/images/logos/header_logo_store.png" alt="Vintage Store" />
-      </a>
-      <nav class="site-nav">
-        <a href="{{ url_for('index') }}">Accueil</a>
-        <a href="{{ url_for('boutique') }}">Boutique</a>
-        <a href="{{ url_for('service') }}">Services</a>
-        <a href="{{ url_for('contact') }}">Contact</a>
-      </nav>
+  <div class="container">
+    <div class="product-preview">
+      <img id="reservation-img" src="" alt="Photo produit">
+      <p id="reservation-img-caption"></p>
     </div>
-  </header>
-
-  <!-- Formulaire multi-étapes -->
-  <section class="reservation-form">
-    <div class="container">
+    <div class="reservation-form">
       <form id="reservation-form">
-        <!-- Étape 1 : infos persos -->
+        <!-- Étape 1 -->
         <div class="form-step active" id="step-1">
-          <br>
           <h1>Étape 1 : Vos informations</h1>
-          <label for="last-name">Nom :</label>
-          <input type="text" id="last-name" required>
-          <label for="first-name">Prénom :</label>
-          <input type="text" id="first-name" required>
-          <label for="email">E-mail :</label>
-          <input type="email" id="email" required>
-          <label for="phone">Téléphone :</label>
-          <input type="tel" id="phone" required>
-          <button type="button" id="next-btn">Suivant</button> <br><br>
+          <div class="form-group">
+            <label for="last-name">Nom :</label>
+            <input type="text" id="last-name" required>
+          </div>
+          <div class="form-group">
+            <label for="first-name">Prénom :</label>
+            <input type="text" id="first-name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail :</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Téléphone :</label>
+            <input type="tel" id="phone" required>
+          </div>
+          <button type="button" id="next-btn">Suivant</button>
         </div>
-
-        <!-- Étape 2 : calendrier -->
+        <!-- Étape 2 -->
         <div class="form-step" id="step-2">
-          <br>
-          <h1>Étape 2 : Choix de la date</h1>
+          <h1>Étape 2 : Choix de la date et de l'heure</h1>
+          <div id="calendar-controls">
+            <button type="button" id="prev-month">‹</button>
+            <span id="month-year"></span>
+            <button type="button" id="next-month">›</button>
+          </div>
           <div id="calendar"></div>
-          <input type="hidden" id="pickup-date" name="pickup-date">
+          <div class="form-group">
+            <label for="pickup-hour">Heure :</label>
+            <select id="pickup-hour" disabled>
+              {% for h in range(9,19) %}
+              <option value="{{ "%02d:00"|format(h) }}">{{ "%02d h00"|format(h) }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <input type="hidden" id="pickup-date">
           <button type="button" id="prev-btn">Précédent</button>
           <button type="button" id="confirm-btn" disabled>Confirmer</button>
-          <br><br>
         </div>
       </form>
-
-      <!-- Message de confirmation -->
       <div id="confirmation-message"></div>
     </div>
-  </section>
-
-  <!-- Footer bas (footer-bottom) -->
-  <div class="footer-bottom">
-    <div class="container">
-      <div class="payment-logos">
-        <img src="../static/images/logos/footer_logo_visa.svg" alt="Visa">
-        <img src="../static/images/logos/footer_logo_mastercard.svg" alt="MasterCard">
-        <img src="../static/images/logos/footer_logo_paypal.svg" alt="PayPal">
-        <img src="../static/images/logos/footer_logo_applepay.svg" alt="Apple Pay">
-      </div>
-      <div class="newsletter">
-        <h2>Inscrivez-vous à notre newsletter</h2>
-        <form action="#" method="post">
-          <input type="text" name="name" placeholder="Nom" required>
-          <input type="email" name="email" placeholder="Adresse e-mail" required>
-          <label>
-            <input type="checkbox" name="privacy" required>
-            J'ai lu et j'accepte la <a href="{{ url_for('politique') }}">politique de confidentialité</a>
-          </label>
-          <button type="submit">S'abonner</button>
-        </form>
-      </div>
-      <div class="footer-accordions">
-        <details><summary>Paiements</summary><p>Votre magasin accepte la carte (Visa, MasterCard, PayPal, Apple Pay), les cheques et le liquide. </p></details>
-        <details><summary>Livraison</summary><p>Livraison gratuite à Lyon. Pour des livraisons en France métropolitaine et à l'étranger, <a href="{{ url_for('contact') }}">contacez-nous</a> </p></details>
-        <details><summary>Louer un article</summary><p>Pour reserver des articles, contactez nous par téléphone au 06 71 86 18 66. Le prix dépend de l'article et de la durée de location.</p></details>
-        <details><summary>Assistance</summary><p>Email : <a href="mailto:jeanphilippault@gmail.com">support@vintage-shop.com</a>.<br>Téléphone : 06 71 86 18 66</p></details>
-        <details><summary>Informations juridiques</summary><p><a href="{{ url_for('mentions') }}">Mentions légales</a>, <a href="{{ url_for('politique') }}">Politique de confidentialité</a>, <a href="{{ url_for('plan') }}">Plan du site</a></p></details>
-      </div>
-    </div>
   </div>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>Développé par Az Development pour Az Websites</p>
-      <nav class="footer-nav">
-        <a href="{{ url_for('mentions') }}">Mentions légales</a>
-        <a href="{{ url_for('cookies') }}">Cookies</a>
-        <a href="{{ url_for('plan') }}">Plan du site</a>
-      </nav>
-    </div>
-  </footer>
-
-  <!-- Script de gestion du formulaire et du calendrier -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Récupère le nom de l'article depuis l'URL
       const params = new URLSearchParams(window.location.search);
-      const articleName = params.get('name') || 'votre article';
+      const productName = params.get('product_name');
+      const imgUrl      = params.get('img') ? decodeURIComponent(params.get('img')) : '';
+      const productId   = params.get('product_id');
+      const price       = parseFloat(params.get('price')).toFixed(2);
 
+      // Preview
+      const imgEl = document.getElementById('reservation-img');
+      const capEl = document.getElementById('reservation-img-caption');
+      if (imgUrl) { imgEl.src = imgUrl; capEl.textContent = productName; }
+      else { imgEl.style.display = 'none'; }
+
+      // Steps Elements
       const step1 = document.getElementById('step-1');
       const step2 = document.getElementById('step-2');
       const nextBtn = document.getElementById('next-btn');
       const prevBtn = document.getElementById('prev-btn');
       const confirmBtn = document.getElementById('confirm-btn');
-      const confirmation = document.getElementById('confirmation-message');
 
-      // Passage à l'étape 2
       nextBtn.addEventListener('click', () => {
-        const nom = document.getElementById('last-name').value.trim();
-        const prenom = document.getElementById('first-name').value.trim();
-        const email = document.getElementById('email').value.trim();
+        const last  = document.getElementById('last-name').value.trim();
+        const first = document.getElementById('first-name').value.trim();
+        const mail  = document.getElementById('email').value.trim();
         const phone = document.getElementById('phone').value.trim();
-        if (!nom || !prenom || !email || !phone) {
-          alert('Veuillez remplir tous les champs.');
-          return;
-        }
-        step1.classList.remove('active');
-        step2.classList.add('active');
+        if (!last || !first || !mail || !phone) return alert('Veuillez remplir tous les champs.');
+        step1.classList.remove('active'); step2.classList.add('active');
       });
+      prevBtn.addEventListener('click', () => { step2.classList.remove('active'); step1.classList.add('active'); });
 
-      // Retour à l'étape 1
-      prevBtn.addEventListener('click', () => {
-        step2.classList.remove('active');
-        step1.classList.add('active');
-      });
+      // Calendar Logic
+      let currentMonth, currentYear;
+      const monthYearEl = document.getElementById('month-year');
+      const calEl = document.getElementById('calendar');
+      const today = new Date();
+      const dateInput = document.getElementById('pickup-date');
+      const hourSelect = document.getElementById('pickup-hour');
 
-      // Génération du calendrier du mois courant
       function renderCalendar(month, year) {
-        const cal = document.getElementById('calendar');
-        cal.innerHTML = '';
-        const monthNames = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
-
-        // Entête mois/année
-        const header = document.createElement('div');
-        header.className = 'calendar-header';
-        header.innerHTML = `<h2>${monthNames[month]} ${year}</h2>`;
-        cal.appendChild(header);
-
-        // Tableau
-        const table = document.createElement('table');
-        table.className = 'calendar-table';
-        const thead = document.createElement('thead');
-        const tr = document.createElement('tr');
+        currentMonth = month; currentYear = year;
+        monthYearEl.textContent = new Date(year, month)
+          .toLocaleString('fr-FR', { month: 'long', year: 'numeric' });
+        calEl.innerHTML = '';
+        const table = document.createElement('table'); table.className = 'calendar-table';
+        const thead = document.createElement('thead'); const headRow = document.createElement('tr');
         ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'].forEach(d => {
-          const th = document.createElement('th');
-          th.textContent = d;
-          tr.appendChild(th);
-        });
-        thead.appendChild(tr);
-        table.appendChild(thead);
+          const th = document.createElement('th'); th.textContent = d; headRow.appendChild(th);
+        }); thead.appendChild(headRow); table.appendChild(thead);
 
         const tbody = document.createElement('tbody');
-        const firstDay = new Date(year, month, 1).getDay(); // dimanche=0
-        const startIndex = (firstDay + 6) % 7; // aligne Lundi=0
+        const firstDay = new Date(year, month, 1).getDay();
+        const startIndex = (firstDay + 6) % 7;
         const daysInMonth = new Date(year, month+1, 0).getDate();
-        let date = 1;
+        let dt = 1;
 
-        for (let i = 0; i < 6; i++) {
-          const row = document.createElement('tr');
-          for (let j = 0; j < 7; j++) {
-            const cell = document.createElement('td');
-            if ((i === 0 && j < startIndex) || date > daysInMonth) {
-              cell.textContent = '';
+        for (let r = 0; r < 6; r++) {
+          const tr = document.createElement('tr');
+          for (let c = 0; c < 7; c++) {
+            const td = document.createElement('td');
+            if ((r === 0 && c < startIndex) || dt > daysInMonth) {
+              td.textContent = '';
             } else {
-              cell.textContent = date;
-              const d = new Date(year, month, date);
-              if (d.getDay() === 0) {
-                cell.classList.add('disabled');
+              const cellDate = new Date(year, month, dt);
+              td.textContent = dt;
+              if (cellDate < new Date(today.getFullYear(), today.getMonth(), today.getDate())) {
+                td.classList.add('disabled');
               } else {
-                cell.classList.add('active');
-                cell.addEventListener('click', () => {
+                td.classList.add('active');
+                td.addEventListener('click', () => {
                   document.querySelectorAll('#calendar td.selected')
-                          .forEach(c => c.classList.remove('selected'));
-                  cell.classList.add('selected');
-                  document.getElementById('pickup-date').value =
-                    `${year}-${String(month+1).padStart(2,'0')}-${String(date).padStart(2,'0')}`;
-                  confirmBtn.disabled = false;
+                    .forEach(el => el.classList.remove('selected'));
+                  td.classList.add('selected');
+                  dateInput.value = `${year}-${String(month+1).padStart(2,'0')}-${String(dt).padStart(2,'0')}`;
+                  hourSelect.disabled = false;
                 });
               }
-              date++;
+              dt++;
             }
-            row.appendChild(cell);
+            tr.appendChild(td);
           }
-          tbody.appendChild(row);
+          tbody.appendChild(tr);
         }
-
-        table.appendChild(tbody);
-        cal.appendChild(table);
+        table.appendChild(tbody); calEl.appendChild(table);
       }
 
-      const today = new Date();
+      document.getElementById('prev-month').addEventListener('click', () => {
+        const m = currentMonth === 0 ? 11 : currentMonth - 1;
+        const y = currentMonth === 0 ? currentYear - 1 : currentYear;
+        renderCalendar(m, y);
+      });
+      document.getElementById('next-month').addEventListener('click', () => {
+        const m = currentMonth === 11 ? 0 : currentMonth + 1;
+        const y = currentMonth === 11 ? currentYear + 1 : currentYear;
+        renderCalendar(m, y);
+      });
+
       renderCalendar(today.getMonth(), today.getFullYear());
 
-      // Confirmation finale
-      confirmBtn.addEventListener('click', () => {
-        step2.remove();
-        const sel = document.getElementById('pickup-date').value;
-        confirmation.innerHTML = `
-          <p>
-            Vous avez bien réservé « <strong>${articleName}</strong> ».<br>
-            Venez le chercher en click & collect dans la journée du <strong>${sel}</strong>.
-          </p>`;
+      hourSelect.addEventListener('change', () => {
+        if (dateInput.value && hourSelect.value) confirmBtn.disabled = false;
+      });
+
+      // Submit and Confirmation
+      confirmBtn.addEventListener('click', async () => {
+        const payload = {
+          product_id:   parseInt(productId),
+          product_name: productName,
+          price:        price,
+          first_name:   document.getElementById('first-name').value.trim(),
+          last_name:    document.getElementById('last-name').value.trim(),
+          email:        document.getElementById('email').value.trim(),
+          phone:        document.getElementById('phone').value.trim(),
+          pickup_date:  dateInput.value,
+          pickup_time:  hourSelect.value
+        };
+        try {
+          const resp = await fetch('/api/reservations', {
+            method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload)
+          });
+          if (resp.ok) {
+            document.getElementById('reservation-form').style.display = 'none';
+            document.getElementById('confirmation-message').innerHTML =
+  `<div class="confirmation-card">` +
+    `<img src="${imgUrl}" alt="${productName}">` +
+    `<h2>${productName}</h2>` +
+    `<p>Date : ${payload.pickup_date}</p>` +
+    `<p>Heure : ${payload.pickup_time}</p>` +
+    `<p class="price">Prix : ${price} €</p>` +
+    `<p>Merci pour votre achat ! Nous vous attendons avec impatience.</p>` +
+  `</div>`;
+          } else alert('Erreur réservation.');
+        } catch { alert('Erreur réseau.'); }
       });
     });
   </script>
