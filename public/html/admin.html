@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin - Manage Products & Reservations</title>
+  <title>Admin - Manage Products, Reservations & Messages</title>
   <style>
     /* Mobile-first base */
     :root {
@@ -104,45 +104,47 @@
       .product-list, .product-form { flex: 1; margin-bottom: 0; }
     }
 
-    /* Reservations card with scroll */
-    #reservations-section { padding: 1rem; }
-    .reservations-card {
+    /* Cards: Reservations & Messages */
+    .card-section { padding: 1rem; }
+    .card {
       background: var(--card-bg);
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       padding: 1rem;
-      max-height: 600px;
-      overflow-y: hidden;
       display: flex;
       flex-direction: column;
+      margin-bottom: 1rem;
     }
-    .reservations-card-header {
+    .card-header {
       font-size: 1.1rem;
       font-weight: bold;
       color: var(--accent);
       margin-bottom: 0.75rem;
     }
-    .reservations-list {
+    .card-list {
       display: flex;
       flex-direction: column;
       gap: 1rem;
       overflow-y: auto;
-      max-height: calc(3 * 140px + 2 * 1rem);
       padding-right: 0.5rem;
     }
-    .reservation-item {
+    /* Reservations show max 3, Messages max 2 */
+    #reservation-list { max-height: calc(3 * 140px + 2 * 1rem); }
+    #message-list { max-height: calc(2 * 140px + 1 * 1rem); }
+
+    .card-item {
       background: var(--item-bg);
       border-radius: 6px;
       padding: 0.75rem;
     }
-    .reservation-item-header {
+    .item-header {
       font-weight: bold;
       margin-bottom: 0.5rem;
       color: var(--text);
     }
-    .reservation-item p { margin: 0.2rem 0; font-size: 0.95rem; }
-    .reservation-item .actions { text-align: right; margin-top: 0.5rem; }
-    .reservation-item .actions button {
+    .item-details p { margin: 0.2rem 0; font-size: 0.95rem; }
+    .item-actions { text-align: right; margin-top: 0.5rem; }
+    .item-actions button {
       background: var(--accent);
       color: var(--brand-fg);
       border: none;
@@ -151,7 +153,7 @@
       font-size: 0.85rem;
       margin-left: 0.5rem;
     }
-    .reservation-item .actions button:hover { opacity: 0.9; }
+    .item-actions button:hover { opacity: 0.9; }
   </style>
 </head>
 <body>
@@ -189,10 +191,15 @@
     </div>
   </div>
 
-  <section id="reservations-section">
-    <div class="reservations-card">
-      <div class="reservations-card-header">Réservations</div>
-      <div class="reservations-list" id="reservation-list"></div>
+  <section class="card-section">
+    <div class="card" id="reservations-section">
+      <div class="card-header">Réservations</div>
+      <div class="card-list" id="reservation-list"></div>
+    </div>
+
+    <div class="card" id="messages-section">
+      <div class="card-header">Messages</div>
+      <div class="card-list" id="message-list"></div>
     </div>
   </section>
 
@@ -201,8 +208,10 @@
     const productList = document.getElementById('product-list');
     const form = document.getElementById('product-form');
     const idField = form.querySelector('[name="id"]');
+    const reservationList = document.getElementById('reservation-list');
+    const messageList = document.getElementById('message-list');
 
-    // Load products and reservations to highlight reserved products
+    // Load products and reservations
     async function loadProducts() {
       const [prodRes, resRes] = await Promise.all([
         fetch('/api/products'),
@@ -228,7 +237,7 @@
         productList.appendChild(li);
       });
 
-      // Edit and delete handlers
+      // Edit handlers
       productList.querySelectorAll('.edit-btn').forEach(btn => btn.addEventListener('click', async () => {
         const res = await fetch(`/api/products/${btn.dataset.id}`);
         if (!res.ok) return alert('Produit introuvable');
@@ -241,6 +250,7 @@
         form.querySelector('[name="tags"]').value = p.tags.join(', ');
       }));
 
+      // Delete handlers
       productList.querySelectorAll('.del-btn').forEach(btn => btn.addEventListener('click', async () => {
         if (!confirm('Supprimer ce produit ?')) return;
         await fetch(`/api/products/${btn.dataset.id}`, { method: 'DELETE' });
@@ -248,7 +258,7 @@
       }));
     }
 
-    // Handle create/update form
+    // Handle product form submit
     form.addEventListener('submit', async e => {
       e.preventDefault();
       const formData = new FormData(form);
@@ -256,46 +266,75 @@
       const url = isEdit ? `/api/products/${idField.value}` : '/api/products';
       const method = isEdit ? 'PUT' : 'POST';
       const res = await fetch(url, { method, body: formData });
-      if (!res.ok) return alert('Erreur : ' + await res.text());
+      if (!res.ok) return alert('Erreur : ' + await res.text());
       form.reset();
       idField.value = '';
       loadProducts();
       loadReservations();
     });
 
-    // Load reservations with delete button only
-    const reservationList = document.getElementById('reservation-list');
+    // Load reservations
     async function loadReservations() {
       const res = await fetch('/api/reservations');
       const list = await res.json();
       reservationList.innerHTML = '';
       list.forEach(r => {
         const item = document.createElement('div');
-        item.className = 'reservation-item';
+        item.className = 'card-item';
         item.innerHTML = `
-          <div class="reservation-item-header">#${r._idx} — ${r.name}</div>
-          <p>Email : <a href="mailto:${r.email}">${r.email}</a></p>
-          <p>Téléphone : ${r.phone || '—'}</p>
-          <p>Objet(s) : ${r.objects.map(o => o.name).join(', ')}</p>
-          <p>Prix : ${parseFloat(r.price).toFixed(2)} €</p>
-          <div class="actions">
-            <button class="res-del-btn" data-idx="${r._idx}">Supprimer réservation</button>
+          <div class="item-header">#${r._idx} — ${r.name}</div>
+          <div class="item-details">
+            <p>Email : <a href="mailto:${r.email}">${r.email}</a></p>
+            <p>Téléphone : ${r.phone || '—'}</p>
+            <p>Objet(s) : ${r.objects.map(o => o.name).join(', ')}</p>
+            <p>Prix : ${parseFloat(r.price).toFixed(2)} €</p>
+          </div>
+          <div class="item-actions">
+            <button class="res-del-btn" data-idx="${r._idx}">Supprimer</button>
           </div>`;
         reservationList.appendChild(item);
       });
-
       reservationList.querySelectorAll('.res-del-btn').forEach(btn => btn.addEventListener('click', async () => {
-        if (!confirm('Supprimer cette réservation ?')) return;
-        const resp = await fetch(`/api/reservations/${btn.dataset.idx}`, { method: 'DELETE' });
-        if (resp.ok) {
-          loadReservations();
-          loadProducts();
-        } else alert('Erreur lors de la suppression.');
+        if (!confirm('Supprimer cette réservation ?')) return;
+        await fetch(`/api/reservations/${btn.dataset.idx}`, { method: 'DELETE' });
+        loadReservations(); loadProducts();
       }));
     }
 
+    // Load messages
+    async function loadMessages() {
+      const res = await fetch('/api/contacts');
+      const msgs = await res.json();
+      messageList.innerHTML = '';
+      msgs.forEach((m, i) => {
+        const el = document.createElement('div');
+        el.className = 'card-item';
+        el.innerHTML = `
+          <div class="item-header">#${m._idx} — ${m.name} ${m.surname}</div>
+          <div class="item-details">
+            <p>Téléphone : ${m.tel || '—'}</p>
+            <p>Adresse : ${m.address || '—'}</p>
+            <p>Email : <a href="mailto:${m.email}">${m.email}</a></p>
+            <p>Message : ${m.message}</p>
+            <p>Envoyé le : ${new Date(m.timestamp).toLocaleString('fr-FR')}</p>
+          </div>
+          <div class="item-actions">
+            <button class="msg-del-btn" data-idx="${m._idx}">Supprimer</button>
+          </div>`;
+        messageList.appendChild(el);
+      });
+      // Delete handlers for messages
+      messageList.querySelectorAll('.msg-del-btn').forEach(btn => btn.addEventListener('click', async () => {
+        if (!confirm('Supprimer ce message ?')) return;
+        await fetch(`/api/contacts/${btn.dataset.idx}`, { method: 'DELETE' });
+        loadMessages();
+      }));
+    }
+
+    // Initial load
     loadProducts();
     loadReservations();
+    loadMessages();
   });
 </script>
 </body>

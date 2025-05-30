@@ -14,7 +14,6 @@ from jinja2 import TemplateNotFound
 from werkzeug.utils import secure_filename
 from datetime import datetime
 
-
 # ---- Config ----
 app = Flask(
     __name__,
@@ -32,6 +31,7 @@ ADMIN_PASSWORD = "4home1952"
 # Data & images directories
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 IMAGES_DIR = os.path.join(app.static_folder, "images")
+# Ensure directories exist
 os.makedirs(IMAGES_DIR, exist_ok=True)
 
 ALLOWED_EXTENSIONS = {"png"}
@@ -49,7 +49,6 @@ def save_json(fname, data):
 
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
-
 
 # ---- Authentication routes ----
 
@@ -70,7 +69,6 @@ def login():
 def logout():
     session.pop("admin_authenticated", None)
     return redirect(url_for("login"))
-
 
 # ---- Page routes ----
 
@@ -94,49 +92,56 @@ def product(id):
     return render_template("product.html")
 
 
-@app.route("/contact")
+# Contact route: handles JSON POST and writes to contacts.json
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
-    return render_template("contact.html")
+    if request.method == "POST":
+        data = request.get_json()
+        if not data:
+            return jsonify({"status": "error", "message": "Invalid JSON payload"}), 400
 
+        # Ensure client timestamp, fallback to server
+        data.setdefault('timestamp', datetime.now().isoformat())
+
+        # Load existing contacts
+        contacts = load_json("contacts.json")
+        # Append and save
+        contacts.append(data)
+        save_json("contacts.json", contacts)
+        return jsonify({"status": "success"}), 200
+
+    return render_template("contact.html")
 
 # plan-du-site under endpoint "plan"
 @app.route("/plan-du-site", endpoint="plan")
 def plan_du_site():
     return render_template("plan-du-site.html")
 
-
 # mentions-legales under endpoint "mentions"
 @app.route("/mentions-legales", endpoint="mentions")
 def mentions_legales():
     return render_template("mentions-legales.html")
 
-
 @app.route("/cookies")
 def cookies():
     return render_template("cookies.html")
-
 
 @app.route("/politique")
 def politique():
     return render_template("politique.html")
 
-
 @app.route("/reservation")
 def reservation():
     return render_template("reservation.html")
 
-
 # ---- Admin page (protected) ----
-
 @app.route("/admin")
 def admin():
     if not session.get("admin_authenticated"):
         return redirect(url_for("login"))
     return render_template("admin.html")
 
-
-# ---- Catch-all for *.html (protect admin.html) ----
-
+# ---- Catch-all for *.html ----
 @app.route("/<page>.html")
 def html_pages(page):
     if page == "admin":
@@ -146,13 +151,10 @@ def html_pages(page):
     except TemplateNotFound:
         abort(404)
 
-
 # ---- Products JSON API ----
-
 @app.route("/api/products", methods=["GET"])
 def api_products():
     return jsonify(load_json("products.json"))
-
 
 @app.route("/api/products", methods=["POST"])
 def create_product():
@@ -180,14 +182,12 @@ def create_product():
         "detailImages": []
     }
 
-    # Handle cover image
     cover = request.files.get("cover")
     if cover and allowed_file(cover.filename):
         filename = f"img_{next_id}_cover.png"
         cover.save(os.path.join(IMAGES_DIR, filename))
         prod["coverImage"] = f"images/{filename}"
 
-    # Handle detail images
     for idx, file in enumerate(request.files.getlist("details")[:3], start=1):
         if file and allowed_file(file.filename):
             fn = f"img_{next_id}_detail_{idx}.png"
@@ -198,7 +198,6 @@ def create_product():
     save_json("products.json", products)
     return jsonify(prod), 201
 
-
 @app.route("/api/products/<int:id>", methods=["GET"])
 def get_product(id):
     products = load_json("products.json")
@@ -206,7 +205,6 @@ def get_product(id):
     if not prod:
         return jsonify({"error": "Product not found"}), 404
     return jsonify(prod)
-
 
 @app.route("/api/products/<int:id>", methods=["PUT"])
 def update_product(id):
@@ -219,7 +217,6 @@ def update_product(id):
         return jsonify({"error": "Product not found"}), 404
 
     form = request.form
-    # Update text fields
     for fld, key in [
         ("name", "name"),
         ("price", "price"),
@@ -231,7 +228,6 @@ def update_product(id):
         if val is not None:
             prod[key] = [t.strip() for t in val.split(",")] if fld == "tags" else val.strip()
 
-    # Replace cover image
     cover = request.files.get("cover")
     if cover and allowed_file(cover.filename):
         if prod.get("coverImage"):
@@ -243,7 +239,6 @@ def update_product(id):
         cover.save(os.path.join(IMAGES_DIR, fn))
         prod["coverImage"] = f"images/{fn}"
 
-    # Replace detail images
     details = request.files.getlist("details")
     if details:
         for old in prod.get("detailImages", []):
@@ -261,7 +256,6 @@ def update_product(id):
     save_json("products.json", products)
     return jsonify(prod)
 
-
 @app.route("/api/products/<int:id>", methods=["DELETE"])
 def delete_product(id):
     if not session.get("admin_authenticated"):
@@ -272,7 +266,6 @@ def delete_product(id):
     if not prod:
         return jsonify({"error": "Product not found"}), 404
 
-    # Delete images
     if prod.get("coverImage"):
         try:
             os.remove(os.path.join(app.static_folder, prod["coverImage"]))
@@ -291,35 +284,23 @@ def delete_product(id):
 @app.route("/api/reservations", methods=["POST"])
 def create_reservation():
     data = request.get_json() or {}
-    # pull fields from the POSTed JSON
     fname = data.get("first_name", "").strip()
     lname = data.get("last_name", "").strip()
     email = data.get("email", "").strip()
     phone = data.get("phone", "").strip()
-    pickup_date = data.get("pickup_date", "").strip()    # e.g. "2025-06-15"
-    pickup_time = data.get("pickup_time", "").strip()    # e.g. "14:30"
+    pickup_date = data.get("pickup_date", "").strip()
+    pickup_time = data.get("pickup_time", "").strip()
     product_id = data.get("product_id")
     product_name = data.get("product_name", "")
     price = data.get("price")
 
-    # combine into ISO-style pickup datetime
     pickup_datetime = f"{pickup_date}T{pickup_time}"
     reservation_datetime = datetime.now().isoformat()
 
-    # the “objects” list can include whatever fields you like; here we include one
-    obj = {
-        "id": product_id,
-        "name": product_name,
-        "price": price
-    }
+    obj = {"id": product_id, "name": product_name, "price": price}
 
-    # load existing reservations (or start empty)
-    try:
-        reservations = load_json("reservation.json")
-    except FileNotFoundError:
-        reservations = []
+    reservations = load_json("reservation.json")
 
-    # build and append the new entry
     reservation = {
         "name": f"{lname} {fname}",
         "email": email,
@@ -334,34 +315,41 @@ def create_reservation():
 
     return jsonify({"status": "success"}), 201
 
-from flask import abort
-
 @app.route("/api/reservations", methods=["GET"])
 def list_reservations():
-    """Return the full array of reservations (for admin)."""
-    try:
-        reservations = load_json("reservation.json")
-    except FileNotFoundError:
-        reservations = []
-    # include index so we can delete by position
+    reservations = load_json("reservation.json")
     for idx, r in enumerate(reservations):
         r["_idx"] = idx
     return jsonify(reservations)
 
-
 @app.route("/api/reservations/<int:idx>", methods=["DELETE"])
 def delete_reservation(idx):
-    """Delete the reservation at index `idx`."""
-    try:
-        reservations = load_json("reservation.json")
-    except FileNotFoundError:
-        abort(404, "No reservations file")
+    reservations = load_json("reservation.json")
     if idx < 0 or idx >= len(reservations):
         abort(404, "Reservation not found")
     reservations.pop(idx)
     save_json("reservation.json", reservations)
     return "", 204
 
+@app.route("/api/contacts/<int:idx>", methods=["DELETE"])
+def delete_contact(idx):
+    """Delete the contact message at index `idx`."""
+    contacts = load_json("contacts.json")
+    if idx < 0 or idx >= len(contacts):
+        abort(404, "Contact not found")
+    contacts.pop(idx)
+    save_json("contacts.json", contacts)
+    return "", 204
+
+
+# ---- Contacts JSON API ----
+@app.route("/api/contacts", methods=["GET"])
+def list_contacts():
+    """Return the full array of contact messages."""
+    contacts = load_json("contacts.json")
+    for idx, m in enumerate(contacts):
+        m["_idx"] = idx
+    return jsonify(contacts)
 
 # ---- Run ----
 if __name__ == "__main__":

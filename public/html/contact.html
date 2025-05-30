@@ -7,6 +7,43 @@
   <link rel="icon" href="../static/images/logos/head_logo_store.png" type="image/png">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+  <!-- Script pour envoyer les données du formulaire en JSON avec timestamp -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.getElementById("contactForm");
+      form.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const data = {
+          tel:       form.tel.value,
+          name:      form.name.value,
+          surname:   form.surname.value,
+          address:   form.address.value,
+          email:     form.email.value,
+          message:   form.message.value,
+          timestamp: new Date().toISOString()
+        };
+
+        fetch("{{ url_for('contact') }}", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        })
+        .then(response => {
+          if (response.ok) {
+            alert("Votre message a bien été envoyé.");
+            form.reset();
+          } else {
+            alert("Erreur lors de l'envoi. Veuillez réessayer.");
+          }
+        })
+        .catch(err => {
+          console.error("Error:", err);
+          alert("Erreur réseau. Veuillez réessayer.");
+        });
+      });
+    });
+  </script>
 </head>
 <body>
 
@@ -42,23 +79,23 @@
     </a>
   </section>
 
-  <!-- Formulaire de contact -->
   <main class="container form-container">
-    <form action="#" method="POST">
+    <h1>Contactez-nous</h1>
+    <form id="contactForm" action="#" method="POST">
       <label for="tel">Numéro de téléphone</label>
-      <input type="tel" id="tel" name="tel" placeholder="Entrez votre numéro" required>
+      <input type="tel" id="tel" name="tel" placeholder="Entrez votre numéro" required />
 
       <label for="name">Prénom</label>
-      <input type="text" id="name" name="name" placeholder="Entrez votre prénom" required>
+      <input type="text" id="name" name="name" placeholder="Entrez votre prénom" required />
 
       <label for="surname">Nom de famille</label>
-      <input type="text" id="surname" name="surname" placeholder="Entrez votre nom" required>
+      <input type="text" id="surname" name="surname" placeholder="Entrez votre nom" required />
 
       <label for="address">Adresse</label>
-      <input type="text" id="address" name="address" placeholder="Entrez votre adresse">
+      <input type="text" id="address" name="address" placeholder="Entrez votre adresse" />
 
       <label for="email">E-mail</label>
-      <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
+      <input type="email" id="email" name="email" placeholder="Entrez votre email" required />
 
       <label for="message">Message</label>
       <textarea id="message" name="message" placeholder="Entrez votre message" rows="4"></textarea>
@@ -66,6 +103,10 @@
       <button type="submit">Envoyer</button>
     </form>
   </main>
+
+  <footer>
+    <p>&copy; {{ current_year }} Vintage Shop. Tous droits réservés.</p>
+  </footer>
 
   <!-- Footer bottom (gris clair) -->
   <div class="footer-bottom">
