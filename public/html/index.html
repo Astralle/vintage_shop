@@ -33,10 +33,64 @@
     <div class="hero-content">
       <h1>Redécouvrez le charme du vintage</h1>
       <a href="{{ url_for('boutique') }}" class="btn btn-primary">Découvrir la boutique</a>
-      <a class="spacer"></a>
+      <br><br><br>
       <a href="{{ url_for('service') }}" class="btn btn-primary">À props du Store</a>
     </div>
   </section>
+
+<section class="reviews">
+  <div class="container">
+    <h2>Avis de nos clients</h2>
+    <div class="reviews-grid">
+
+      <a href="https://g.co/kgs/6ioSaNx" target="_blank" class="review-card">
+        <div class="review-header">
+          <img class="review-avatar" src="../static/images/pages/index/avis/pdp2.png" alt="Avatar Joël Louis MICAUD">
+          <span class="review-author">Amélie</span>
+          <span class="rating" aria-label="4 sur 5 étoiles">★★★★☆</span>
+        </div>
+        <p class="review-text">
+          Magnifique Boutique très accueillante !
+        </p>
+        <p class="review-date">Visité en avril 2024</p>
+      </a>
+
+      <a href="https://g.co/kgs/mUCdekP" target="_blank" class="review-card">
+        <div class="review-header">
+          <img class="review-avatar" src="../static/images/pages/index/avis/pdp1.png" alt="Avatar Sandrine NALLET">
+          <span class="review-author">Sandrine NALLET</span>
+          <span class="rating" aria-label="5 sur 5 étoiles">★★★★★</span>
+        </div>
+        <p class="review-text">
+          Boutique vintage où chacun peut trouver son bonheur. Une grande diversité d'objets à chiner. L'accueil est très agréable et attentionné. Merci
+        </p>
+        <p class="review-date">Visité en mars 2024</p>
+      </a>
+
+      <a href="https://g.co/kgs/fjLHnWN" target="_blank" class="review-card">
+        <div class="review-header">
+          <img class="review-avatar" src="../static/images/pages/index/avis/pdp3.png" alt="Avatar Jauffrey Dubois">
+          <span class="review-author">Jauffrey Dubois</span>
+        <span class="rating" aria-label="5 sur 5 étoiles">★★★★★</span>
+
+        </div>
+        <p class="review-text">
+          Très belle boutique, des objets de qualité et Jean est une personne charmante ! Au plaisir
+        </p>
+        <p class="review-date">Visité en octobre 2024</p>
+      </a>
+
+    </div>
+
+    <a href="https://www.google.com/search?sca_esv=cefa0a7e75bc11f8&rlz=1C1ONGR_frFR969FR969&q=4home1952&si=APYL9bs7Hg2KMLB-4tSoTdxuOx8BdRvHbByC_AuVpNyh0x2KzSo1J3A2kndR3Qw0g4-nHsIig3oFFej98EuR-tdp7A3YPgAbT6wqhXJ2Cx4tbO_Eh74dBzE%3D&uds=ABqPDvwBMKr_mtvmdOucXwZk2JA31IH6ZYvN4zMpa4nEJFodmhueRWD8PKy9S34Oar-aEugSaadxz2QbHxGuaNkII8tGONeOmjEH67V1nunjzxnj9OhGppk&sa=X&ved=2ahUKEwj6nZW9iKGNAxX6gf0HHe8aA6QQ3PALegQIGhAE&biw=1543&bih=1198&dpr=1.1" target="_blank" class="btn btn-primary btn-leave">
+      Laisser un avis
+    </a>
+  </div>
+</section>
+
+
+
+
   <!-- Nos coups de cœur -->
   <section class="featured-products">
     <div class="container">
@@ -80,10 +134,10 @@
   <div class="footer-bottom">
     <div class="container">
       <div class="payment-logos">
-        <img src="../static/images/logos/visa.svg" alt="Visa">
-        <img src="../static/images/logos/mastercard.svg" alt="MasterCard">
-        <img src="../static/images/logos/paypal.svg" alt="PayPal">
-        <img src="../static/images/logos/apple-pay.svg" alt="Apple Pay">
+        <img src="../static/images/logos/footer_logo_visa.svg" alt="Visa">
+        <img src="../static/images/logos/footer_logo_mastercard.svg" alt="MasterCard">
+        <img src="../static/images/logos/footer_logo_paypal.svg" alt="PayPal">
+        <img src="../static/images/logos/footer_logo_applepay.svg" alt="Apple Pay">
       </div>
       <div class="newsletter">
         <h2>Inscrivez-vous à notre newsletter</h2>
@@ -109,7 +163,7 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>Développé par Az Development et Az Websites</p>
+      <p>Développé par Az Development pour Az Websites</p>
       <nav class="footer-nav">
         <a href="{{ url_for('mentions') }}">Mentions légales</a>
         <a href="{{ url_for('cookies') }}">Cookies</a>
