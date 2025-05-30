@@ -8,5 +8,15 @@
         "tags": [],
         "coverImage": null,
         "detailImages": []
+    },
+    {
+        "id": 2,
+        "name": "CACA",
+        "price": "56",
+        "shortDescription": "xsdqsfdqsfdqsdfs",
+        "longDescription": "qsdqsdqd",
+        "tags": [],
+        "coverImage": null,
+        "detailImages": []
     }
 ]

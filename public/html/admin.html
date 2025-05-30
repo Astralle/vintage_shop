@@ -192,113 +192,120 @@
 </section>
 
 <script>
+document.addEventListener('DOMContentLoaded', () => {
+  // — PRODUCTS —
+  const productList = document.getElementById('product-list');
+  const form        = document.getElementById('product-form');
+  const idField     = form.querySelector('[name="id"]');
+
+  async function loadProducts() {
+    const res      = await fetch('/api/products');
+    const products = await res.json();
+    productList.innerHTML = '';
+    products.forEach(p => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <span>${p.name} — ${parseFloat(p.price).toFixed(2)} €</span>
+        <div>
+          <button type="button" data-id="${p.id}" class="edit-btn">Modifier</button>
+          <button type="button" data-id="${p.id}" class="del-btn">Supprimer</button>
+        </div>
+      `;
+      productList.appendChild(li);
+    });
+
+    // wire up Edit buttons
+    productList.querySelectorAll('.edit-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.dataset.id;
+        const res = await fetch(`/api/products/${id}`);
+        if (!res.ok) return alert('Produit introuvable');
+        const p = await res.json();
+        idField.value                         = p.id;
+        form.querySelector('[name="name"]').value               = p.name;
+        form.querySelector('[name="price"]').value              = p.price;
+        form.querySelector('[name="short-description"]').value  = p.shortDescription;
+        form.querySelector('[name="long-description"]').value   = p.longDescription;
+        form.querySelector('[name="tags"]').value               = p.tags.join(', ');
+      });
+    });
+
+    // wire up Delete buttons
+    productList.querySelectorAll('.del-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        if (!confirm('Supprimer ce produit ?')) return;
+        await fetch(`/api/products/${btn.dataset.id}`, { method: 'DELETE' });
+        loadProducts();
+      });
+    });
+  }
+
+  // form submit = create or update
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const isEdit   = Boolean(idField.value);
+    const url      = isEdit
+      ? `/api/products/${idField.value}`
+      : '/api/products';
+    const method   = isEdit ? 'PUT' : 'POST';
+
+    const res = await fetch(url, { method, body: formData });
+    if (!res.ok) {
+      const err = await res.text();
+      return alert('Erreur : ' + err);
+    }
+
+    form.reset();
+    idField.value = '';
+    loadProducts();
+  });
+
+  // — RESERVATIONS —
+  const reservationsTbody = document
+    .getElementById('reservations-table')
+    .querySelector('tbody');
+
   async function loadReservations() {
     const res = await fetch('/api/reservations');
     const list = await res.json();
-    const tbody = document.querySelector('#reservations-table tbody');
-    tbody.innerHTML = '';  // clear
+    reservationsTbody.innerHTML = '';
 
     list.forEach(r => {
       const tr = document.createElement('tr');
-      tr.innerHTML =
+      tr.innerHTML = `
         <td>${r._idx}</td>
         <td>${r.name}</td>
         <td><a href="mailto:${r.email}">${r.email}</a></td>
         <td>${r.phone || '—'}</td>
         <td>${r.objects.map(o => o.name).join(', ')}</td>
-        <td>${r.price.toFixed(2)} €</td>
+        <td>${parseFloat(r.price).toFixed(2)} €</td>
         <td>${r.pickup_datetime.replace('T',' à ')}</td>
         <td>${new Date(r.reservation_datetime).toLocaleString()}</td>
         <td>
-          <button data-idx="${r._idx}" class="del-btn">Supprimer</button>
+          <button type="button" data-idx="${r._idx}" class="res-del-btn">Supprimer</button>
         </td>
-      ;
-      tbody.appendChild(tr);
+      `;
+      reservationsTbody.appendChild(tr);
     });
 
-    // wire up delete buttons
-    document.querySelectorAll('.del-btn').forEach(btn => {
+    reservationsTbody.querySelectorAll('.res-del-btn').forEach(btn => {
       btn.addEventListener('click', async () => {
-        const idx = btn.dataset.idx;
         if (!confirm('Supprimer cette réservation ?')) return;
-        const resp = await fetch(/api/reservations/${idx}, { method: 'DELETE' });
+        const resp = await fetch(`/api/reservations/${btn.dataset.idx}`, {
+          method: 'DELETE'
+        });
         if (resp.ok) loadReservations();
         else alert('Erreur lors de la suppression.');
       });
     });
   }
 
-  document.addEventListener('DOMContentLoaded', loadReservations);
+  // — INITIAL LOAD —
+  loadProducts();
+  loadReservations();
+});
 </script>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const listEl       = document.getElementById('product-list');
-      const formEl       = document.getElementById('product-form');
-      const idInput      = document.getElementById('product-id');
-      const nameInput    = document.getElementById('name');
-      const priceInput   = document.getElementById('price');
-      const shortInput   = document.getElementById('short-description');
-      const longInput    = document.getElementById('long-description');
-      const tagsInput    = document.getElementById('tags');
-
-      // Fetch and render product list
-      async function fetchProducts() {
-        const res      = await fetch('/api/products');
-        const products = await res.json();
-        listEl.innerHTML = '';
-        products.forEach(p => {
-          const li = document.createElement('li');
-          li.innerHTML =
-            <span>${p.name}</span>
-            <div>
-              <button onclick="edit(${p.id})">Modifier</button>
-              <button onclick="del(${p.id})">Supprimer</button>
-            </div>;
-          listEl.appendChild(li);
-        });
-      }
-
-      // Handle form submit
-      formEl.addEventListener('submit', async e => {
-        e.preventDefault();
-        const formData = new FormData(formEl);
-        const isEdit   = Boolean(idInput.value);
-        const url      = isEdit ? /api/products/${idInput.value} : '/api/products';
-        const method   = isEdit ? 'PUT' : 'POST';
-
-        const res = await fetch(url, { method, body: formData });
-        if (res.ok) {
-          formEl.reset();
-          idInput.value = '';
-          fetchProducts();
-        }
-      });
-
-      // Populate form for editing
-      window.edit = async (id) => {
-        const res = await fetch(/api/products/${id});
-        const p   = await res.json();
-
-        idInput.value              = p.id;
-        nameInput.value            = p.name;
-        priceInput.value           = p.price;
-        shortInput.value           = p.shortDescription;
-        longInput.value            = p.longDescription;
-        tagsInput.value            = p.tags.join(', ');
-        // NOTE: file inputs cannot be pre-populated for security reasons
-      };
-
-      // Delete a product
-      window.del = async (id) => {
-        if (!confirm('Delete this product?')) return;
-        await fetch(/api/products/${id}, { method: 'DELETE' });
-        fetchProducts();
-      };
-
-      // Initial load
-      fetchProducts();
-    });
-  </script>
 </body>
 </html>
