@@ -34,7 +34,7 @@ IMAGES_DIR = os.path.join(app.static_folder, "images")
 # Ensure directories exist
 os.makedirs(IMAGES_DIR, exist_ok=True)
 
-ALLOWED_EXTENSIONS = {"png"}
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "bmp", "webp", "tiff", "svg"}
 
 
 def load_json(fname):
@@ -184,13 +184,15 @@ def create_product():
 
     cover = request.files.get("cover")
     if cover and allowed_file(cover.filename):
-        filename = f"img_{next_id}_cover.png"
+        ext = cover.filename.rsplit(".", 1)[1].lower()
+        filename = f"img_{next_id}_cover.{ext}"
         cover.save(os.path.join(IMAGES_DIR, filename))
         prod["coverImage"] = f"images/{filename}"
 
     for idx, file in enumerate(request.files.getlist("details")[:3], start=1):
         if file and allowed_file(file.filename):
-            fn = f"img_{next_id}_detail_{idx}.png"
+            ext = file.filename.rsplit(".", 1)[1].lower()
+            fn = f"img_{next_id}_detail_{idx}.{ext}"
             file.save(os.path.join(IMAGES_DIR, fn))
             prod["detailImages"].append(f"images/{fn}")
 
