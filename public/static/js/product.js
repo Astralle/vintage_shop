@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             ${p.tags.map(tag => `<span>${tag}</span>`).join('')}
           </div>
 
-          <button id="reserve-btn">Réserver</button>
+          <button id="reserve-btn">Click-&-Collect</button>
         </div>
       `;
 
