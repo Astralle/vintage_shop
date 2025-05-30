@@ -1,10 +1,9 @@
-<!-- WebSite/public/html/admin.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin - Manage Products</title>
+  <title>Admin - Manage Products & Reservations</title>
   <style>
     /* Mobile-first base */
     :root {
@@ -12,6 +11,10 @@
       --brand-fg: #fff;
       --accent: #bfa77f;
       --text: #333;
+      --card-bg: #fff;
+      --item-bg: #f0f0f0;
+      --highlight-bg: rgba(255, 0, 0, 0.2);
+      --highlight-border: red;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -26,9 +29,7 @@
       padding: 1rem;
       text-align: center;
     }
-    header h1 {
-      font-size: 1.25rem;
-    }
+    header h1 { font-size: 1.25rem; }
 
     .container {
       display: flex;
@@ -36,7 +37,7 @@
       padding: 1rem;
     }
     .product-list, .product-form {
-      background: #fff;
+      background: var(--card-bg);
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       margin-bottom: 1rem;
@@ -48,12 +49,18 @@
       color: var(--accent);
     }
 
-    /* <— HERE: Limit list to ~10 items then scroll —> */
+    /* Highlighted product */
+    .product-list li.highlighted {
+      background-color: var(--highlight-bg);
+      border-left: 4px solid var(--highlight-border);
+    }
+
+    /* Product list scroll */
     .product-list ul {
       list-style: none;
-      max-height: 480px;    /* height for roughly 10 items */
+      max-height: 480px;
       overflow-y: auto;
-      padding-right: 0.5rem; /* space for scrollbar */
+      padding-right: 0.5rem;
     }
     .product-list li {
       display: flex;
@@ -61,11 +68,9 @@
       align-items: center;
       padding: 0.5rem 0;
       border-bottom: 1px solid #eee;
-      min-height: 3.5rem;   /* ensure consistent item height */
+      min-height: 3.5rem;
     }
-    .product-list li:last-child {
-      border-bottom: none;
-    }
+    .product-list li:last-child { border-bottom: none; }
     .product-list button {
       background: var(--accent);
       color: var(--brand-fg);
@@ -75,29 +80,13 @@
       font-size: 0.9rem;
       margin-left: 0.5rem;
     }
-    .product-list button:hover {
-      opacity: 0.9;
-    }
+    .product-list button:hover { opacity: 0.9; }
 
-    form label {
-      display: block;
-      margin-top: 0.75rem;
-      font-weight: bold;
-      font-size: 0.95rem;
-    }
-    form input[type="text"],
-    form input[type="number"],
-    form input[type="file"],
-    form textarea {
-      width: 100%;
-      padding: 0.6rem;
-      margin-top: 0.25rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
+    form label { display: block; margin-top: 0.75rem; font-weight: bold; font-size: 0.95rem; }
+    form input[type="text"], form input[type="number"], form input[type="file"], form textarea {
+      width: 100%; padding: 0.6rem; margin-top: 0.25rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem;
     }
     form textarea { resize: vertical; height: 4rem; }
-
     form button {
       background: var(--accent);
       color: var(--brand-fg);
@@ -108,21 +97,61 @@
       margin-top: 1rem;
       width: 100%;
     }
-    form button:hover {
-      opacity: 0.9;
+    form button:hover { opacity: 0.9; }
+
+    @media (min-width: 600px) {
+      .container { flex-direction: row; gap: 1rem; }
+      .product-list, .product-form { flex: 1; margin-bottom: 0; }
     }
 
-    /* Larger screens: side-by-side */
-    @media (min-width: 600px) {
-      .container {
-        flex-direction: row;
-        gap: 1rem;
-      }
-      .product-list, .product-form {
-        flex: 1;
-        margin-bottom: 0;
-      }
+    /* Reservations card with scroll */
+    #reservations-section { padding: 1rem; }
+    .reservations-card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 1rem;
+      max-height: 600px;
+      overflow-y: hidden;
+      display: flex;
+      flex-direction: column;
     }
+    .reservations-card-header {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .reservations-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      overflow-y: auto;
+      max-height: calc(3 * 140px + 2 * 1rem);
+      padding-right: 0.5rem;
+    }
+    .reservation-item {
+      background: var(--item-bg);
+      border-radius: 6px;
+      padding: 0.75rem;
+    }
+    .reservation-item-header {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    .reservation-item p { margin: 0.2rem 0; font-size: 0.95rem; }
+    .reservation-item .actions { text-align: right; margin-top: 0.5rem; }
+    .reservation-item .actions button {
+      background: var(--accent);
+      color: var(--brand-fg);
+      border: none;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      margin-left: 0.5rem;
+    }
+    .reservation-item .actions button:hover { opacity: 0.9; }
   </style>
 </head>
 <body>
@@ -132,180 +161,142 @@
   </header>
 
   <div class="container">
-    <!-- Left: existing products -->
     <div class="product-list">
       <h2>Inventaire</h2>
       <ul id="product-list"></ul>
     </div>
 
-    <!-- Right: form -->
     <div class="product-form">
       <h2>Créer ou modifier les produits</h2>
       <form id="product-form" enctype="multipart/form-data">
         <input type="hidden" id="product-id" name="id" />
-
         <label for="name">Nom</label>
         <input type="text" id="name" name="name" required />
-
         <label for="price">Prix</label>
         <input type="number" id="price" name="price" required />
-
         <label for="short-description">Description courte</label>
         <textarea id="short-description" name="short-description" required></textarea>
-
         <label for="long-description">Description longue</label>
         <textarea id="long-description" name="long-description" required></textarea>
-
-        <label for="tags">Tags (séparé par des virgules)</label>
+        <label for="tags">Tags (séparés par des virgules)</label>
         <input type="text" id="tags" name="tags" />
-
-        <label for="cover">Image de couverture</label>
+        <label for="cover">Image de couverture (.png)</label>
         <input type="file" id="cover" name="cover" accept=".png" />
-
-        <label for="details">Images de détail (max 3)</label>
+        <label for="details">Images de détail (max 3, .png)</label>
         <input type="file" id="details" name="details" accept=".png" multiple />
-
         <button type="submit">Confirmer</button>
       </form>
     </div>
   </div>
+
   <section id="reservations-section">
-  <h2>Réservations</h2>
-  <table id="reservations-table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Nom</th>
-        <th>Email</th>
-        <th>Téléphone</th>
-        <th>Objet(s)</th>
-        <th>Prix</th>
-        <th>Prise en charge</th>
-        <th>Réservé le</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- rows injected by JS -->
-    </tbody>
-  </table>
-</section>
+    <div class="reservations-card">
+      <div class="reservations-card-header">Réservations</div>
+      <div class="reservations-list" id="reservation-list"></div>
+    </div>
+  </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  // — PRODUCTS —
-  const productList = document.getElementById('product-list');
-  const form        = document.getElementById('product-form');
-  const idField     = form.querySelector('[name="id"]');
+  document.addEventListener('DOMContentLoaded', () => {
+    const productList = document.getElementById('product-list');
+    const form = document.getElementById('product-form');
+    const idField = form.querySelector('[name="id"]');
 
-  async function loadProducts() {
-    const res      = await fetch('/api/products');
-    const products = await res.json();
-    productList.innerHTML = '';
-    products.forEach(p => {
-      const li = document.createElement('li');
-      li.innerHTML = `
-        <span>${p.name} — ${parseFloat(p.price).toFixed(2)} €</span>
-        <div>
-          <button type="button" data-id="${p.id}" class="edit-btn">Modifier</button>
-          <button type="button" data-id="${p.id}" class="del-btn">Supprimer</button>
-        </div>
-      `;
-      productList.appendChild(li);
-    });
+    // Load products and reservations to highlight reserved products
+    async function loadProducts() {
+      const [prodRes, resRes] = await Promise.all([
+        fetch('/api/products'),
+        fetch('/api/reservations')
+      ]);
+      const products = await prodRes.json();
+      const reservations = await resRes.json();
 
-    // wire up Edit buttons
-    productList.querySelectorAll('.edit-btn').forEach(btn => {
-      btn.addEventListener('click', async () => {
-        const id = btn.dataset.id;
-        const res = await fetch(`/api/products/${id}`);
+      const reservedIds = new Set();
+      reservations.forEach(r => r.objects.forEach(o => reservedIds.add(o.id)));
+
+      productList.innerHTML = '';
+      products.forEach(p => {
+        const li = document.createElement('li');
+        li.id = `product-${p.id}`;
+        if (reservedIds.has(p.id)) li.classList.add('highlighted');
+        li.innerHTML = `
+          <span>${p.name} — ${parseFloat(p.price).toFixed(2)} €</span>
+          <div>
+            <button data-id="${p.id}" class="edit-btn">Modifier</button>
+            <button data-id="${p.id}" class="del-btn">Supprimer</button>
+          </div>`;
+        productList.appendChild(li);
+      });
+
+      // Edit and delete handlers
+      productList.querySelectorAll('.edit-btn').forEach(btn => btn.addEventListener('click', async () => {
+        const res = await fetch(`/api/products/${btn.dataset.id}`);
         if (!res.ok) return alert('Produit introuvable');
         const p = await res.json();
-        idField.value                         = p.id;
-        form.querySelector('[name="name"]').value               = p.name;
-        form.querySelector('[name="price"]').value              = p.price;
-        form.querySelector('[name="short-description"]').value  = p.shortDescription;
-        form.querySelector('[name="long-description"]').value   = p.longDescription;
-        form.querySelector('[name="tags"]').value               = p.tags.join(', ');
-      });
-    });
+        idField.value = p.id;
+        form.querySelector('[name="name"]').value = p.name;
+        form.querySelector('[name="price"]').value = p.price;
+        form.querySelector('[name="short-description"]').value = p.shortDescription;
+        form.querySelector('[name="long-description"]').value = p.longDescription;
+        form.querySelector('[name="tags"]').value = p.tags.join(', ');
+      }));
 
-    // wire up Delete buttons
-    productList.querySelectorAll('.del-btn').forEach(btn => {
-      btn.addEventListener('click', async () => {
+      productList.querySelectorAll('.del-btn').forEach(btn => btn.addEventListener('click', async () => {
         if (!confirm('Supprimer ce produit ?')) return;
         await fetch(`/api/products/${btn.dataset.id}`, { method: 'DELETE' });
         loadProducts();
-      });
-    });
-  }
-
-  // form submit = create or update
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    const formData = new FormData(form);
-    const isEdit   = Boolean(idField.value);
-    const url      = isEdit
-      ? `/api/products/${idField.value}`
-      : '/api/products';
-    const method   = isEdit ? 'PUT' : 'POST';
-
-    const res = await fetch(url, { method, body: formData });
-    if (!res.ok) {
-      const err = await res.text();
-      return alert('Erreur : ' + err);
+      }));
     }
 
-    form.reset();
-    idField.value = '';
-    loadProducts();
-  });
-
-  // — RESERVATIONS —
-  const reservationsTbody = document
-    .getElementById('reservations-table')
-    .querySelector('tbody');
-
-  async function loadReservations() {
-    const res = await fetch('/api/reservations');
-    const list = await res.json();
-    reservationsTbody.innerHTML = '';
-
-    list.forEach(r => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${r._idx}</td>
-        <td>${r.name}</td>
-        <td><a href="mailto:${r.email}">${r.email}</a></td>
-        <td>${r.phone || '—'}</td>
-        <td>${r.objects.map(o => o.name).join(', ')}</td>
-        <td>${parseFloat(r.price).toFixed(2)} €</td>
-        <td>${r.pickup_datetime.replace('T',' à ')}</td>
-        <td>${new Date(r.reservation_datetime).toLocaleString()}</td>
-        <td>
-          <button type="button" data-idx="${r._idx}" class="res-del-btn">Supprimer</button>
-        </td>
-      `;
-      reservationsTbody.appendChild(tr);
+    // Handle create/update form
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const isEdit = Boolean(idField.value);
+      const url = isEdit ? `/api/products/${idField.value}` : '/api/products';
+      const method = isEdit ? 'PUT' : 'POST';
+      const res = await fetch(url, { method, body: formData });
+      if (!res.ok) return alert('Erreur : ' + await res.text());
+      form.reset();
+      idField.value = '';
+      loadProducts();
+      loadReservations();
     });
 
-    reservationsTbody.querySelectorAll('.res-del-btn').forEach(btn => {
-      btn.addEventListener('click', async () => {
-        if (!confirm('Supprimer cette réservation ?')) return;
-        const resp = await fetch(`/api/reservations/${btn.dataset.idx}`, {
-          method: 'DELETE'
-        });
-        if (resp.ok) loadReservations();
-        else alert('Erreur lors de la suppression.');
+    // Load reservations with delete button only
+    const reservationList = document.getElementById('reservation-list');
+    async function loadReservations() {
+      const res = await fetch('/api/reservations');
+      const list = await res.json();
+      reservationList.innerHTML = '';
+      list.forEach(r => {
+        const item = document.createElement('div');
+        item.className = 'reservation-item';
+        item.innerHTML = `
+          <div class="reservation-item-header">#${r._idx} — ${r.name}</div>
+          <p>Email : <a href="mailto:${r.email}">${r.email}</a></p>
+          <p>Téléphone : ${r.phone || '—'}</p>
+          <p>Objet(s) : ${r.objects.map(o => o.name).join(', ')}</p>
+          <p>Prix : ${parseFloat(r.price).toFixed(2)} €</p>
+          <div class="actions">
+            <button class="res-del-btn" data-idx="${r._idx}">Supprimer réservation</button>
+          </div>`;
+        reservationList.appendChild(item);
       });
-    });
-  }
 
-  // — INITIAL LOAD —
-  loadProducts();
-  loadReservations();
-});
+      reservationList.querySelectorAll('.res-del-btn').forEach(btn => btn.addEventListener('click', async () => {
+        if (!confirm('Supprimer cette réservation ?')) return;
+        const resp = await fetch(`/api/reservations/${btn.dataset.idx}`, { method: 'DELETE' });
+        if (resp.ok) {
+          loadReservations();
+          loadProducts();
+        } else alert('Erreur lors de la suppression.');
+      }));
+    }
+
+    loadProducts();
+    loadReservations();
+  });
 </script>
-
 </body>
 </html>
