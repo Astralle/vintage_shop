@@ -26,7 +26,7 @@ app = Flask(
 app.secret_key = "y6;qLb4Z#=({jED?YV^uPt"
 
 # Hard-coded admin password
-ADMIN_PASSWORD = "4home1952"
+ADMIN_PASSWORD = "4home1952-@zDX()&@"
 
 # Data & images directories
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
@@ -52,7 +52,7 @@ def allowed_file(filename):
 
 # ---- Authentication routes ----
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/dx&HY@aa", methods=["GET", "POST"])
 def login():
     error = None
     if request.method == "POST":
@@ -135,7 +135,7 @@ def reservation():
     return render_template("reservation.html")
 
 # ---- Admin page (protected) ----
-@app.route("/admin")
+@app.route("//dx&HY@aa-True")
 def admin():
     if not session.get("admin_authenticated"):
         return redirect(url_for("login"))
