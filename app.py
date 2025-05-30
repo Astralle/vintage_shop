@@ -135,7 +135,7 @@ def reservation():
     return render_template("reservation.html")
 
 # ---- Admin page (protected) ----
-@app.route("//dx&HY@aa-True")
+@app.route("/dx&HY@aa-True")
 def admin():
     if not session.get("admin_authenticated"):
         return redirect(url_for("login"))
